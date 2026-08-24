@@ -1,2 +1,2 @@
-﻿using MarkusKod;
-MarkusSolution.Run();
+﻿//using MarkusKod;
+//MarkusSolution.Run();
