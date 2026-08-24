@@ -1,8 +1,8 @@
 ﻿Console.Write("Ange priset för din vara: ");
-string breakfastInput = Console.ReadLine();
-decimal Prisvara = Convert.ToDecimal(breakfastInput);
+string PrisVaraInput = Console.ReadLine();
+decimal Prisvara = Convert.ToDecimal(PrisVaraInput);
 Console.WriteLine("Skriv in antal varor: ");
 string quantityInput = Console.ReadLine();
-decimal quantity = Convert.ToDecimal(quantityInput);
-decimal totalprice = (decimal)(Prisvara * quantity * 2);
-Console.WriteLine("Pris efter skatt: " + totalprice);
+decimal Quantity = Convert.ToDecimal(quantityInput);
+decimal totalprice = (decimal)(Prisvara * Quantity * 2);
+Console.WriteLine("Pris efter skatt: " + totalprice +"Kr");
