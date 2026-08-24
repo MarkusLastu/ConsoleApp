@@ -1,0 +1,2 @@
+﻿using MarkusKod;
+MarkusSolution.Run();
