@@ -159,6 +159,26 @@ public class Dag1
 
         Console.WriteLine("Övning 4 - Räkna matkostnader");
 
+        decimal frukostKostnad = 0;
+        decimal lunchKostnad = 0;
+        decimal middagKostnad = 0;
+        decimal genomsnittKostnad = 0;
+
+        Console.WriteLine("Vad kostar frukosten?");
+        frukostKostnad = Convert.ToDecimal(Console.ReadLine());
+
+        Console.WriteLine("Vad kostar lunchen?");
+        lunchKostnad = Convert.ToDecimal(Console.ReadLine());
+
+        Console.WriteLine("Vad kostar middagen?");
+        middagKostnad = Convert.ToDecimal(Console.ReadLine());
+
+        // Beräkna medelvärdet
+        genomsnittKostnad = (frukostKostnad + lunchKostnad + middagKostnad) / 3;
+
+        Console.WriteLine("Den genomsnittliga kostnaden för måltiderna är: " + genomsnittKostnad + " kr");
+
+
     }
 
 
