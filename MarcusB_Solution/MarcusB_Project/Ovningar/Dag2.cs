@@ -23,4 +23,16 @@ public class Dag2
     {
         Console.WriteLine("Övning nummer 2 här!!!");
     }
+
+
+
+    public static void Ovn3()
+    {
+        Console.WriteLine("Övning nummer 3 här!!!");
+    }
+
+    public static void Ovn4()
+    {
+        Console.WriteLine("Övning nummer 4 här!!!");
+    }
 }

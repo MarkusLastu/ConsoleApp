@@ -1,5 +1,7 @@
 
 
+using System.Runtime.ConstrainedExecution;
+
 public class Dag1
 {
     public static void Ovn1()
@@ -72,6 +74,92 @@ public class Dag1
         // Kommentar för att testa en ny pull request
 
 
-        Console.WriteLine("Övning nummer 2 här!!!");
+        Console.WriteLine("Övning nummer 2");
+
+        int hours = 0;
+        int minutes = 0;
+        int totalMinutes = 0;
+
+        Console.WriteLine("Ange antal timmar: ");
+        int.TryParse(Console.ReadLine(), out hours);
+
+        Console.WriteLine("Ange antal minuter: ");
+        int.TryParse(Console.ReadLine(), out minutes);
+
+        totalMinutes = (hours * 60) + minutes;
+
+        Console.WriteLine("Total tid i minuter: " + totalMinutes);
     }
+
+
+    public static void Ovn3()
+    {
+        //Skapa ett Console - program som:
+        //1. Ber användaren ange:
+        //o pris per smoothi i kronor
+        //o antal smoothisar
+        //2. Konverterar värdena till:
+        //o decimal (pris)
+        //o int (antal)
+        //3. Räknar ut:
+        //o totalpriset
+        //4.Konverterar totalpriset till string
+        //5. Skriver ut resultatet med ett tydligt meddelande och med
+        //konkatineringsmetoden.
+        //Krav:
+        //• Använd decimal.TryParse
+        //• Använd int.TryParse
+        //• Använd ToString()
+        //• Ingen if / else
+        //• Kommentar ovanför varje rad
+
+        Console.WriteLine("Övning 3 - Räkna totalpris Smoothie");
+
+        decimal prisPerSmoothi = 0;
+        int antalSmoothisar = 0;
+        decimal totalPris = 0;
+
+        Console.WriteLine("Ange pris per smoothi: ");
+        decimal.TryParse(Console.ReadLine(), out prisPerSmoothi);
+
+        Console.WriteLine("Ange antal smoothisar: ");
+        int.TryParse(Console.ReadLine(), out antalSmoothisar);
+
+        totalPris = prisPerSmoothi * antalSmoothisar;
+
+        Console.WriteLine("Totalt pris för allt blir: " + totalPris); ;
+
+
+
+
+
+
+
+
+
+    }
+
+    public static void Ovn4()
+    {
+
+
+        //Skapa ett Console-program som:
+        //1. Ber användaren ange:
+        //• kostnad för frukost.
+        //• kostnad för lunch.
+        //• kostnad för middag.
+        //2. Konverterar värdena till decimal.
+        //3. Räknar ut den genomsnittliga kostnaden.
+        //4. Skriver ut resultatet.
+        //Krav:
+        //• Använd Convert.ToDecimal().
+        //• Ingen if / else.
+        //• Alla värden ska lagras i variabler.
+        //• Skriv kommentar om varje rad (ovanför raden)
+
+        Console.WriteLine("Övning 4 - Räkna matkostnader");
+
+    }
+
+
 }
