@@ -69,6 +69,9 @@ public class Dag1
         // • Resultatet ska lagras i en variabel.
 
 
+        // Kommentar för att testa en ny pull request
+
+
         Console.WriteLine("Övning nummer 2 här!!!");
     }
 }
