@@ -1,7 +1,7 @@
 ﻿
 
 
-int useCase = 1; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
+int useCase = 2; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
 
 
 if (useCase == 0)
