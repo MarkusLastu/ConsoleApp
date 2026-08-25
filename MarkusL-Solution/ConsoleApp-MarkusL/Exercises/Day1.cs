@@ -1,8 +1,8 @@
 
 
-public class Dag1
+public class Day1
 {
-    public static void Ovn1()
+    public static void Exc1()
     {
 
         // Skapa ett Console - program som:
@@ -53,7 +53,7 @@ public class Dag1
 
 
 
-    public static void Ovn2()
+    public static void Exc2()
     {
         // Skapa ett Console - program som:
         // 1.Ber användaren ange:
