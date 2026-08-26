@@ -1,7 +1,7 @@
 ﻿
 
 
-int useCase = 5; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
+int useCase = 8; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
 
 
 if (useCase == 0)
@@ -33,7 +33,9 @@ switch (useCase)
     case 7: Dag2.Ovn3(); break;
     case 8: Dag2.Ovn4(); break;
     case 9: Dag2.Ovn5(); break;
-
+    case 10: Dag3.Ovn1(); break; 
+    case 11: Dag3.Ovn2(); break;
+    case 12: Dag3.Ovn3(); break;
 
 
     default:
