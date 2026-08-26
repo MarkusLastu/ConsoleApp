@@ -135,7 +135,7 @@
         while (val != 4)
         {
             Console.WriteLine("");
-            Console.WriteLine(""); 
+            Console.WriteLine("");
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine("Välj hur du vill beräkna");
             Console.WriteLine("1.Addera två tal");
@@ -193,7 +193,7 @@
                     Console.WriteLine("Ange ett tal som du vill se i kvadrat: ");
                     isNumeric1 = int.TryParse(Console.ReadLine(), out tal1);
 
-                    
+
                     if (isNumeric1 == false)
                     {
                         Console.WriteLine("--> Ogiltigt tal");
@@ -201,7 +201,7 @@
                     else
                     {
                         Console.WriteLine("--> Kvadraten av talet är: " + (tal1 * tal1));
-                        isNumeric1 = false;                        
+                        isNumeric1 = false;
                     }
                     ; break;
 
@@ -226,7 +226,7 @@
         //5.Skriv också ut antal tecken i lösenordet(Length).
         //6.Kommentera koden.
 
-        
+
         Console.WriteLine("Ange ett lösenord: ");
         string pw = Console.ReadLine();
 
@@ -235,7 +235,7 @@
             Console.WriteLine("Inget lösenord angivet");
 
         }
-        else if(pw.Length < 6)
+        else if (pw.Length < 6)
         {
             Console.WriteLine("För kort lösenord");
             Console.WriteLine("Du har angett en längd på " + pw.Length + " tecken.");
@@ -246,10 +246,10 @@
             Console.WriteLine("Du har angett en längd på " + pw.Length + " tecken.");
         }
 
-        
-        
 
-        }
+
+
+    }
 
     public static void Ovn5()
     {
@@ -278,6 +278,81 @@
         //• Skriva även ut hur många tecken ordet innehåller
         //Om användaren väljer Avsluta ska programmet skriva ut ett avslutsmeddelande och
         //avslutas.
+
+
+        int val = 0;
+
+        while (val != 3)
+        {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("----------------------------------------");
+
+            Console.WriteLine("Välj ett alternativ:");
+            Console.WriteLine("1.Kontrollera temperatur");
+            Console.WriteLine("2.Kontrollera ord");
+            Console.WriteLine("3.Avsluta");
+
+            int.TryParse(Console.ReadLine(), out val);
+
+            switch (val)
+            {
+                case 1:
+                    {
+                        int temp = 0;
+                        Console.WriteLine("Ange antal grader i Celcius");
+                        bool isNumeric = int.TryParse(Console.ReadLine(), out temp);
+
+                        if (!isNumeric)
+                        {
+                            Console.WriteLine("--> " + "Ange temperaturen med siffror endast");
+                        }
+
+                        else if (temp < 10)
+                        {
+                            Console.WriteLine("--> " + temp + " grader är jäkligt kallt!");
+                        }
+                        else if (temp >= 10 && temp <= 25)
+                        {
+                            Console.WriteLine("--> " + temp + " grader är verkligen lagom!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("--> " + temp + " grader är jättevarmt!"); 
+                        }
+                            break;
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Skriv ett ord"); 
+                        string ord = Console.ReadLine().ToUpper().Trim();
+                        
+                        if(ord.Length < 5)
+                        {
+                            Console.WriteLine("--> Ditt ord: '" + ord + "' är ett kort ord med " + ord.Length + " tecken");
+                        }
+                        else
+                        {
+                            Console.WriteLine("--> Ditt ord: '" + ord + "' är ett långt ord med " + ord.Length + " tecken");
+                        }
+
+                        break;
+                    }
+                case 3:
+                    {
+                        Console.WriteLine("--- Programmet avslutas ---");
+                        Console.WriteLine("--- Bye Bye! ---");
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("--> " + "Felaktikt val!"); break;
+                    }
+
+            }
+
+        }
+
 
     }
 }
