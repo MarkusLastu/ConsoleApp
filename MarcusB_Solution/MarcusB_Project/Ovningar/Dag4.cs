@@ -1,4 +1,8 @@
-﻿public class Dag4
+﻿using System.Net.NetworkInformation;
+using MarcusB_Project.Funktioner;
+
+
+public class Dag4
 {
     public static void Ovn1()
     {
@@ -131,6 +135,84 @@
         //  Random rnd = new Random();
         //        int secret = rnd.Next(1, 51); // 1–50
 
+
+        int antalGissningar = 0;
+        int gissning = 0;
+        int gissningarKvar = 0;
+
+
+        Console.WriteLine("Jag kommer tänka på ett hemligt tal.");
+
+        Console.Write("");
+        int minTal = Inputs.HeltalParsing("Ange minsta möjliga det talet ska vara: ");
+
+        Console.Write("");
+        int maxTal = Inputs.HeltalParsing("Ange största möjliga det talet ska vara: ");
+
+        Console.WriteLine();
+        Console.WriteLine("OK. Jag tänker på ett hemligt tal mellan " + minTal + " och " + maxTal + ": ");
+        int maxAntalGissningar = Inputs.HeltalParsing("Hur många gissningar vill du ha? ");
+        gissningarKvar = maxAntalGissningar - 1;
+
+        // Generera ett hemligt tal
+        Random rnd = new Random();
+        int hemligtTal = rnd.Next(minTal, maxTal + 1); // +1 för att inkludera maxTal
+
+        for (int i = 0; i < maxAntalGissningar; i++)
+        {
+            Console.WriteLine();
+            Console.WriteLine("==========================================================");
+            Console.WriteLine("Försök " + (i + 1) + " av " + maxAntalGissningar);
+            Console.WriteLine("----------------------------------------------------------");
+            gissning = Inputs.HeltalParsing("Vad gissar du att det hemliga talet är? ");
+
+            Console.WriteLine();
+
+            if (gissning > hemligtTal)
+            {
+                Console.WriteLine("Du gissade för högt! Det hemliga talet är lägre än " + gissning + ".");
+                if (gissningarKvar == 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("==========================================================");
+                    Console.WriteLine("Tyvärr, du har inga försök kvar. Det hemliga talet var " + hemligtTal + ".");
+                    Console.WriteLine("==========================================================");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Du har " + gissningarKvar + " försök kvar.");
+                }
+            }
+            else if (gissning < hemligtTal)
+            {
+                Console.WriteLine("Du gissade för lågt! Det hemliga talet är högre än " + gissning + ".");
+                if (gissningarKvar == 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("==========================================================");
+                    Console.WriteLine("Tyvärr, du har inga försök kvar. Det hemliga talet var " + hemligtTal + ".");
+                    Console.WriteLine("==========================================================");
+                    break;
+                }                
+                else
+                {
+                    Console.WriteLine("Du har " + gissningarKvar + " försök kvar.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Grattis! Du gissade rätt! Det hemliga talet var " + hemligtTal + ".");
+                break;
+            }
+            ;
+            Console.WriteLine("----------------------------------------------------------");
+            Console.WriteLine();
+            gissningarKvar--;
+
+        }
 
 
 

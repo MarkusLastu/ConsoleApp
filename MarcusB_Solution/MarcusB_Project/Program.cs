@@ -1,7 +1,7 @@
 ﻿
 
 
-int useCase = 41; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
+int useCase = 42; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
 
 
 if (useCase == 0)
@@ -18,6 +18,7 @@ if (useCase == 0)
     Console.WriteLine("25 - Dag2 - Övn5 - Interaktiv meny");
     Console.WriteLine("31 - Dag3 - Övn1 - ");
     Console.WriteLine("41 - Dag4 - Övn1 - ");
+    Console.WriteLine("42 - Dag4 - Övn2 - ");
 
 
     Console.Write("Ditt val: ");
@@ -31,18 +32,21 @@ switch (useCase)
     case 12: Dag1.Ovn2(); break;
     case 13: Dag1.Ovn3(); break;
     case 14: Dag1.Ovn4(); break;
-    
+
     case 21: Dag2.Ovn1(); break;
     case 22: Dag2.Ovn2(); break;
     case 23: Dag2.Ovn3(); break;
     case 24: Dag2.Ovn4(); break;
     case 25: Dag2.Ovn5(); break;
-    
-    case 31: Dag3.Ovn1(); break; 
+
+    case 31: Dag3.Ovn1(); break;
     case 32: Dag3.Ovn2(); break;
     case 33: Dag3.Ovn3(); break;
-    
+
     case 41: Dag4.Ovn1(); break;
+    case 42: Dag4.Ovn2(); break;
+    case 43: Dag4.Ovn3(); break;
+    //case 44: Dag4.Ovn4(); break;
 
 
 
