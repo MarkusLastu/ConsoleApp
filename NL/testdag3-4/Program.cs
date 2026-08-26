@@ -45,7 +45,7 @@ int maxTemp = tempraturer.Max();
 Console.WriteLine($"Minsta temperatur: {minTemp} Grader");
 Console.WriteLine($"högsta temperatur: {maxTemp} Grader");
 
-int under25 = tempraturer.Count(t => t < 25);
+int under25 = tempraturer.Count(t => t < 24);
 int över25 = tempraturer.Count(t => t > 25);
 Console.WriteLine($"Antal temperaturer under 25 grader: {under25}");
 Console.WriteLine($"Antal temperaturer över 25 grader: {över25}");
