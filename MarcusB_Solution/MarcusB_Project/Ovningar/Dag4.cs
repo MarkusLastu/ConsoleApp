@@ -21,10 +21,95 @@
 
 
 
+        int nyTemp = 0;
+        double medelTemp = 0;
+        int maxTemp = 0;
+        int minTemp = 0;
+        int gransVarde = 0;
+        int antalOverGrans = 0;
+        int antalTemperaturer = 0;
+
+        List<int> tempLista = new List<int>();
 
 
+        while (true)
+        {
+            Console.WriteLine();
+
+            try
+            {
+                Console.Write("Ange antal temperaturer att mata in: ");
+                antalTemperaturer = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                break;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Ange antalet med heltal!");
+            }
+        }
+
+        for (int i = 0; i < antalTemperaturer; i++)
+        {
+            Console.WriteLine();
+            Console.Write("Ange temperatur nr " + (i + 1) + " av totalt " + antalTemperaturer + ": ");
+            try
+            {
+                nyTemp = int.Parse(Console.ReadLine());
+                tempLista.Add(nyTemp);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Ange temperaturen med heltal!");
+                i--;
+            }
+        }
 
 
+        Console.WriteLine();
+        Console.WriteLine(tempLista.Count + " temperaturer inlagda.");
+
+        while (true)
+        {
+            Console.WriteLine();
+            Console.Write("Ange ett gränsvärde för att räkna antal temperaturer över detta värde: ");
+
+            try
+            {
+                gransVarde = int.Parse(Console.ReadLine());
+                break;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Ange gränsvärdet med heltal!");
+            }
+        }
+
+
+        maxTemp = tempLista.Max();
+        minTemp = tempLista.Min();
+        medelTemp = tempLista.Average();
+
+        antalOverGrans = tempLista.Where(x => x > gransVarde).Count();
+
+        Console.WriteLine();
+        Console.WriteLine("-------------- HELA LISTAN --------------");
+        foreach (int i in tempLista)
+        {
+            Console.WriteLine(i);
+        }
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine();
+        Console.WriteLine("-----------------------------------------");
+        Console.WriteLine("Totalt antal temperaturer: " + tempLista.Count());
+        Console.WriteLine("Högsta värde: " + maxTemp);
+        Console.WriteLine("Lägsta värde: " + minTemp);
+        Console.WriteLine("Medelvärde: " + medelTemp);
+        Console.WriteLine("Antal temperaturer över gränsvärde: " + antalOverGrans);
+        Console.WriteLine("-----------------------------------------");
 
     }
 
