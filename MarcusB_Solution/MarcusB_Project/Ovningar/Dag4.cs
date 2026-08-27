@@ -1,4 +1,4 @@
-﻿using System.Net.NetworkInformation;
+﻿using System.Threading.Tasks.Sources;
 using MarcusB_Project.Funktioner;
 
 
@@ -144,14 +144,14 @@ public class Dag4
         Console.WriteLine("Jag kommer tänka på ett hemligt tal.");
 
         Console.Write("");
-        int minTal = Inputs.HeltalParsing("Ange minsta möjliga det talet ska vara: ");
+        int minTal = Calculations.HeltalParsing("Ange minsta möjliga det talet ska vara: ");
 
         Console.Write("");
-        int maxTal = Inputs.HeltalParsing("Ange största möjliga det talet ska vara: ");
+        int maxTal = Calculations.HeltalParsing("Ange största möjliga det talet ska vara: ");
 
         Console.WriteLine();
         Console.WriteLine("OK. Jag tänker på ett hemligt tal mellan " + minTal + " och " + maxTal + ": ");
-        int maxAntalGissningar = Inputs.HeltalParsing("Hur många gissningar vill du ha? ");
+        int maxAntalGissningar = Calculations.HeltalParsing("Hur många gissningar vill du ha? ");
         gissningarKvar = maxAntalGissningar - 1;
 
         // Generera ett hemligt tal
@@ -164,7 +164,7 @@ public class Dag4
             Console.WriteLine("==========================================================");
             Console.WriteLine("Försök " + (i + 1) + " av " + maxAntalGissningar);
             Console.WriteLine("----------------------------------------------------------");
-            gissning = Inputs.HeltalParsing("Vad gissar du att det hemliga talet är? ");
+            gissning = Calculations.HeltalParsing("Vad gissar du att det hemliga talet är? ");
 
             Console.WriteLine();
 
@@ -196,7 +196,7 @@ public class Dag4
                     Console.WriteLine("Tyvärr, du har inga försök kvar. Det hemliga talet var " + hemligtTal + ".");
                     Console.WriteLine("==========================================================");
                     break;
-                }                
+                }
                 else
                 {
                     Console.WriteLine("Du har " + gissningarKvar + " försök kvar.");
@@ -234,6 +234,61 @@ public class Dag4
         //poäng.
         //• Använd en if-sats för att filtrera de studenter som har poäng ≥ 70.
         //• Skriv ut varje student som klarade kursen, t.ex
+
+
+        List<string> names = new List<string>
+        {
+            "Alice",
+            "Bob",
+            "Charlie",
+            "Diana",
+            "Erik",
+            "Fatima",
+            "Gustav",
+            "Hanna",
+            "Isak",
+            "Julia"
+        };
+
+        List<int> scores = new List<int>
+        {
+            85,
+            62,
+            74,
+            91,
+            68,
+            77,
+            55,
+            70,
+            83,
+            49
+        };
+
+        Console.WriteLine();
+        
+
+
+        int i = 0;
+
+        Console.WriteLine();
+        Console.WriteLine("-------------------------------------------");
+        int passingPoints = Calculations.HeltalParsing("Ange poänggräns för att klara kursen (t.ex. 70): ");
+        Console.WriteLine("-------------------------------------------");
+
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("Studenter som klarade kursen (poäng ≥ " + passingPoints + "):");
+        Console.WriteLine("-------------------------------------------");
+        foreach (var score in scores)
+        {
+            if(score >= passingPoints)
+            {
+                Console.WriteLine(names[i] + " - " + score+" poäng.");
+            }
+            i++;
+        }
+
+        Console.WriteLine("-------------------------------------------");
 
 
 
