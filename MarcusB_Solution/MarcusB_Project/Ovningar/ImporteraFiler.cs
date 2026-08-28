@@ -49,8 +49,6 @@ public class ImporteraFiler
                     numberOfLines++;
                 }
             }
-
-
         }
 
 
@@ -58,6 +56,36 @@ public class ImporteraFiler
 
         return validData;
     }
+
+    public static string[][] convertListToArray(List<string> incomingList)
+    {
+
+        Console.WriteLine("Skapar array av inkommande lista");
+        // Rubriker
+        // string[] headers = incomingList[0].Split(';');
+
+
+        // Övrig data
+
+        string[][] outputData = incomingList
+            .Skip(1)
+            .Select(line => line.Split(';'))
+            .ToArray();
+
+        foreach (string[] row in outputData)
+        {
+
+            foreach (string column in row)
+            {
+                Console.Write(column + " - ");
+            }
+
+            Console.WriteLine("/n");
+
+        }
+        return outputData;
+    }
+
 
 
     public static void FindDataWithStartingLetter(List<string> incomingList, string startingLetter)
@@ -139,5 +167,45 @@ public class ImporteraFiler
 
 
 
+    public static double[] GetAreaInSquareMeters(string[][] dataArray, int columnIndex)
+    {
+        if (dataArray == null)
+            return Array.Empty<double>();
+
+        var result = new List<double>();
+
+        foreach (var row in dataArray)
+        {
+            if (row == null || row.Length <= columnIndex)
+            {
+                result.Add(double.NaN);
+                continue;
+            }
+
+            string raw = row[columnIndex];
+            if (string.IsNullOrWhiteSpace(raw))
+            {
+                result.Add(double.NaN);
+                continue;
+            }
+
+            // Normalize number format (comma or dot) and remove spaces
+            string cleaned = raw.Trim().Replace(" ", "").Replace("\u00A0", "").Replace(",", ".");
+
+            if (double.TryParse(cleaned, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double value))
+            {
+                // Assume the input area is in square kilometers and convert to square meters
+                double squareMeters = value * 1_000_000.0;
+                result.Add(squareMeters);
+            }
+            else
+            {
+                result.Add(double.NaN);
+            }
+        }
+
+        Console.WriteLine("Converted areas to square meters. Count: " + result.Count);
+        return result.ToArray();
+    }
 
 }

@@ -39,4 +39,27 @@ public class Calculations
 
     }
 
+    public static double[][] GetAreaInSquareMeters(string[][] incomingArray, int columnIndex)
+    {
+
+        incomingArray = incomingArray
+    .Where(row => row.Length > columnIndex &&
+                  !string.IsNullOrWhiteSpace(row[columnIndex]))
+    .ToArray();
+
+        double[][] outputArray = new double[incomingArray.Length][];
+
+        for (int i = 0;i<incomingArray.Length;i++)
+        {
+            outputArray[i] = new double[2];
+            Console.WriteLine($"Rad {i}, värde: '{incomingArray[i][columnIndex]}'");
+            outputArray[i][0] = double.Parse(incomingArray[i][columnIndex]);
+            outputArray[i][1] = outputArray[i][0] * 1000000;
+        }
+
+        
+        return outputArray;
+        
+
+    }
 }

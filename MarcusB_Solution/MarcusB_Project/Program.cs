@@ -3,7 +3,7 @@ public class Program
 {
     static void Main(string[] args)
     {
-        string useCase = "4b1"; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
+        string useCase = "4b2"; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
 
 
         if (useCase.Equals("0"))
@@ -56,6 +56,7 @@ public class Program
             case "4bi2": Dag4b.Info2_LasInRaderFranFil("Countries_area.txt"); break; // eller "Countries.txt"
             case "4bi3": Dag4b.Info3_LasInKolumnNamnFranFil("Countries_area.txt"); break;
             case "4b1": Dag4b.Ovn1("Countries.txt"); break;
+            case "4b2": Dag4b.Ovn2("Countries_area.txt"); break;
 
 
 
