@@ -1,9 +1,14 @@
 ﻿
+namespace MarcusB_Project;
+
+using MarcusB_Project.Ovningar;
+using MarcusB_Project.Instruktioner;
+
 public class Program
 {
     static void Main(string[] args)
     {
-        string useCase = "4b2"; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
+        string useCase = "i213"; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
 
 
         if (useCase.Equals("0"))
@@ -23,6 +28,8 @@ public class Program
             Console.WriteLine("42 - Dag4 - Övn2 - ");
             Console.WriteLine("40bi - ImporteraFiler - ");
 
+            Console.WriteLine("i1 - Gaming - ");
+
             Console.WriteLine("91 - ImporteraFiler - ");
 
 
@@ -33,6 +40,7 @@ public class Program
 
         switch (useCase)
         {
+            // Övningar
             case "11": Dag1.Ovn1(); break;
             case "12": Dag1.Ovn2(); break;
             case "13": Dag1.Ovn3(); break;
@@ -59,8 +67,28 @@ public class Program
             case "4b2": Dag4b.Ovn2("Countries_area.txt"); break;
 
 
+            // Instruktioner
+            case "i211": V2_dag1.Ovn1_Main(); break;
+            case "i212": V2_dag1.Ovn2_Main(); break;
+            case "i213": V2_dag1.Ovn3_Main_Game(); break;
+            case "i214": V2_dag1.Ovn4_Main_WorldTime(); break;
 
-            case "91"   : ImporteraFiler.ReadFiles("Countries.txt"); break;
+
+            //case "i1": Game.GameStart(); break;
+
+
+
+
+
+
+
+
+            // Fredagsmys
+
+
+
+            // Övrigt
+            case "91": ImporteraFiler.ReadFiles("Countries.txt"); break;
 
 
 

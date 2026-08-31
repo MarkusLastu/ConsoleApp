@@ -1,4 +1,7 @@
-﻿public class Dag2
+﻿
+namespace MarcusB_Project.Ovningar;
+
+public class Dag2
 {
     public static void Ovn1()
     {

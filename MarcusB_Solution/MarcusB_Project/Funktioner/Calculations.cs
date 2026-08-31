@@ -1,5 +1,6 @@
-﻿namespace MarcusB_Project.Funktioner;
+﻿
 
+namespace MarcusB_Project.Funktioner;
 
 public class Calculations
 {
@@ -49,7 +50,7 @@ public class Calculations
 
         double[][] outputArray = new double[incomingArray.Length][];
 
-        for (int i = 0;i<incomingArray.Length;i++)
+        for (int i = 0; i < incomingArray.Length; i++)
         {
             outputArray[i] = new double[2];
             Console.WriteLine($"Rad {i}, värde: '{incomingArray[i][columnIndex]}'");
@@ -57,9 +58,58 @@ public class Calculations
             outputArray[i][1] = outputArray[i][0] * 1000000;
         }
 
-        
+
         return outputArray;
-        
+
 
     }
 }
+
+
+// Klassen som innehåller både statiska och instansmetoder
+
+// Det finns statiska metoder(Add, Multiply) och de anropas direkt med
+// klassnamnet: SimpleMath.Add(5,7). De kräver ingen instans.De har inte heller
+// någon påverkan på objektets tillstånd. Däremot instansmetoder (Subtract,
+// Divide) kräver att vi skapar ett objekt: SimpleMath mathObj = new SimpleMath();
+// De fåverkar objektets metoder och egenskaper(LastResult) och kan lagra
+// senaste beräkningen i objektet.
+
+
+public class SimpleMathClass
+{
+    // Instansfält för att lagra senaste resultat
+    public int LastResultInstance { get; private set; }
+
+    // Statisk metod: kan anropas utan objekt
+    public static int AddMethod(int a, int b)
+    {
+        return a + b;
+    }
+
+    // Statisk metod        
+    public static int MultiplyMethod(int a, int b)
+    {
+        return a * b;
+    }
+
+    // Instansmetod: påverkar objektets tillstånd
+    public void SubtractMethod(int a, int b)
+    {
+        LastResultInstance = a - b;
+        Console.WriteLine($"Resultatet av {a} - {b} = {LastResultInstance}");
+    }
+
+    // Instansmetod: påverkar objektets tillstånd
+    public void DivideMethod(int a, int b)
+    {
+        if (b == 0)
+        {
+            Console.WriteLine("Kan inte dividera med noll!");
+            return;
+        }
+        LastResultInstance= a / b;
+        Console.WriteLine($"Resultatet av {a} / {b} = {LastResultInstance}");
+    }
+}
+
