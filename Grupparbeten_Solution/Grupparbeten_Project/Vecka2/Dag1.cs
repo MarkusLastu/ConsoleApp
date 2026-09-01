@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace Grupparbeten_Project;
+namespace Grupparbeten_Project.Vecka2;
 
-public class V2_dag1
+public class Dag1
 {
     public static void Ovn1_Main()
     {
+        Console.WriteLine("V2.Dag1.Ovn1 - Wizards kastar mana");
+        
+        
+
         int usedMana = 0;
         int SpellCount = 0;
 
@@ -55,7 +59,7 @@ public class V2_dag1
 
     public static void Ovn2_Main()
     {
-        Console.WriteLine("Övning 2 - Bibliotek");
+        Console.WriteLine("V2.Dag1.Ovn2 - Magiskt bibliotek");
         // Du är bibliotekarie i ett magiskt bibliotek. Det finns olika Böcker som kan läsas av
         // Läsare. Varje läsare har Energy som minskar när de läser. Det finns en statisk klass som
         // håller koll på totalt antal lästa böcker.
