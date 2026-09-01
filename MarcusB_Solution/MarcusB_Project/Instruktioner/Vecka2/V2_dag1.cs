@@ -5,7 +5,7 @@ using System.Text;
 using MarcusB_Project.Funktioner;
 
 
-namespace MarcusB_Project.Instruktioner
+namespace MarcusB_Project.Instruktioner.Vecka2
 {
     internal class V2_dag1
     {

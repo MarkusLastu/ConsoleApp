@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks.Sources;
+﻿namespace MarcusB_Project.Ovningar.Vecka1;
+
+using System.Threading.Tasks.Sources;
 using MarcusB_Project.Funktioner;
 
 

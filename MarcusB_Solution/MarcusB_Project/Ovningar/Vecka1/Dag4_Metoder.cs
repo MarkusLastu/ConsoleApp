@@ -1,6 +1,4 @@
-﻿
-
-namespace MarcusB_Project.Ovningar;
+﻿namespace MarcusB_Project.Ovningar.Vecka1;
 
 using System.Diagnostics;
 using System.IO.Enumeration;

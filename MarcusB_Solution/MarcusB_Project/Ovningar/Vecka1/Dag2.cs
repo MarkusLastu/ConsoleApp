@@ -1,5 +1,4 @@
-﻿
-namespace MarcusB_Project.Ovningar;
+﻿namespace MarcusB_Project.Ovningar.Vecka1;
 
 public class Dag2
 {

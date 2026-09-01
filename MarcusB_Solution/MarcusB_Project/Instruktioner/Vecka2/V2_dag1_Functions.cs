@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MarcusB_Project.Instruktioner
+namespace MarcusB_Project.Instruktioner.Vecka2
 {
     // Utanför Program-klassen
     class Player
