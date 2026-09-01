@@ -1,6 +1,6 @@
 ﻿
 
-using V2 = Grupparbeten_Project.Vecka2;
+using V2 = Grupparbeten_Project.Vecka2; //Namnet på namespace i Dag-filen
 
 
 
@@ -8,7 +8,7 @@ using V2 = Grupparbeten_Project.Vecka2;
 Console.WriteLine("Hello, World!");
 
 
-int programVal = 3; // Hårdkoda vilket program du vill köra. 0 = 
+int programVal = 0; // Hårdkoda vilket program du vill köra. 0 = 
 
 
 if (programVal == 0)
@@ -17,10 +17,11 @@ if (programVal == 0)
     Console.WriteLine("1 - Wizards kastar mana");
     Console.WriteLine("2 - Magiskt bibliotek");
     Console.WriteLine("3 - Simulera ett litet zoo");
+    Console.WriteLine("4 - Övning 1");
+    
     programVal = int.Parse(Console.ReadLine());
 
 }
-
 
 switch (programVal)
 {
@@ -29,5 +30,6 @@ switch (programVal)
     case 1: V2.Dag1.Ovn1_Main(); break;
     case 2: V2.Dag1.Ovn2_Main(); break;
     case 3: V2.Dag2.Ovn1_Main(); break;
+    case 4: V2.Dag3.Ovn1_Main(); break;
 
 }
