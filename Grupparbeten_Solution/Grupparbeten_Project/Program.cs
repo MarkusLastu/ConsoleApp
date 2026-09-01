@@ -1,4 +1,6 @@
-﻿using V2 = Grupparbeten_Project.Vecka2;
+﻿
+
+using V2 = Grupparbeten_Project.Vecka2;
 
 
 
@@ -6,7 +8,7 @@
 Console.WriteLine("Hello, World!");
 
 
-int programVal = 0; // Hårdkoda vilket program du vill köra. 0 = 
+int programVal = 3; // Hårdkoda vilket program du vill köra. 0 = 
 
 
 if (programVal == 0)
@@ -22,7 +24,8 @@ if (programVal == 0)
 
 switch (programVal)
 {
-
+    // case x: [rum].[class].[method]
+    // rum sätts av alias efter "using" längst upp i denna fil.
     case 1: V2.Dag1.Ovn1_Main(); break;
     case 2: V2.Dag1.Ovn2_Main(); break;
     case 3: V2.Dag2.Ovn1_Main(); break;

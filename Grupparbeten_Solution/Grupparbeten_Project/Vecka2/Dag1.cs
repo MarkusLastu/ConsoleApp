@@ -114,7 +114,7 @@ public class Wizard
     // Metoder:
     public int CastSpell(int cost)
     {
-        if ((CurrentManaLevel -= cost) < 0)
+        if ((CurrentManaLevel - cost) < 0)
         {
             Console.WriteLine(this.Name + " kan inte kasta denna spell. För lite mana.");
             return 0;
