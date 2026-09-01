@@ -21,7 +21,8 @@ namespace MarcusB_Project.Instruktioner.Vecka2
 
             Cat myCat1 = new Cat("Kissen");
             myCat1.MakeSound();
-            myCat1.Sleep();
+            myCat1.Sleep(); 
+            myCat1.Eat();
 
             Dog myDog1 = new Dog("Fido");
             myDog1.MakeSound();
@@ -37,7 +38,10 @@ namespace MarcusB_Project.Instruktioner.Vecka2
         }
 
 
-
+        public static void Ovn2_Main()
+        {
+            Console.WriteLine("Övning 2: Polymorfism med abstrakta klasser");
+        }
 
     }
 }

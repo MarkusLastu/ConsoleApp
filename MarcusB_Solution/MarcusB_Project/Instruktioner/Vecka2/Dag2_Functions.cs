@@ -70,6 +70,10 @@ namespace MarcusB_Project.Instruktioner.Vecka2
             base.Sleep();
             Console.WriteLine(this.Name +" skriker 'Snark!'");
         }
+        public void Eat()
+        {
+            Console.WriteLine("nom nom nom");
+        }
     }
     class Dog : Animal
     {

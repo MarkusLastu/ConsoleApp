@@ -10,13 +10,13 @@ public class Program
 {
     static void Main(string[] args)
     {
-        string useCase = "i221"; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
+        string useCase = "i222"; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
 
 
         if (useCase.Equals("0"))
         {
             Console.WriteLine("Välj övning:");
-            Console.WriteLine("o11 - Dag1 - Övn1 - Räkna totalpris");
+            Console.WriteLine("v111 - Dag1 - Övn1 - Räkna totalpris");
             Console.WriteLine("o12 - Dag1 - Övn2 - Räkna minuter");
             Console.WriteLine("o13 - Dag1 - Övn3 - Totalpris Smoothie");
             Console.WriteLine("o14 - Dag1 - Övn4 - Räkna matkostnader");
@@ -78,6 +78,7 @@ public class Program
             case "i214": V2i.Dag1.Ovn4_Main_WorldTime(); break;
 
             case "i221": V2i.Dag2.Ovn1_Main(); break;
+            case "i222": V2i.Dag2.Ovn2_Main(); break;
 
 
             //case "i1": Game.GameStart(); break;
