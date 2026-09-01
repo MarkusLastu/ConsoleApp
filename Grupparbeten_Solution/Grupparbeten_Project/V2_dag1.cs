@@ -12,7 +12,7 @@ public class V2_dag1
         int usedMana = 0;
         int SpellCount = 0;
 
-    Wizard p1 = new Wizard("Gandalf", 100);
+        Wizard p1 = new Wizard("Gandalf", 100);
         Wizard p2 = new Wizard("Merlin", 80);
 
         Wizard.ShowGlobalStats(p1, p2, SpellCount);
@@ -32,7 +32,7 @@ public class V2_dag1
         Console.WriteLine(p2.Name + " Kastar 2 spells: 20 resp. 10 mana.");
         p2.CastSpell(20);
         SpellCount = Wizard.TotalSpellsCast(SpellCount);
-        
+
         p2.CastSpell(10);
         SpellCount = Wizard.TotalSpellsCast(SpellCount);
 
@@ -47,26 +47,66 @@ public class V2_dag1
         Console.WriteLine();
         Console.WriteLine("3.Vad händer om TotalSpellsCast inte är static?");
         Console.WriteLine("Då blir det kompileringsfel. ");
-        Console.WriteLine(); 
+        Console.WriteLine();
         Console.WriteLine("4.Vad skulle hända om Mana var static?");
         Console.WriteLine("Då kan vi inte koppla det till resp. objekt. Det hör till klassen Wizard då och gäller alla Wizards.");
         Console.WriteLine();
     }
 
+    public static void Ovn2_Main()
+    {
+        Console.WriteLine("Övning 2 - Bibliotek");
+        // Du är bibliotekarie i ett magiskt bibliotek. Det finns olika Böcker som kan läsas av
+        // Läsare. Varje läsare har Energy som minskar när de läser. Det finns en statisk klass som
+        // håller koll på totalt antal lästa böcker.
+
+
+        Reader Reader1 = new Reader("Kalle");
+        Reader Reader2 = new Reader("Bosse");
+
+        Book Book1 = new Book("Den gamle och havet", 100);
+        Book Book2 = new Book("Pippi", 66);
+
+        //Reader1.ReadBook(Reader1.)
+
+
+    }
+
 }
+
+
+public class Reader(string Name)
+{
+    string Name { get; set; } = Name;
+    int Energy { get; set; } = 100;
+
+    public void ReadBook(Reader reader, Book book)
+    {
+        Console.WriteLine(reader.Name + " läser boken: " + book);
+    }
+}
+
+public class Book(string Title, int Pages)
+{
+    string Title { get; set; } = Title;
+    int Pages { get; set; } = Pages;
+}
+
+
+
 
 public class Wizard(string Name, int Mana)
 {
     // Skapa en klass som heter Wizard med Instansdel (hör till varje trollkarl)
     public string Name { get; set; } = Name;
     public int CurrentManaLevel { get; set; } = Mana;
-    
+
 
     // Metoder:
     public int CastSpell(int cost)
     {
         // Minskar trollkarlens Mana
-        CurrentManaLevel = CurrentManaLevel - cost;
+        CurrentManaLevel -= cost;
 
         //Returnerar hur mycket mana som användes
         return cost;
@@ -75,7 +115,7 @@ public class Wizard(string Name, int Mana)
     public void ReceiveMana(int amount)
     {
         //Ökar trollkarlens Mana
-        CurrentManaLevel = CurrentManaLevel + amount;
+        CurrentManaLevel += amount;
     }
 
     // Lägg till statisk del i samma klass:
@@ -101,20 +141,18 @@ public class Wizard(string Name, int Mana)
 
         Console.WriteLine();
         Console.WriteLine("Trollformler som kastats: ");
-        Console.WriteLine(SpellCount + " st totalt.");        
+        Console.WriteLine(SpellCount + " st totalt.");
 
         Console.WriteLine("===============================================");
 
-        Console.WriteLine();        
+        Console.WriteLine();
         Console.ReadLine();
 
     }
 
 
-
-
-
-
 }
+
+
 
 
