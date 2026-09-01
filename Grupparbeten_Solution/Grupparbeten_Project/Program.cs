@@ -6,7 +6,7 @@
 Console.WriteLine("Hello, World!");
 
 
-int programVal = 3; // Hårdkoda vilket program du vill köra. 0 = 
+int programVal = 0; // Hårdkoda vilket program du vill köra. 0 = 
 
 
 if (programVal == 0)
