@@ -105,11 +105,20 @@ public class Wizard(string Name, int Mana)
     // Metoder:
     public int CastSpell(int cost)
     {
-        // Minskar trollkarlens Mana
-        CurrentManaLevel -= cost;
+        if ((CurrentManaLevel -= cost) < 0)
+        {
+            Console.WriteLine(this.Name + " kan inte kasta denna spell. För lite mana.");
+            return 0;
+        }
+        else
+        {
+            // Minskar trollkarlens Mana
+            CurrentManaLevel -= cost;
 
-        //Returnerar hur mycket mana som användes
-        return cost;
+            //Returnerar hur mycket mana som användes
+            return cost;
+        }
+        
     }
 
     public void ReceiveMana(int amount)
