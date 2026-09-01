@@ -95,12 +95,17 @@ public class Book(string Title, int Pages)
 
 
 
-public class Wizard(string Name, int Mana)
+public class Wizard
 {
     // Skapa en klass som heter Wizard med Instansdel (hör till varje trollkarl)
-    public string Name { get; set; } = Name;
-    public int CurrentManaLevel { get; set; } = Mana;
+    public string Name { get; set; } 
+    public int CurrentManaLevel { get; set; } 
 
+    public Wizard(string name, int mana)
+    {
+        this.Name = name;
+        this.CurrentManaLevel = mana;
+    }
 
     // Metoder:
     public int CastSpell(int cost)
