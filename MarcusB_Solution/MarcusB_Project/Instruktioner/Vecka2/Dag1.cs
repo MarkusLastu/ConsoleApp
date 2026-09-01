@@ -7,7 +7,7 @@ using MarcusB_Project.Funktioner;
 
 namespace MarcusB_Project.Instruktioner.Vecka2
 {
-    internal class V2_dag1
+    internal class Dag1
     {
         public static void Ovn1_Main()
         {

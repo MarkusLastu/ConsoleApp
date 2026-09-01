@@ -10,7 +10,7 @@ public class Program
 {
     static void Main(string[] args)
     {
-        string useCase = "i213"; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
+        string useCase = "i221"; /* Fyll i nummer på övning (Hårdkodat). Om 0, så får man välja varje körning */
 
 
         if (useCase.Equals("0"))
@@ -43,7 +43,7 @@ public class Program
         switch (useCase)
         {
             // Övningar
-            case "o11": V1.Dag1.Ovn1(); break;
+            case "v111": V1.Dag1.Ovn1(); break;
             case "o12": V1.Dag1.Ovn2(); break;
             case "o13": V1.Dag1.Ovn3(); break;
             case "o14": V1.Dag1.Ovn4(); break;
@@ -68,12 +68,16 @@ public class Program
             case "o4b1": V1.Dag4b.Ovn1("Countries.txt"); break;
             case "o4b2": V1.Dag4b.Ovn2("Countries_area.txt"); break;
 
+            case "v211": V2.Dag1.Ovn1(); break;
+
 
             // Instruktioner
-            case "i211": V2i.V2_dag1.Ovn1_Main(); break;
-            case "i212": V2i.V2_dag1.Ovn2_Main(); break;
-            case "i213": V2i.V2_dag1.Ovn3_Main_Game(); break;
-            case "i214": V2i.V2_dag1.Ovn4_Main_WorldTime(); break;
+            case "i211": V2i.Dag1.Ovn1_Main(); break;
+            case "i212": V2i.Dag1.Ovn2_Main(); break;
+            case "i213": V2i.Dag1.Ovn3_Main_Game(); break;
+            case "i214": V2i.Dag1.Ovn4_Main_WorldTime(); break;
+
+            case "i221": V2i.Dag2.Ovn1_Main(); break;
 
 
             //case "i1": Game.GameStart(); break;
