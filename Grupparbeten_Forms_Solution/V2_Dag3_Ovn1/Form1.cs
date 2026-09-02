@@ -1,5 +1,6 @@
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace V2_Dag3_Ovn2
 {
@@ -37,19 +38,21 @@ namespace V2_Dag3_Ovn2
                 string filePath = Path.Combine(
                     AppContext.BaseDirectory,
                     @"..\..\..\..\ImportFiler\dessert.txt");
-                MessageBox.Show(filePath);
-
-                using StreamReader sr = new StreamReader(filePath);
                 
+                using StreamReader sr = new StreamReader(filePath);
+
                 string line = sr.ReadLine();
-                string[] valuesText = new string[10];
+
+                // string[] valuesText = new string[10];
+                List<string> valuesText = new List<string>();
 
                 //initialisera räknare i
                 int i = 0;
                 while (line != null)
                 {
-                    valuesText[i] = line;
+                    valuesText.Add(line);
                     line = sr.ReadLine();
+                    Debug.WriteLine($"Läser rad {i}: {valuesText[i]}");
                     ++i;
                 }
                 //skriver ut arrayen:
@@ -82,6 +85,56 @@ namespace V2_Dag3_Ovn2
             else
             {
                 txtVal.Text = string.Empty; // tomt om inget är valt
+            }
+        }
+
+        private void cmdValtDessert_Click(object sender, EventArgs e)
+        {
+            string selectedDessert = txtVal.Text;
+
+            if (string.IsNullOrEmpty(selectedDessert))
+            {
+                txtVal.BackColor = System.Drawing.Color.White;
+            }
+            else
+            {
+                switch (selectedDessert)
+                {
+                    case "Äppelpaj":
+                        txtVal.BackColor = System.Drawing.Color.Green;
+
+                        break;
+                    case "Chockladglass":
+                        txtVal.BackColor = System.Drawing.Color.Blue;
+                        break;
+                    case "Frukt":
+                        txtVal.BackColor = System.Drawing.Color.Pink;
+                        break;
+                    case "Grogg":
+                        txtVal.BackColor = System.Drawing.Color.Yellow;
+                        break;
+                    case "Öl":
+                        txtVal.BackColor = System.Drawing.Color.Brown;
+                        break;
+                    case "Vodka":
+                        txtVal.BackColor = System.Drawing.Color.LightGray;
+                        break;
+                    case "Rökheroin":
+                        txtVal.BackColor = System.Drawing.Color.DarkGray;
+                        break;
+                    case "Kokostoppar":
+                        txtVal.BackColor = System.Drawing.Color.Orange;
+                        break;
+
+                    default:
+                        txtVal.BackColor = System.Drawing.Color.Red;
+                        break;
+                }
+
+
+
+
+
             }
         }
     }

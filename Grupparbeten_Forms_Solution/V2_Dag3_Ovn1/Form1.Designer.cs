@@ -32,15 +32,16 @@
             lblVal = new Label();
             txtVal = new TextBox();
             cmbDesserts = new ComboBox();
+            cmdValtDessert = new Button();
             SuspendLayout();
             // 
             // cmdBeslut
             // 
             cmdBeslut.Location = new Point(244, 168);
             cmdBeslut.Name = "cmdBeslut";
-            cmdBeslut.Size = new Size(75, 23);
+            cmdBeslut.Size = new Size(165, 23);
             cmdBeslut.TabIndex = 0;
-            cmdBeslut.Text = "button1";
+            cmdBeslut.Text = "Validera Ja, Kanske, Nej";
             cmdBeslut.UseVisualStyleBackColor = true;
             cmdBeslut.Click += cmdBeslut_Click;
             // 
@@ -69,11 +70,22 @@
             cmbDesserts.TabIndex = 3;
             cmbDesserts.SelectedIndexChanged += cmbDesserts_SelectedIndexChanged;
             // 
+            // cmdValtDessert
+            // 
+            cmdValtDessert.Location = new Point(459, 218);
+            cmdValtDessert.Name = "cmdValtDessert";
+            cmdValtDessert.Size = new Size(75, 23);
+            cmdValtDessert.TabIndex = 4;
+            cmdValtDessert.Text = "Ändra färg";
+            cmdValtDessert.UseVisualStyleBackColor = true;
+            cmdValtDessert.Click += cmdValtDessert_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cmdValtDessert);
             Controls.Add(cmbDesserts);
             Controls.Add(txtVal);
             Controls.Add(lblVal);
@@ -90,5 +102,6 @@
         private Label lblVal;
         private TextBox txtVal;
         private ComboBox cmbDesserts;
+        private Button cmdValtDessert;
     }
 }
