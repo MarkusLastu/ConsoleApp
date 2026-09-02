@@ -12,7 +12,7 @@ namespace V2_Dag3_Ovn2_BioKassa
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -20,6 +20,11 @@
             base.Dispose(disposing);
         }
 
+        private ComboBox GetCmb_Drinks1()
+        {
+            return cmb_Drinks1;
+        }
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -36,7 +41,7 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            cmb_Drinks = new ComboBox();
+            cmb_Drinks1 = new ComboBox();
             label4 = new Label();
             tb_TotalPrice = new TextBox();
             label5 = new Label();
@@ -113,12 +118,12 @@
             // 
             // cmb_Drinks
             // 
-            cmb_Drinks.FormattingEnabled = true;
-            cmb_Drinks.Location = new Point(419, 69);
-            cmb_Drinks.Name = "cmb_Drinks";
-            cmb_Drinks.Size = new Size(121, 23);
-            cmb_Drinks.TabIndex = 8;
-            cmb_Drinks.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cmb_Drinks1.FormattingEnabled = true;
+            cmb_Drinks1.Location = new Point(419, 69);
+            cmb_Drinks1.Name = "cmb_Drinks1";
+            cmb_Drinks1.Size = new Size(121, 23);
+            cmb_Drinks1.TabIndex = 8;
+            cmb_Drinks1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
             // 
             // label4
             // 
@@ -153,7 +158,7 @@
             Controls.Add(label5);
             Controls.Add(tb_TotalPrice);
             Controls.Add(label4);
-            Controls.Add(cmb_Drinks);
+            Controls.Add(cmb_Drinks1);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -179,7 +184,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private ComboBox cmb_Drinks;
+        private ComboBox cmb_Drinks1;
         private Label label4;
         private TextBox tb_TotalPrice;
         private Label label5;
