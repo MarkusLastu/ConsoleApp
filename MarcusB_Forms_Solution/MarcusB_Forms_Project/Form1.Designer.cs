@@ -35,8 +35,6 @@
             lblVisa = new Label();
             txtText = new TextBox();
             lblTitle = new Label();
-            lvlVal = new Label();
-            txtVal = new TextBox();
             SuspendLayout();
             // 
             // cmdVisa
@@ -123,23 +121,6 @@
             lblTitle.TabIndex = 5;
             lblTitle.Text = "Välkommen!";
             // 
-            // lvlVal
-            // 
-            lvlVal.AutoSize = true;
-            lvlVal.Location = new Point(367, 54);
-            lvlVal.Name = "lvlVal";
-            lvlVal.Size = new Size(43, 17);
-            lvlVal.TabIndex = 6;
-            lvlVal.Text = "label1";
-            // 
-            // txtVal
-            // 
-            txtVal.Location = new Point(375, 92);
-            txtVal.Name = "txtVal";
-            txtVal.Size = new Size(100, 25);
-            txtVal.TabIndex = 7;
-            txtVal.Text = "Gillar du C# ? Svara Ja, Nej eller Kanske";
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -148,8 +129,6 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(621, 351);
-            Controls.Add(txtVal);
-            Controls.Add(lvlVal);
             Controls.Add(lblTitle);
             Controls.Add(txtText);
             Controls.Add(lblVisa);
@@ -175,7 +154,5 @@
         private Label lblVisa;
         private TextBox txtText;
         private Label lblTitle;
-        private Label lvlVal;
-        private TextBox txtVal;
     }
 }
