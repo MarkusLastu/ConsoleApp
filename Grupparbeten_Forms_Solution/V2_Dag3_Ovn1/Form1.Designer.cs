@@ -37,7 +37,7 @@
             // 
             // cmdBeslut
             // 
-            cmdBeslut.Location = new Point(244, 168);
+            cmdBeslut.Location = new Point(87, 88);
             cmdBeslut.Name = "cmdBeslut";
             cmdBeslut.Size = new Size(165, 23);
             cmdBeslut.TabIndex = 0;
@@ -72,7 +72,7 @@
             // 
             // cmdValtDessert
             // 
-            cmdValtDessert.Location = new Point(459, 218);
+            cmdValtDessert.Location = new Point(513, 255);
             cmdValtDessert.Name = "cmdValtDessert";
             cmdValtDessert.Size = new Size(75, 23);
             cmdValtDessert.TabIndex = 4;
@@ -84,6 +84,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
+            BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(800, 450);
             Controls.Add(cmdValtDessert);
             Controls.Add(cmbDesserts);

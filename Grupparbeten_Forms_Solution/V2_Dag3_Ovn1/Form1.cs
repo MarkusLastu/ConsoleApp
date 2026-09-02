@@ -35,10 +35,12 @@ namespace V2_Dag3_Ovn2
             try
             {
                 //using StreamReader sr = new StreamReader(@"ImportFiler\dessert.txt");
+
                 string filePath = Path.Combine(
                     AppContext.BaseDirectory,
-                    @"..\..\..\..\ImportFiler\dessert.txt");
-                
+                        "ImportFiler",
+                        "dessert.txt");
+
                 using StreamReader sr = new StreamReader(filePath);
 
                 string line = sr.ReadLine();
