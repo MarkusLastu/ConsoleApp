@@ -1,9 +1,9 @@
 <Solution>
   <Folder Name="/ImportFiler/">
-    <File Path="../../../../OneDrive/Dokument/Kurs Programmering/C# Julia/ImportFiler/dessert.txt" />
-    <File Path="../../../../OneDrive/Dokument/Kurs Programmering/C# Julia/ImportFiler/filmer.txt" />
-    <File Path="../../../../OneDrive/Dokument/Kurs Programmering/C# Julia/ImportFiler/resor.txt" />
-    <File Path="Instruktion_Sökväg.cs" />
+    <File Path="ImportFiler/dessert.txt" />
+    <File Path="ImportFiler/filmer.txt" />
+    <File Path="ImportFiler/Instruktion_Sökväg.cs" />
+    <File Path="ImportFiler/resor.txt" />
   </Folder>
   <Project Path="V2_Dag3_Ovn1/V2_Dag3_Ovn1.csproj" />
 </Solution>
