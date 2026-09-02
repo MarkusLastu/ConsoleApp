@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace MarcusB_Forms_Project
+namespace V2_Dag3_Ovn1
 {
     internal static class Program
     {
