@@ -6,4 +6,5 @@
     <File Path="ImportFiler/resor.txt" />
   </Folder>
   <Project Path="V2_Dag3_Ovn1/V2_Dag3_Ovn1.csproj" />
+  <Project Path="V2_Dag3_Ovn2_BioKassa/V2_Dag3_Ovn2_BioKassa.csproj" Id="ef5f9abb-0a1a-40a0-be2c-d6f43f80c409" />
 </Solution>
