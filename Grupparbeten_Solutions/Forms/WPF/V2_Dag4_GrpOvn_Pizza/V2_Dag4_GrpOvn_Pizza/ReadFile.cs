@@ -56,7 +56,7 @@ namespace V2_Dag4_GrpOvn_Pizza
                 }
 
                 string name = parts[0];
-                double price = double.Parse(parts[1]);
+                int price = int.Parse(parts[1]);
 
                 Pizza pizza = new Pizza(name, price);
 
@@ -71,15 +71,14 @@ namespace V2_Dag4_GrpOvn_Pizza
     public class Pizza
     {
         public string Name { get; set; }
-        public double Price { get; set; }
+        public int Price { get; set; }
 
-        public Pizza(string name, double price)
+        public string DisplayName { get { return $"{Name} - {Price} kr"; } }
+
+        public Pizza(string name, int price)
         {
             Name = name;
             Price = price;
         }
     }
-
-
 }
-

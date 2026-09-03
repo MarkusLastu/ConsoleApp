@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Diagnostics;
 
 namespace V2_Dag4_GrpOvn_Pizza
 {
@@ -23,69 +24,88 @@ namespace V2_Dag4_GrpOvn_Pizza
             
             List<string> pizzaTypes = new List<string>();
             pizzaTypes = ReadFile.ReadFileToList("PizzaTypes.txt");
-            ReadFile.CreatePizzaList(pizzaTypes);
+            List<Pizza> pizzas = ReadFile.CreatePizzaList(pizzaTypes);
+            cmbPizza.Items.Clear();
+            cmbPizza_FillDropdownPizzaTypes(pizzas);
         }
+
+        private void cmbPizza_FillDropdownPizzaTypes(List<Pizza> pizzas)
+        {
+            foreach (Pizza pizza in pizzas)
+            {
+                cmbPizza.Items.Add(pizza);
+            }
+        }
+
+        public void cmbPizza_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbPizza.SelectedIndex != -1)
+            {
+                string selectedPizza = cmbPizza.SelectedItem.ToString();
+            }
+        }
+
         private void cmdHamta_Click(object sender, RoutedEventArgs e)
         {
             string Pizzastorlek = null;
-            if (rbAlternativ1.IsChecked == true)
+            if (rbSmall.IsChecked == true)
             {
-                Pizzastorlek = rbAlternativ1.Content.ToString();
+                Pizzastorlek = rbSmall.Content.ToString();
             }
-            else if (rbAlternativ2.IsChecked == true)
+            else if (rbLarge.IsChecked == true)
             {
-                Pizzastorlek = rbAlternativ2.Content.ToString();
+                Pizzastorlek = rbLarge.Content.ToString();
             }
-            else if (rbAlternativ3.IsChecked == true)
+            else if (rbExtraLarge.IsChecked == true)
             {
-                Pizzastorlek = rbAlternativ3.Content.ToString();
+                Pizzastorlek = rbExtraLarge.Content.ToString();
             }
-            MessageBox.Show("You voted for " + Pizzastorlek);
-
-
         }
 
         private void cmdBestall_Click(object sender, RoutedEventArgs e)
         {
             if (cmbPizza.SelectedIndex == -1 ||
-               (rbSmall.IsChecked == false && rbMedium.IsChecked == false && rbLarge.IsChecked == false))
+               (rbSmall.IsChecked == false && rbLarge.IsChecked == false && rbExtraLarge.IsChecked == false))
             {
                 MessageBox.Show("Du måste välja både en pizza och en storlek innan du kan beställa!");
                 return;
             }
 
-            string valdPizza = cmbPizza.SelectedItem.ToString();
+            Pizza selectedPizza = (Pizza)cmbPizza.SelectedItem;
+            string valdPizza = selectedPizza.Name;
+            int prisPizza = selectedPizza.Price;
+            Debug.WriteLine($"Vald pizza: {valdPizza}, Pris: {prisPizza}");
             string valdStorlek = "";
-            int pris = 0;
+            int prisStorlek = 0;
 
             if (rbSmall.IsChecked == true)
             {
                 valdStorlek = "Small";
-                pris = 85;
-                this.Background = Brushes.LightSkyBlue;
-            }
-            else if (rbMedium.IsChecked == true)
-            {
-                valdStorlek = "Medium";
-                pris = 100;
-                this.Background = Brushes.LightGreen;
+                prisStorlek = 0;
+                //this.Background = Brushes.LightSkyBlue;
             }
             else if (rbLarge.IsChecked == true)
             {
                 valdStorlek = "Large";
-                pris = 120;
-                this.Background = Brushes.LightCoral;
+                prisStorlek = 20;
+                //this.Background = Brushes.LightGreen;
+            }
+            else if (rbExtraLarge.IsChecked == true)
+            {
+                valdStorlek = "Extra Large";
+                prisStorlek = 50;
+                //this.Background = Brushes.LightCoral;
             }
 
             txtResultat.Text = "Du beställde:\n" +
                                "Storlek: " + valdStorlek + ".\n" +
                                "Pizza: " + valdPizza + ".\n\n" +
-                               "Totalpris: " + pris + " kr.";
+                               "Totalpris: " + (prisPizza + prisStorlek) + " kr.";
 
             cmbPizza.SelectedIndex = -1;
             rbSmall.IsChecked = false;
-            rbMedium.IsChecked = false;
             rbLarge.IsChecked = false;
+            rbExtraLarge.IsChecked = false;
         }
     }
 }

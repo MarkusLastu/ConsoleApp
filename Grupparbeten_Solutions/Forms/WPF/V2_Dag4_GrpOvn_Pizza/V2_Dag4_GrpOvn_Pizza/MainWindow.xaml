@@ -6,68 +6,87 @@
         xmlns:local="clr-namespace:V2_Dag4_GrpOvn_Pizza"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+
     <!-- Rader -->
     <Grid Margin="20">
         <Grid.RowDefinitions>
+
             <RowDefinition Height="Auto"/>
             <!-- GroupBox -->
+
             <RowDefinition Height="Auto"/>
             <!-- Knapp -->
+
             <RowDefinition Height="Auto"/>
             <!-- Plats för ComboBox -->
+
             <RowDefinition Height="*"/>
             <!-- Tom yta -->
+
         </Grid.RowDefinitions>
+
         <!-- Kolumner -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
         <!-- ===== GROUPBOX MED RADIOBUTTONS ===== -->
-        <GroupBox Header="Välj alternativ"
-        Grid.Row="0"
-        Grid.ColumnSpan="2"
-        Margin="267,18,331,27" Grid.RowSpan="2">
-            <StackPanel Margin="10,0,10,0" Height="79">
-                <RadioButton x:Name="rbAlternativ1"
+        <GroupBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="Auto"
+            Margin="0,5">
 
-        Content="Small pizza"
-        Margin="5"/>
-                <RadioButton x:Name="rbAlternativ2"
-         Content="Large Pizza"
-         Margin="5"/>
-                <RadioButton x:Name="rbAlternativ3"
-        Content="extra Large pizza"
-        Margin="5" Height="21" Width="400"/>
-            </StackPanel>
+            <GroupBox.Header>
+                <TextBlock Text="Välj storlek på pizza" 
+                    FontSize="16" 
+                    FontWeight="Bold"/>
+            </GroupBox.Header>
+            
+            <StackPanel Height="Auto">
+                <RadioButton x:Name="rbSmall"
+                    Content="Small pizza"
+                    Margin="5"/>
+                <RadioButton x:Name="rbLarge"
+                    Content="Large Pizza"
+                    Margin="5"/>
+                <RadioButton x:Name="rbExtraLarge"
+                    Content="Extra Large Pizza"
+                    Margin="5"/>
+                </StackPanel>
         </GroupBox>
         <!-- ===== KNAPP SOM HÄMTAR VÄRDET ===== -->
-        <Button x:Name="cmdHamta"
- Content="Hämta valt alternativ"
- Grid.Column="1"
- Width="180"
- Height="35"
- Click="cmdHamta_Click"
- Margin="54,47,146,65" Grid.RowSpan="2"/>
-        <ComboBox 
-            HorizontalAlignment="Left" 
-            Margin="10,10,0,0" 
-            Grid.RowSpan="4" 
-            VerticalAlignment="Top" 
+        <ComboBox x:Name="cmbPizza"
+            DisplayMemberPath="DisplayName"
+            Grid.Column="0"
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             Width="242" 
-            Height="235"/>
+            Height="32"/>
 
-      <!-- Beställ knapp -->
-      <Button x:Name="cmdBestall" 
+        <!-- Beställ knapp -->
+        <Button x:Name="cmdBestall" 
             Content="Beställ" 
-            Click="cmdBestall_Click" 
-            Grid.Row="2"
+            Click="cmdBestall_Click"
             Width="100" 
             Height="40" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Grid.Column="2"
+            Grid.Row="0"/>
+
+        <!-- TextBox -->
+        <TextBox x:Name="txtResultat" 
+            Grid.Column="2"
+            Grid.Row="1"
             HorizontalAlignment="Left" 
-            Margin="0,0,0,10"/>
+            VerticalAlignment="Top"
+            TextWrapping="Wrap" 
+            Text="TextBox" 
+            Width="120"/>
     </Grid>
 
 
