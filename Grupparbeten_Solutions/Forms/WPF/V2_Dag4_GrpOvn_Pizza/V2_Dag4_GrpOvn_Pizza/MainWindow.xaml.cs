@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace V2_Dag4_GrpOvn_Pizza
 {
@@ -19,7 +20,7 @@ namespace V2_Dag4_GrpOvn_Pizza
         public MainWindow()
         {
             InitializeComponent();
-
+            ReadFile.ReadFileToList("PizzaTypes.txt");
         }
         private void cmdHamta_Click(object sender, RoutedEventArgs e)
         {
@@ -37,6 +38,7 @@ namespace V2_Dag4_GrpOvn_Pizza
                 Pizzastorlek = rbAlternativ3.Content.ToString();
             }
             MessageBox.Show("You voted for " + Pizzastorlek);
+
 
         }
     }
