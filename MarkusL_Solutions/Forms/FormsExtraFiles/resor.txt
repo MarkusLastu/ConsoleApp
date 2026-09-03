@@ -1,0 +1,6 @@
+﻿Uppsala, 100
+Stockholm, 300
+Norrköping, 350
+Malmö, 600
+Umeå, 650
+Kiruna, 800

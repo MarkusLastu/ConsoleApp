@@ -1,0 +1,8 @@
+Minecraft;120
+Avatar;135
+Lejonkungen;110
+Harry Potter;125
+Jurassic World;140
+Super Mario Bros;115
+Spider-Man;130
+Sällskapsresan;100
