@@ -1,4 +1,6 @@
-﻿public class Dag2
+﻿namespace MarcusB_Project.Ovningar.Vecka1;
+
+public class Dag2
 {
     public static void Ovn1()
     {
@@ -101,6 +103,7 @@
                 break;
         }
 
+        
 
 
 
