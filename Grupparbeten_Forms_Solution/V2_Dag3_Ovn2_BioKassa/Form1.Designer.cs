@@ -22,7 +22,7 @@
 
         private ComboBox GetCmb_Drinks1()
         {
-            return cmb_Drinks1;
+            return cmb_Drinks;
         }
 
         #region Windows Form Designer generated code
@@ -41,7 +41,7 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            cmb_Drinks1 = new ComboBox();
+            cmb_Drinks = new ComboBox();
             label4 = new Label();
             tb_TotalPrice = new TextBox();
             label5 = new Label();
@@ -94,45 +94,45 @@
             label1.AutoSize = true;
             label1.Location = new Point(285, 51);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(43, 15);
             label1.TabIndex = 5;
-            label1.Text = "label1";
+            label1.Text = "Snacks";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(469, 51);
             label2.Name = "label2";
-            label2.Size = new Size(38, 15);
+            label2.Size = new Size(40, 15);
             label2.TabIndex = 6;
-            label2.Text = "label2";
+            label2.Text = "Drinks";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Location = new Point(634, 51);
             label3.Name = "label3";
-            label3.Size = new Size(38, 15);
+            label3.Size = new Size(35, 15);
             label3.TabIndex = 7;
-            label3.Text = "label3";
+            label3.Text = "Films";
             // 
             // cmb_Drinks
             // 
-            cmb_Drinks1.FormattingEnabled = true;
-            cmb_Drinks1.Location = new Point(419, 69);
-            cmb_Drinks1.Name = "cmb_Drinks1";
-            cmb_Drinks1.Size = new Size(121, 23);
-            cmb_Drinks1.TabIndex = 8;
-            cmb_Drinks1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
+            cmb_Drinks.FormattingEnabled = true;
+            cmb_Drinks.Location = new Point(419, 69);
+            cmb_Drinks.Name = "cmb_Drinks";
+            cmb_Drinks.Size = new Size(121, 23);
+            cmb_Drinks.TabIndex = 8;
+            cmb_Drinks.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Location = new Point(803, 51);
             label4.Name = "label4";
-            label4.Size = new Size(38, 15);
+            label4.Size = new Size(44, 15);
             label4.TabIndex = 9;
-            label4.Text = "label4";
+            label4.Text = "Tickets";
             // 
             // tb_TotalPrice
             // 
@@ -158,7 +158,7 @@
             Controls.Add(label5);
             Controls.Add(tb_TotalPrice);
             Controls.Add(label4);
-            Controls.Add(cmb_Drinks1);
+            Controls.Add(cmb_Drinks);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -184,7 +184,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private ComboBox cmb_Drinks1;
+        private ComboBox cmb_Drinks;
         private Label label4;
         private TextBox tb_TotalPrice;
         private Label label5;
