@@ -2,4 +2,5 @@
   <Project Path="MarcusB_Forms_Project/V2_Dag3_Ovn1.csproj" />
   <Project Path="V2_Dag3_Ovn2/V2_Dag3_Ovn2.csproj" />
   <Project Path="V2_Dag4_Ovn1/V2_Dag4_Ovn1_WPF_Kalkylator.csproj" Id="a4f36dbf-cf05-453e-b579-db08c3ebdd9e" />
+  <Project Path="V2_Dag4_Ovn2_WPF_Combo/V2_Dag4_Ovn2_WPF_Combo.csproj" Id="96885528-e863-4f6a-a502-a76fe04d74d5" />
 </Solution>
