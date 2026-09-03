@@ -25,5 +25,24 @@ namespace V2_Dag4_GrpOvn_Pizza
             pizzaTypes = ReadFile.ReadFileToList("PizzaTypes.txt");
             ReadFile.CreatePizzaList(pizzaTypes);
         }
+        private void cmdHamta_Click(object sender, RoutedEventArgs e)
+        {
+            string Pizzastorlek = null;
+            if (rbAlternativ1.IsChecked == true)
+            {
+                Pizzastorlek = rbAlternativ1.Content.ToString();
+            }
+            else if (rbAlternativ2.IsChecked == true)
+            {
+                Pizzastorlek = rbAlternativ2.Content.ToString();
+            }
+            else if (rbAlternativ3.IsChecked == true)
+            {
+                Pizzastorlek = rbAlternativ3.Content.ToString();
+            }
+            MessageBox.Show("You voted for " + Pizzastorlek);
+
+
+        }
     }
 }

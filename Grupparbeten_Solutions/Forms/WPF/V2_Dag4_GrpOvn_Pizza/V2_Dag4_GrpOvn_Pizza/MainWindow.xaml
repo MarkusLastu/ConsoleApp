@@ -6,7 +6,58 @@
         xmlns:local="clr-namespace:V2_Dag4_GrpOvn_Pizza"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <!-- Rader -->
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- GroupBox -->
+            <RowDefinition Height="Auto"/>
+            <!-- Knapp -->
+            <RowDefinition Height="Auto"/>
+            <!-- Plats för ComboBox -->
+            <RowDefinition Height="*"/>
+            <!-- Tom yta -->
+        </Grid.RowDefinitions>
+        <!-- Kolumner -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!-- ===== GROUPBOX MED RADIOBUTTONS ===== -->
+        <GroupBox Header="Välj alternativ"
+        Grid.Row="0"
+        Grid.ColumnSpan="2"
+        Margin="267,18,331,27" Grid.RowSpan="2">
+            <StackPanel Margin="10,0,10,0" Height="79">
+                <RadioButton x:Name="rbAlternativ1"
+
+        Content="Small pizza"
+        Margin="5"/>
+                <RadioButton x:Name="rbAlternativ2"
+         Content="Large Pizza"
+         Margin="5"/>
+                <RadioButton x:Name="rbAlternativ3"
+        Content="extra Large pizza"
+        Margin="5" Height="21" Width="400"/>
+            </StackPanel>
+        </GroupBox>
+        <!-- ===== KNAPP SOM HÄMTAR VÄRDET ===== -->
+        <Button x:Name="cmdHamta"
+ Content="Hämta valt alternativ"
+ Grid.Column="1"
+ Width="180"
+ Height="35"
+ Click="cmdHamta_Click"
+ Margin="54,47,146,65" Grid.RowSpan="2"/>
+        <ComboBox 
+            HorizontalAlignment="Left" 
+            Margin="10,10,0,0" 
+            Grid.RowSpan="4" 
+            VerticalAlignment="Top" 
+            Width="242" 
+            Height="235"/>
 
     </Grid>
+
+
 </Window>
