@@ -10,6 +10,7 @@ namespace V2_Dag4_GrpOvn_Pizza
 {
     public class ReadFile
     {
+
         public static List<string> ReadFileToList(string fileName)
         {
             string filePath = System.IO.Path.Combine(
@@ -20,6 +21,7 @@ namespace V2_Dag4_GrpOvn_Pizza
             StringReader sr = new StringReader(File.ReadAllText(filePath));
 
             string line = sr.ReadLine();
+
             List<string> pizzaTypes = new List<string>();
 
             while (line != null)
@@ -29,7 +31,8 @@ namespace V2_Dag4_GrpOvn_Pizza
             }
 
             // Endast för debugging syfte, skriver ut alla pizza typer i debug output
-            foreach (string type in pizzaTypes) {
+            foreach (string type in pizzaTypes)
+            {
                 Debug.WriteLine(type);
             }
             // --------------------------------------
@@ -39,5 +42,44 @@ namespace V2_Dag4_GrpOvn_Pizza
             return pizzaTypes;
         }
 
+        public static List<Pizza> CreatePizzaList(List<string> pizzaTypes)
+        {
+            List<Pizza> pizzas = new List<Pizza>();
+
+            foreach (string pizzaType in pizzaTypes)
+            {
+                string[] parts = pizzaType.Split(';');
+
+                if (parts[0] == "Name")
+                {
+                    continue;
+                }
+
+                string name = parts[0];
+                double price = double.Parse(parts[1]);
+
+                Pizza pizza = new Pizza(name, price);
+
+                pizzas.Add(pizza);
+
+                Debug.WriteLine($"Pizza: {pizza.Name}, Price: {pizza.Price}");
+            }
+
+            return pizzas;
+        }
     }
+    public class Pizza
+    {
+        public string Name { get; set; }
+        public double Price { get; set; }
+
+        public Pizza(string name, double price)
+        {
+            Name = name;
+            Price = price;
+        }
+    }
+
+
 }
+
