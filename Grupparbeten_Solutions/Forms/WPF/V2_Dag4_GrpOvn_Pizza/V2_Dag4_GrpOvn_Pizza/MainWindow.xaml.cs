@@ -20,7 +20,10 @@ namespace V2_Dag4_GrpOvn_Pizza
         public MainWindow()
         {
             InitializeComponent();
-            ReadFile.ReadFileToList("PizzaTypes.txt");
+            
+            List<string> pizzaTypes = new List<string>();
+            pizzaTypes = ReadFile.ReadFileToList("PizzaTypes.txt");
+            ReadFile.CreatePizzaList(pizzaTypes);
         }
     }
 }

@@ -1,14 +1,9 @@
-﻿Capricciosa
-Calzone
-Hawaii
-Kebabpizza
-Margherita
-Mexicana
-Napolitana
-Oxfilépizza
-Pepperoni
-Prosciutto
-Quattro Formaggi
-Salami
-Vegetariana
-Vesuvio
+﻿Name;Price
+Margherita;95
+Vesuvio;105
+Capricciosa;110
+Hawaii;105
+Kebabpizza;120
+Salami;105
+Oxfilépizza;135
+Vegetariana;110
