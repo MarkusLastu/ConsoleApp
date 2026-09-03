@@ -28,9 +28,13 @@ namespace V2_Dag4_GrpOvn_Pizza
                 line = sr.ReadLine();
             }
 
+            // Endast för debugging syfte, skriver ut alla pizza typer i debug output
             foreach (string type in pizzaTypes) {
                 Debug.WriteLine(type);
             }
+            // --------------------------------------
+
+            pizzaTypes.Sort();
 
             return pizzaTypes;
         }
