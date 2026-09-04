@@ -19,6 +19,9 @@ namespace V2_Dag5_Fredagsgodis
         public MainWindow()
         {
             InitializeComponent();
+            cmbPersonPicker.ItemsSource = new string[] { "Markus L", "Niklas", "Sebbe", "Marcus B" };
         }
+
+
     }
 }
