@@ -59,7 +59,10 @@ namespace V2_Dag5_Fredagsgodis
         public override void AnvandSuperkraft()
         {
             System.Windows.MessageBox.Show(
-                $"{Name} använder sin superkraft {SuperPower} och utför specialattacken {SpecialAttack}."
+                $"{Name} använder sin superkraft\n\n" +
+                $"{SuperPower} \n\n" +
+                $"och utför specialattacken\n\n" +
+                $"{SpecialAttack}."
             );
         }
     }
