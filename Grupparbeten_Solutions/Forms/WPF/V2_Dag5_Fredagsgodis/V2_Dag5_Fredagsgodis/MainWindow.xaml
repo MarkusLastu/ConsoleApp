@@ -5,26 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:V2_Dag5_Fredagsgodis"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Fredagsgodis"
+        Height="450"
+        Width="800">
+
     <Grid>
-        <ComboBox x:Name="cmbPersonPicker"             
-            
-            DisplayMemberPath="Name"
-            SelectionChanged="cmbPersonPicker_SelectionChanged"
-            HorizontalAlignment="Left" 
-                  Margin="81,57,0,0" 
-                  VerticalAlignment="Top" 
-                  Width="120"/>
-        <Label x:Name="lblInfo" 
-               Content="Label" 
-               
-               HorizontalAlignment="Left" 
-               VerticalAlignment="Top"
-               Margin="319,61,0,0" 
-               Height="29" 
-               Width="269"/>
-        
-        <Button x:Name="btnSuperPower" 
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Rad 0, kolumn 0 -->
+        <StackPanel Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="20">
+
+            <TextBlock Text="Välj person"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Margin="20,10,20,10"/>
+
+            <ComboBox x:Name="cmbPersonPicker"                  
+                      DisplayMemberPath="Name"
+                      Width="200"
+                      HorizontalAlignment="Left"
+                      SelectionChanged="cmbPersonPicker_SelectionChanged"
+                      Margin="20,00,20,10"/>          
+          
+        </StackPanel>
+
+        <!-- Rad 0, kolumn 1 -->
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="20"
+                    VerticalAlignment="Bottom">
+
+            <TextBlock Text="Information"
+                       FontSize="24"
+                       FontWeight="Bold"/>
+
+        </StackPanel>
+
+        <!-- Rad 1, kolumn 0 -->
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="20">
+
+            <TextBlock Text="Text rad 1 kolumn 0"
+           FontSize="16"/>
+          
+                  <Button x:Name="btnSuperPower" 
                 Content="Aktivera superkraft!"
                 Click="btnSuperPower_Click"
                 HorizontalAlignment="Left"
@@ -33,8 +70,36 @@
                 Height="45" 
                 Width="120"
                 FontWeight="Bold"/>
-        
-        <TextBox x:Name="txtInfo" HorizontalAlignment="Left" Margin="319,136,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
-    </Grid>
+
+
+        </StackPanel>
+
+        <!-- Rad 1, kolumn 1 -->
+        <StackPanel Grid.Row="1"
+            Grid.Column="1"
+            Margin="20">
+
+            <TextBlock Text="Text rad 1 kolumn 1"
+                FontSize="16"/>
+          <Label x:Name="lblInfo" 
+               Content="Label" 
+               
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top"
+               Margin="319,61,0,0" 
+               Height="29" 
+               Width="269"/>
+
+          <TextBox x:Name="txtInfo" 
+                   HorizontalAlignment="Left" 
+                   TextWrapping="Wrap" 
+                   Text="TextBox" 
+                   VerticalAlignment="Top" 
+                   Width="120"/>
+
+        </StackPanel>
+
+   </Grid>
+
 </Window>
