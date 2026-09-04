@@ -10,13 +10,30 @@
         <ComboBox x:Name="cmbPersonPicker"             
             
             DisplayMemberPath="Name"
+            SelectionChanged="cmbPersonPicker_SelectionChanged"
             HorizontalAlignment="Left" 
                   Margin="81,57,0,0" 
                   VerticalAlignment="Top" 
                   Width="120"/>
-        <Label x:Name="lblInfo" Content="Label" HorizontalAlignment="Left" Margin="319,61,0,0" VerticalAlignment="Top" Height="29" Width="269"/>
+        <Label x:Name="lblInfo" 
+               Content="Label" 
+               
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top"
+               Margin="319,61,0,0" 
+               Height="29" 
+               Width="269"/>
         
-        <Button x:Name="btnSuperPower" Content="Button" HorizontalAlignment="Left" Margin="644,68,0,0" VerticalAlignment="Top" Height="45" Width="97"/>
+        <Button x:Name="btnSuperPower" 
+                Content="Aktivera superkraft!"
+                Click="btnSuperPower_Click"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="644,68,0,0" 
+                Height="45" 
+                Width="120"
+                FontWeight="Bold"/>
+        
         <TextBox x:Name="txtInfo" HorizontalAlignment="Left" Margin="319,136,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
