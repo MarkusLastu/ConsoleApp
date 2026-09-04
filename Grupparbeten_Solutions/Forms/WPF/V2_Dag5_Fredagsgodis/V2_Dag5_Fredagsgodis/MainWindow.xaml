@@ -23,35 +23,41 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-
         <!-- Rad 0, kolumn 0 -->
         <StackPanel Grid.Row="0"
                     Grid.Column="0"
                     Margin="20">
 
             <TextBlock Text="Välj person"
-                       FontSize="20"
+                       FontSize="24"
                        FontWeight="Bold"
                        Margin="20,10,20,10"/>
 
-            <ComboBox x:Name="cmbPersonPicker"                  
+            <ComboBox x:Name="cmbPersonPicker"
                       DisplayMemberPath="Name"
-                      Width="200"
+                      Width="190"
                       HorizontalAlignment="Left"
                       SelectionChanged="cmbPersonPicker_SelectionChanged"
-                      Margin="20,00,20,10"/>          
-          
+                      Margin="20,00,20,10"/>
+
         </StackPanel>
 
         <!-- Rad 0, kolumn 1 -->
         <StackPanel Grid.Row="0"
                     Grid.Column="1"
-                    Margin="20"
-                    VerticalAlignment="Bottom">
+                    Margin="20">
 
             <TextBlock Text="Information"
                        FontSize="24"
-                       FontWeight="Bold"/>
+                       FontWeight="Bold"
+                       Margin="20,10,20,10"/>
+
+            <TextBox x:Name="txtInfo"
+                     Text="TextBox" 
+                     Height="Auto" 
+                     Width="Auto"
+                     TextWrapping="Wrap"
+                     Margin="20,10,20,10"/>
 
         </StackPanel>
 
@@ -60,42 +66,17 @@
                     Grid.Column="0"
                     Margin="20">
 
-            <TextBlock Text="Text rad 1 kolumn 0"
-           FontSize="16"/>
-          
-                  <Button x:Name="btnSuperPower" 
-                Content="Aktivera superkraft!"
-                Click="btnSuperPower_Click"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"                
-                Height="45" 
-                Width="120"
-                FontWeight="Bold"/>
-
-
+            <Button x:Name="btnSuperPower"
+                    Content="Aktivera superkraft!"
+                    Click="btnSuperPower_Click"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"                
+                    Height="45" 
+                    Width="120"
+                    FontWeight="Bold"/>
 
         </StackPanel>
 
-        <!-- Rad 1, kolumn 1 -->
-        <StackPanel Grid.Row="1"
-            Grid.Column="1"
-            Margin="20">
-
-            <TextBlock Text="Text rad 1 kolumn 1"
-                FontSize="16"/>
-          <Label x:Name="lblInfo" 
-               Content="Label"                
-               Height="Auto" 
-               Width="Auto"/>
-
-          <TextBox x:Name="txtInfo"                     
-                   Text="TextBox" 
-                   Height="Auto" 
-                   Width="Auto"
-                   TextWrapping="Wrap"/>
-
-        </StackPanel>
-
-   </Grid>
+    </Grid>
 
 </Window>
