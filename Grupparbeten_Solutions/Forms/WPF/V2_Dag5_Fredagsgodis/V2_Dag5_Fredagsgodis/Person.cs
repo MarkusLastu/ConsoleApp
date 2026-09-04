@@ -50,12 +50,17 @@ namespace V2_Dag5_Fredagsgodis
 
         public override string Presentera()
         {
-            return $"{Name} är gymmare och har {PbBank} pb i bänken.";
+            return 
+                $"{Name} är gymmare och har {PbBank} pb i bänken." +
+                $"{Name} har specialisering {Specialisering}." +
+                $"{Name} har svaghet: {Weakness}.";
         }
 
         public override void AnvandSuperkraft()
         {
-            // Implementation for buying candy
+            System.Windows.MessageBox.Show(
+                $"{Name} använder sin superkraft {SuperPower} och utför specialattacken {SpecialAttack}."
+            );
         }
     }
 }
