@@ -53,10 +53,10 @@ namespace V2_Dag5_Fredagsgodis
         {
             Musiker marcusB = new Musiker("Marcus B", "Piano");
 
-            marcusB.SuperPower = "xxx";
-            marcusB.SpecialAttack = "yyy";
-            marcusB.Specialisering = "zzz";
-            marcusB.Weakness = "xxx";
+            marcusB.SuperPower = "Gehör: Kan spela en låt direkt efter att ha hört den.";
+            marcusB.SpecialAttack = "Fortissimo: Slår an ett ackord med enorm kraft.";
+            marcusB.Specialisering = "Improvisation: Kan skapa musik utan att behöva veta vad som ska spelas i förväg.";
+            marcusB.Weakness = "Kan inte prata och spela samtidigt. Det blir kaos i hjärnan.";
 
             AddPersonToList(marcusB);
 
