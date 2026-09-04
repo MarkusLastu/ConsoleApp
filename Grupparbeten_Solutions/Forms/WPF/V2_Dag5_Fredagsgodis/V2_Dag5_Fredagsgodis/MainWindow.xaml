@@ -33,9 +33,12 @@
                        Margin="20,10,20,10"/>
 
             <ComboBox x:Name="cmbPersonPicker"                  
-                  Width="200"
-                  HorizontalAlignment="Left"
-                      Margin="20,00,20,10"/>
+                      DisplayMemberPath="Name"
+                      Width="200"
+                      HorizontalAlignment="Left"
+                      SelectionChanged="cmbPersonPicker_SelectionChanged"
+                      Margin="20,00,20,10"/>          
+          
         </StackPanel>
 
         <!-- Rad 0, kolumn 1 -->
@@ -57,6 +60,16 @@
 
             <TextBlock Text="Text rad 1 kolumn 0"
            FontSize="16"/>
+          
+                  <Button x:Name="btnSuperPower" 
+                Content="Aktivera superkraft!"
+                Click="btnSuperPower_Click"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="644,68,0,0" 
+                Height="45" 
+                Width="120"
+                FontWeight="Bold"/>
 
 
 
@@ -69,13 +82,24 @@
 
             <TextBlock Text="Text rad 1 kolumn 1"
                 FontSize="16"/>
+          <Label x:Name="lblInfo" 
+               Content="Label" 
+               
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top"
+               Margin="319,61,0,0" 
+               Height="29" 
+               Width="269"/>
 
+          <TextBox x:Name="txtInfo" 
+                   HorizontalAlignment="Left" 
+                   TextWrapping="Wrap" 
+                   Text="TextBox" 
+                   VerticalAlignment="Top" 
+                   Width="120"/>
 
         </StackPanel>
 
-
-
-
-    </Grid>
+   </Grid>
 
 </Window>
