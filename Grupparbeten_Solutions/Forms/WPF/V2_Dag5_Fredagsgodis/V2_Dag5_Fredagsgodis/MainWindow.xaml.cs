@@ -45,6 +45,7 @@ namespace V2_Dag5_Fredagsgodis
             {
                 // lblInfo.Content = valdPerson.Presentera();
                 txtInfo.Text = valdPerson.Presentera();
+                imgPerson.Source = new BitmapImage(new Uri(valdPerson.Image, UriKind.RelativeOrAbsolute));
             }
         }
 

@@ -17,6 +17,7 @@ namespace V2_Dag5_Fredagsgodis
         public string Specialisering {  get; set; } = string.Empty;
         public string SpecialAttack { get; set; } = string.Empty;
         public string Weakness { get; set; } = string.Empty;
+        public string Image { get; set; } = string.Empty;
 
         public PersonClass(string name)
         {
@@ -35,7 +36,9 @@ namespace V2_Dag5_Fredagsgodis
         }
         public override string Presentera()
         {
-            return $"{Name} är musiker och spelar {Instrument}.";
+            return $"{Name} är musiker och spelar {Instrument}\n\n" +
+                $"Specialisering - {Specialisering}.\n\n" +
+                $"Svaghet - {Weakness}.";
         }
         public override void AnvandSuperkraft()
         {

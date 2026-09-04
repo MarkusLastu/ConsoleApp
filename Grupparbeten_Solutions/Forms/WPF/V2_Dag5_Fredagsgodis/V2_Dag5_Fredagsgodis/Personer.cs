@@ -43,6 +43,7 @@ namespace V2_Dag5_Fredagsgodis
             public string specialAttack { get; set; }
             public string specialisering { get; set; }
             public string weakness { get; set; }
+            public string Image { get; set; }
         }
 
         public static void CreatePersonsFromJson(string json)
@@ -81,6 +82,7 @@ namespace V2_Dag5_Fredagsgodis
                 nyPerson.SpecialAttack = person.egenskaper.specialAttack;
                 nyPerson.Specialisering = person.egenskaper.specialisering;
                 nyPerson.Weakness = person.egenskaper.weakness;
+                nyPerson.Image = person.egenskaper.Image;
 
                 AddPersonToList(nyPerson);
             }
