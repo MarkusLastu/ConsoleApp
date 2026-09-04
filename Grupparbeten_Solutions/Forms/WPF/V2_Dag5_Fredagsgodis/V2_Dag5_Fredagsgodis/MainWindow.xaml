@@ -62,8 +62,8 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Top"  
                     Margin="20" 
-                    Height="250" 
-                    Width="250"/>
+                    Height="Auto" 
+                    Width="Auto"/>
 
         </StackPanel>
 
