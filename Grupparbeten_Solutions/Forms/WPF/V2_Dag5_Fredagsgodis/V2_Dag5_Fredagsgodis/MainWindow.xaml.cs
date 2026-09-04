@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.CodeDom;
 
 namespace V2_Dag5_Fredagsgodis
 {
@@ -17,40 +18,37 @@ namespace V2_Dag5_Fredagsgodis
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Person> personer = new List<Person>();
 
         public MainWindow()
         {
+            // Starta formuläret
             InitializeComponent();
-            SkapaPersoner();
-            cmbPersonPicker.ItemsSource = personer;
+
+            // Skapa personer och lägg till dem i listan
+            Personer.CreateMarkusL();
+            Personer.CreateNiklas();
+            Personer.CreateMarcusB();
+
+            // Bind listan till ComboBoxen
+            cmbPersonPicker.ItemsSource = Personer.personLista;
         }
 
-        private void SkapaPersoner()
-        {
-            Gymmare markusL = new Gymmare("Markus L", 500)
-            {
-                SuperPower = "Finger Styrka: Trycker HÅRT på datortangenterna",
-                SpecialAttack = "CapsLock-vrålet: Trycker in CapsLock med en sån enorm kraft att tryckvågen får motståndarens kod att sluta kompilera.",
-                Specialisering = "Mekanisk Hållfasthet: Kan skriva tusentals rader kod på ett mekaniskt tangentbord utan att fingrarna tar slut på glykogen.",
-                Weakness = "Merge Conflicts i gymmet: Blir helt handlingsförlamad om någon har lämnat kvar vikter på skivstången utan att städa sin branch först."
-            };
-            personer.Add(markusL);
+        
 
-            // lägg till fler gymmare / musiker etc här
-        }
+        
 
         private void cmbPersonPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbPersonPicker.SelectedItem is Person valdPerson)
+            if (cmbPersonPicker.SelectedItem is PersonClass valdPerson)
             {
                 lblInfo.Content = valdPerson.Presentera();
+                txtInfo.Text = valdPerson.Presentera();
             }
         }
 
         private void btnSuperPower_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbPersonPicker.SelectedItem is Person valdPerson)
+            if (cmbPersonPicker.SelectedItem is PersonClass valdPerson)
             {
                 valdPerson.AnvandSuperkraft();
             }

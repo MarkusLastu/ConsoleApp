@@ -7,7 +7,10 @@ using System.Windows.Controls;
 
 namespace V2_Dag5_Fredagsgodis
 {
-    public abstract class Person
+    
+
+
+    public abstract class PersonClass
     {
         public string Name { get; set; }
         public string SuperPower { get; set; }
@@ -15,7 +18,7 @@ namespace V2_Dag5_Fredagsgodis
         public string SpecialAttack { get; set; }   
         public string Weakness { get; set; }    
 
-        public Person(string name)
+        public PersonClass(string name)
         {
             Name = name;            
         }
@@ -23,7 +26,7 @@ namespace V2_Dag5_Fredagsgodis
         public abstract void AnvandSuperkraft();
     }
 
-    public class Musiker : Person
+    public class Musiker : PersonClass
     {
         public string Instrument { get; set; } = string.Empty;
         public Musiker(string name, string instrument) : base(name)
@@ -36,11 +39,16 @@ namespace V2_Dag5_Fredagsgodis
         }
         public override void AnvandSuperkraft()
         {
-            // Musikerns superkraft
+            System.Windows.MessageBox.Show(
+                $"{Name} använder sin superkraft\n\n" +
+                $"{SuperPower} \n\n" +
+                $"och utför specialattacken\n\n" +
+                $"{SpecialAttack}."
+            );
         }
     }
 
-    public class Gymmare : Person
+    public class Gymmare : PersonClass
     {
         public int PbBank { get; set; } = 0;
         public Gymmare(string name, int pbBank) : base(name)
@@ -51,8 +59,8 @@ namespace V2_Dag5_Fredagsgodis
         public override string Presentera()
         {
             return 
-                $"{Name} är gymmare och har {PbBank} pb i bänken." +
-                $"{Name} har specialisering {Specialisering}." +
+                $"{Name} är gymmare och har {PbBank} pb i bänken.\n\n" +
+                $"{Name} har specialisering {Specialisering}.\n\n" +
                 $"{Name} har svaghet: {Weakness}.";
         }
 
