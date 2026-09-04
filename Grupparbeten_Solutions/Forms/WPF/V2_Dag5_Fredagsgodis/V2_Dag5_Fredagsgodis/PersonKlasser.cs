@@ -73,5 +73,31 @@ namespace V2_Dag5_Fredagsgodis
                 $"{SpecialAttack}."
             );
         }
+
+    }
+    public class Gamer : Person
+    {
+        public string Game { get; set; } = string.Empty;
+        public Gamer(string name, string game) : base(name)
+        {
+            Game = game;
+        }
+        public override string Presentera()
+        {
+            return
+                $"{Name} är Gamer som pelar {Game}" +
+                $"{Name} har specialisering {Specialisering}." +
+                $"{Name} har svaghet: {Weakness}.";
+        }
+
+        public override void AnvandSuperkraft()
+        {
+            System.Windows.MessageBox.Show(
+                $"{Name} använder sin superkraft\n\n" +
+                $"{SuperPower} \n\n" +
+                $"och utför specialattacken\n\n" +
+                $"{SpecialAttack}."
+            );
+        }
     }
 }
