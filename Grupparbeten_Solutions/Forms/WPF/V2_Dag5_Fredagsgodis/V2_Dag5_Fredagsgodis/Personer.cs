@@ -34,9 +34,9 @@ namespace V2_Dag5_Fredagsgodis
 
         }
 
-        public static Gymmare CreateNiklas()
+        public static Gamer CreateNiklas()
         {
-            Gymmare niklas = new Gymmare("Niklas", 500);
+            Gamer niklas = new Gamer("Niklas", "Counter-Strike");
 
             niklas.SuperPower = "xxx";
             niklas.SpecialAttack = "yyy";
@@ -62,6 +62,20 @@ namespace V2_Dag5_Fredagsgodis
 
             return marcusB;           
 
+        }
+
+        public static Musiker CreateSebbe()
+        {
+            Musiker sebbe = new Musiker("Sebbe", "Luftbastuba");
+
+            sebbe.SuperPower = "xxx";
+            sebbe.SpecialAttack = "yyy";
+            sebbe.Specialisering = "zzz";
+            sebbe.Weakness = "xxx";
+
+            AddPersonToList(sebbe);
+
+            return sebbe;
         }
 
     }

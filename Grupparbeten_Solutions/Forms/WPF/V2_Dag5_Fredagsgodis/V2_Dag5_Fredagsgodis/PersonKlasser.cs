@@ -75,7 +75,7 @@ namespace V2_Dag5_Fredagsgodis
         }
 
     }
-    public class Gamer : Person
+    public class Gamer : PersonClass
     {
         public string Game { get; set; } = string.Empty;
         public Gamer(string name, string game) : base(name)
@@ -85,8 +85,8 @@ namespace V2_Dag5_Fredagsgodis
         public override string Presentera()
         {
             return
-                $"{Name} är Gamer som pelar {Game}" +
-                $"{Name} har specialisering {Specialisering}." +
+                $"{Name} är Gamer som pelar {Game}\n\n" +
+                $"{Name} har specialisering {Specialisering}\n\n" +
                 $"{Name} har svaghet: {Weakness}.";
         }
 
