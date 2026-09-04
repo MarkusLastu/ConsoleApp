@@ -41,7 +41,7 @@ namespace V2_Dag5_Fredagsgodis
         {
             if (cmbPersonPicker.SelectedItem is PersonClass valdPerson)
             {
-                lblInfo.Content = valdPerson.Presentera();
+                // lblInfo.Content = valdPerson.Presentera();
                 txtInfo.Text = valdPerson.Presentera();
             }
         }

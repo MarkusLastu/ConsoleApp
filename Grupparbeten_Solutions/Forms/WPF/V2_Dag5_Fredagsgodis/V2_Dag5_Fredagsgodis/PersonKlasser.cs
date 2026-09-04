@@ -59,15 +59,15 @@ namespace V2_Dag5_Fredagsgodis
         public override string Presentera()
         {
             return 
-                $"{Name} är gymmare och har {PbBank} pb i bänken.\n\n" +
-                $"{Name} har specialisering {Specialisering}.\n\n" +
-                $"{Name} har svaghet: {Weakness}.";
+                $"{Name} är gymmare och har {PbBank} kg pb i bänkpress.\n\n" +
+                $"Specialisering - {Specialisering}.\n\n" +
+                $"Svaghet - {Weakness}.";
         }
 
         public override void AnvandSuperkraft()
         {
             System.Windows.MessageBox.Show(
-                $"{Name} använder sin superkraft\n\n" +
+                $"--- {Name.ToUpper()} AKTIVERAR SUPERKRAFT --- \n\n" +
                 $"{SuperPower} \n\n" +
                 $"och utför specialattacken\n\n" +
                 $"{SpecialAttack}."
@@ -86,8 +86,8 @@ namespace V2_Dag5_Fredagsgodis
         {
             return
                 $"{Name} är Gamer som pelar {Game}\n\n" +
-                $"{Name} har specialisering {Specialisering}\n\n" +
-                $"{Name} har svaghet: {Weakness}.";
+                $"Specialisering - {Specialisering}\n\n" +
+                $"Svaghet - {Weakness}.";
         }
 
         public override void AnvandSuperkraft()
