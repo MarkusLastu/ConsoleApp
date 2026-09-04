@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 
 namespace V2_Dag5_Fredagsgodis
@@ -15,67 +17,73 @@ namespace V2_Dag5_Fredagsgodis
         public static void AddPersonToList(PersonClass person)
         {
             personLista.Add(person);
-        }
-    
-
-
-        public static Gymmare CreateMarkusL()
-        {
-            Gymmare markusL = new Gymmare("Markus L", 500);
-
-            markusL.SuperPower = "Finger Styrka: Trycker HÅRT på datortangenterna";
-            markusL.SpecialAttack = "CapsLock-vrålet: Trycker in CapsLock med en sån enorm kraft att tryckvågen får motståndarens kod att sluta kompilera.";
-            markusL.Specialisering = "Mekanisk Hållfasthet: Kan skriva tusentals rader kod på ett mekaniskt tangentbord utan att fingrarna tar slut på glykogen.";
-            markusL.Weakness = "Merge Conflicts i gymmet: Blir helt handlingsförlamad om någon har lämnat kvar vikter på skivstången utan att städa sin branch först.";
-
-            AddPersonToList(markusL);
-
-            return markusL;
-
+            Debug.WriteLine($"Person {person.Name} har lagts till i listan.");
         }
 
-        public static Gamer CreateNiklas()
+
+        // Speglar json strukturen
+        public class PersonInfo
         {
-            Gamer niklas = new Gamer("Niklas", "Counter-Strike");
-
-            niklas.SuperPower = "xxx";
-            niklas.SpecialAttack = "yyy";
-            niklas.Specialisering = "zzz";
-            niklas.Weakness = "xxx";
-
-            AddPersonToList(niklas);
-
-            return niklas;
-
+            public List<PersonData> personer { get; set; }
         }
 
-        public static Musiker CreateMarcusB()
+        public class PersonData
         {
-            Musiker marcusB = new Musiker("Marcus B", "Piano");
-
-            marcusB.SuperPower = "Gehör: Kan spela en låt direkt efter att ha hört den.";
-            marcusB.SpecialAttack = "Fortissimo: Slår an ett ackord med enorm kraft.";
-            marcusB.Specialisering = "Improvisation: Kan skapa musik utan att behöva veta vad som ska spelas i förväg.";
-            marcusB.Weakness = "Kan inte prata och spela samtidigt. Det blir kaos i hjärnan.";
-
-            AddPersonToList(marcusB);
-
-            return marcusB;           
-
+            public string namn { get; set; }
+            public string klass { get; set; }
+            public Egenskaper egenskaper { get; set; }
         }
 
-        public static Musiker CreateSebbe()
+        public class Egenskaper
         {
-            Musiker sebbe = new Musiker("Sebbe", "Luftbastuba");
+            public int pbBank { get; set; }
+            public string instrument { get; set; }
+            public string spel { get; set; }
+            public string superPower { get; set; }
+            public string specialAttack { get; set; }
+            public string specialisering { get; set; }
+            public string weakness { get; set; }
+        }
 
-            sebbe.SuperPower = "xxx";
-            sebbe.SpecialAttack = "yyy";
-            sebbe.Specialisering = "zzz";
-            sebbe.Weakness = "xxx";
+        public static void CreatePersonsFromJson(string json)
+        {
+            PersonInfo data = JsonSerializer.Deserialize<PersonInfo>(json);
 
-            AddPersonToList(sebbe);
+            foreach (PersonData person in data.personer)
+            {
+                PersonClass nyPerson;
 
-            return sebbe;
+                switch (person.klass)
+                {
+                    case "Musiker":
+                        nyPerson = new Musiker(
+                            person.namn,
+                            person.egenskaper.instrument);
+                        break;
+
+                    case "Gamer":
+                        nyPerson = new Gamer(
+                            person.namn,
+                            person.egenskaper.spel);
+                        break;
+
+                    case "Gymmare":
+                        nyPerson = new Gymmare(
+                            person.namn,
+                            person.egenskaper.pbBank);
+                        break;
+
+                    default:
+                        continue;
+                }
+
+                nyPerson.SuperPower = person.egenskaper.superPower;
+                nyPerson.SpecialAttack = person.egenskaper.specialAttack;
+                nyPerson.Specialisering = person.egenskaper.specialisering;
+                nyPerson.Weakness = person.egenskaper.weakness;
+
+                AddPersonToList(nyPerson);
+            }
         }
 
     }

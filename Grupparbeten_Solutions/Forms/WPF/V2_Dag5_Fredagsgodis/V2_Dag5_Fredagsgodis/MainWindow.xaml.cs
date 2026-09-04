@@ -1,5 +1,8 @@
-﻿using System.Text;
+﻿using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.CodeDom;
+using System.IO;
+using static V2_Dag5_Fredagsgodis.Personer;
 
 namespace V2_Dag5_Fredagsgodis
 {
@@ -25,17 +29,15 @@ namespace V2_Dag5_Fredagsgodis
             InitializeComponent();
 
             // Skapa personer och lägg till dem i listan
-            Personer.CreateMarkusL();
-            Personer.CreateNiklas();
-            Personer.CreateMarcusB();
+            string jsonText = File.ReadAllText("personInfo.json");
+            Debug.WriteLine(jsonText);
+            Personer.CreatePersonsFromJson(jsonText);
 
             // Bind listan till ComboBoxen
             cmbPersonPicker.ItemsSource = Personer.personLista;
+
         }
 
-        
-
-        
 
         private void cmbPersonPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

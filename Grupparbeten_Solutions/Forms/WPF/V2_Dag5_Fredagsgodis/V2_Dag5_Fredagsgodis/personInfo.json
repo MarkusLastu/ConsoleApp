@@ -1,0 +1,48 @@
+{
+  "personer": [
+    {
+      "namn": "Markus L",
+      "klass": "Gymmare",
+      "egenskaper": {
+        "pbBank": 500,
+        "superPower": "Finger Styrka: Trycker HÅRT på datortangenterna",
+        "specialAttack": "CapsLock-vrålet: Trycker in CapsLock med en sån enorm kraft att tryckvågen får motståndarens kod att sluta kompilera.",
+        "specialisering": "Mekanisk Hållfasthet: Kan skriva tusentals rader kod på ett mekaniskt tangentbord utan att fingrarna tar slut på glykogen.",
+        "weakness": "Merge Conflicts i gymmet: Blir helt handlingsförlamad om någon har lämnat kvar vikter på skivstången utan att städa sin branch först."
+      }
+    },
+    {
+      "namn": "Niklas",
+      "klass": "Gamer",
+      "egenskaper": {
+        "spel": "Counter-Strike",
+        "superPower": "Världels största biceps",
+        "specialAttack": "yyy",
+        "specialisering": "zzz",
+        "weakness": "xxx"
+      }
+    },
+    {
+      "namn": "Marcus B",
+      "klass": "Musiker",
+      "egenskaper": {
+        "instrument": "Piano",
+        "superPower": "Gehör: Kan spela en låt direkt efter att ha hört den.",
+        "specialAttack": "Fortissimo: Slår an ett ackord med enorm kraft.",
+        "specialisering": "Improvisation: Kan skapa musik utan att behöva veta vad som ska spelas i förväg.",
+        "weakness": "Kan inte prata och spela samtidigt. Det blir kaos i hjärnan."
+      }
+    },
+    {
+      "namn": "Sebbe",
+      "klass": "Musiker",
+      "egenskaper": {
+        "instrument": "Luftbastuba",
+        "superPower": "xxx",
+        "specialAttack": "yyy",
+        "specialisering": "zzz",
+        "weakness": "xxx"
+      }
+    }
+  ]
+}

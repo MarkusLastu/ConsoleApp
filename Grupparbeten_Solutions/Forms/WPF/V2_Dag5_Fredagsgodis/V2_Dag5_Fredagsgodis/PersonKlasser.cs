@@ -12,11 +12,11 @@ namespace V2_Dag5_Fredagsgodis
 
     public abstract class PersonClass
     {
-        public string Name { get; set; }
-        public string SuperPower { get; set; }
-        public string Specialisering {  get; set; }
-        public string SpecialAttack { get; set; }   
-        public string Weakness { get; set; }    
+        public string Name { get; set; } = string.Empty;
+        public string SuperPower { get; set; } = string.Empty;
+        public string Specialisering {  get; set; } = string.Empty;
+        public string SpecialAttack { get; set; } = string.Empty;
+        public string Weakness { get; set; } = string.Empty;
 
         public PersonClass(string name)
         {
@@ -47,6 +47,7 @@ namespace V2_Dag5_Fredagsgodis
             );
         }
     }
+
 
     public class Gymmare : PersonClass
     {
