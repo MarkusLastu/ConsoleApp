@@ -9,7 +9,7 @@ namespace V2_Dag5_Fredagsgodis
 {
     
 
-
+    //fredagsgodis uppgiften--- Vi börjar med en PersonClass med 2 st Abstract attribut---------------------------------------
     public abstract class PersonClass
     {
         public string Name { get; set; }
@@ -25,7 +25,7 @@ namespace V2_Dag5_Fredagsgodis
         public abstract string Presentera();
         public abstract void AnvandSuperkraft();
     }
-
+    //Classer som personrna ska ha-------------------------
     public class Musiker : PersonClass
     {
         public string Instrument { get; set; } = string.Empty;

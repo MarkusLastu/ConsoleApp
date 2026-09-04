@@ -38,10 +38,10 @@ namespace V2_Dag5_Fredagsgodis
         {
             Gamer niklas = new Gamer("Niklas", "Counter-Strike");
 
-            niklas.SuperPower = "xxx";
-            niklas.SpecialAttack = "yyy";
-            niklas.Specialisering = "zzz";
-            niklas.Weakness = "xxx";
+            niklas.SuperPower = "Full Focus: låster ute värden och focuserar bara på skärmen";
+            niklas.SpecialAttack = "Gamer rage: Vrålar och skriver otrevliga kommentarer mot alla i närheten";
+            niklas.Specialisering = "Point and Click: Clickar med extrem perscition på vald pixel";
+            niklas.Weakness = "Energitjuv : Överbelastar säkringar i en radie";
 
             AddPersonToList(niklas);
 
