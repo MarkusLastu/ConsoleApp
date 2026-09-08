@@ -1,0 +1,9 @@
+﻿<Application x:Class="V3_Dag2_Tutorial_Del2_Intro_MVVM.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:V3_Dag2_Tutorial_Del2_Intro_MVVM"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
