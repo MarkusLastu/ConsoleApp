@@ -3,4 +3,6 @@
   <Project Path="V2_Dag3_Ovn2/V2_Dag3_Ovn2.csproj" />
   <Project Path="V2_Dag4_Ovn1/V2_Dag4_Ovn1_WPF_Kalkylator.csproj" Id="a4f36dbf-cf05-453e-b579-db08c3ebdd9e" />
   <Project Path="V2_Dag4_Ovn2_WPF_Combo/V2_Dag4_Ovn2_WPF_Combo.csproj" Id="96885528-e863-4f6a-a502-a76fe04d74d5" />
+  <Project Path="V3_Dag1_Övn1_DBHantering/V3_Dag1_Övn1_DBHantering.csproj" Id="05abcf8d-a2c8-43a6-a0c4-8d9b5c5571d7" />
+  <Project Path="V3_Dag2_Tutorial_Del2_Intro_MVVM/V3_Dag2_Tutorial_Del2_Intro_MVVM.csproj" Id="915b6796-3f5d-4ae8-9419-65587b59b616" />
 </Solution>
