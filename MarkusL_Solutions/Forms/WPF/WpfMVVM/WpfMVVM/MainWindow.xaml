@@ -6,30 +6,108 @@
         xmlns:local="clr-namespace:WpfMVVM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-        <StackPanel>
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <Button 
-                Content="Ladda katter"
-                Command="{Binding LoadCatsCommand}"/>
+        <StackPanel 
+            Grid.Column="0" 
+            Margin="0,0,20,0">
 
-
-            <ListBox 
+            <!-- <TextBlock 
+                Text="Välj Katt:" 
+                FontWeight="Bold" 
+                Margin="0,0,0,5" />
+            
+            <ComboBox 
                 ItemsSource="{Binding Cats}"
-             	SelectedItem="{Binding SelectedCat}" 
-                DisplayMemberPath="Name"/>
+                DisplayMemberPath="Name"
+                SelectedItem="{Binding SelectedCat}"
+                Margin="0,0,0,15"/>
+            -->
 
             <TextBlock 
-                Text="{Binding SelectedCat.Name}" />
+                Text="Välj Katthem:" 
+                FontWeight="Bold" 
+                Margin="0,0,0,5" />
             
+            <ComboBox 
+                ItemsSource="{Binding Shelters}"
+                DisplayMemberPath="Name"
+                SelectedItem="{Binding SelectedShelter}"
+                Margin="0,0,0,15"/>
+
             <TextBlock 
-                Text="{Binding SelectedCat.Age}" />
+                Text="Välj Färg:" 
+                FontWeight="Bold" 
+                Margin="0,0,0,5" />
             
-            <TextBlock 
-                Text="{Binding SelectedCat.Color}" />
-            
+            <ComboBox 
+                ItemsSource="{Binding Colors}"
+                SelectedItem="{Binding SelectedColor}"
+                Margin="0,0,0,15"/>
+
         </StackPanel>
 
+        <StackPanel 
+            Grid.Column="1" 
+            Margin="20,0,0,0">
+
+            <!-- <Button 
+                Content="Sök per färg" 
+                Command="{Binding LoadCatsByColorCommand}" 
+                Margin="0,0,0,10" Padding="5"/>
+
+            <Button 
+                Content="Hämta katter från katthem"
+                Command="{Binding LoadCatsByShelterIdCommand}"
+                Margin="0,0,0,10" Padding="5"/>
+            -->
+
+            <Button 
+                Content="Sök"
+                Command="{Binding SearchCommand}"
+                Margin="0,0,0,10" Padding="5"/>
+            
+            <Button 
+                Content="Ladda alla katter" 
+                Command="{Binding LoadCatsCommand}" 
+                Margin="0,0,0,20" Padding="5"/>
+
+            <TextBlock 
+                Text="Resultat:" 
+                FontWeight="Bold" 
+                Margin="0,0,0,5" />
+            
+            <ListBox 
+                ItemsSource="{Binding Cats}"
+                SelectedItem="{Binding SelectedCat}" 
+                DisplayMemberPath="Name" 
+                Height="150" Margin="0,0,0,15"/>
+
+            <TextBlock 
+                Text="{Binding SelectedCat.Name}" 
+                FontWeight="Bold" 
+                FontSize="16" />
+            
+            <TextBlock 
+                Text="{Binding SelectedCat.Age, 
+                        StringFormat='Ålder: {0}'}" />
+            
+            <TextBlock 
+                Text="{Binding SelectedCat.Color, 
+                        StringFormat='Färg: {0}'}" />
+
+            <TextBlock 
+                Text="{Binding SelectedCat.Shelter.Id, 
+                        StringFormat='Shelter ID: {0}'}" />
+
+            <TextBlock 
+                Text="{Binding SelectedCat.Shelter.Name, 
+                        StringFormat='Shelter: {0}'}" />
+
+        </StackPanel>
     </Grid>
 </Window>
