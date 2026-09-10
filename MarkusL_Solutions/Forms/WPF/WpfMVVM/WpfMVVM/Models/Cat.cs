@@ -21,9 +21,11 @@ namespace WpfMVVM.Models
         [Column("color")]
         public string Color { get; set; }
 
+        [Column("shelter_id")] 
+        public long ShelterId { get; set; }
+
         [Reference(typeof(Shelter))]
         public Shelter Shelter { get; set; }
     }
-
 
 }
