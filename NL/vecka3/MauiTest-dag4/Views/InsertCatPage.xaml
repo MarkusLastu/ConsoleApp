@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiTest_dag4.Views.InsertCatPage"
+             Title="Registrera katt">
+
+    <VerticalStackLayout Padding="30" Spacing="20">
+        <Label Text="Registrera ny katt"
+               FontSize="30"
+               HorizontalOptions="Center" />
+
+        <Entry Placeholder="Kattens namn"
+               Text="{Binding Name}" />
+
+        <Entry Placeholder="Ålder"
+               Keyboard="Numeric"
+               Text="{Binding Age}" />
+
+        <Entry Placeholder="Färg"
+               Text="{Binding Color}" />
+
+        <Picker Title="Välj katthem"
+                ItemsSource="{Binding Shelters}"
+                ItemDisplayBinding="{Binding DisplayName}"
+                SelectedItem="{Binding SelectedShelter}" />
+
+        <Button Text="Spara katt"
+                Command="{Binding SaveCommand}" />
+
+        <Button Text="Tillbaka"
+                Command="{Binding BackCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

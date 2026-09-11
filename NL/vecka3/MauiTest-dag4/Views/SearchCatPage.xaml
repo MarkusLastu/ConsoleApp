@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiTest_dag4.Views.SearchCatPage"
+             Title="Sök katt">
+
+    <VerticalStackLayout Padding="30" Spacing="20">
+        <Label Text="Sök katt" FontSize="30" HorizontalOptions="Center" />
+        <Entry Placeholder="Ange kattens namn" Text="{Binding SearchText}" />
+        <Button Text="Sök" Command="{Binding SearchCommand}" />
+
+        <CollectionView ItemsSource="{Binding Cats}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Padding="10" Spacing="2">
+
+                        <Label Text="{Binding Name}" 
+                       FontSize="20" 
+                       FontAttributes="Bold" />
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Ålder: " FontAttributes="Bold" />
+                                    <Span Text="{Binding Age}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Färg: " FontAttributes="Bold" />
+                                    <Span Text="{Binding Color}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Katthem: " FontAttributes="Bold" />
+                                    <Span Text="{Binding Shelter.DisplayName}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="Tillbaka" Command="{Binding BackCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

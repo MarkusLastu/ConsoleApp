@@ -1,0 +1,64 @@
+﻿<Window x:Class="WpfMVVM_dag3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfMVVM_dag3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+
+                <!-- 1. HÄMTA ALLA KATTER -->
+                <Button Content="Ladda alla katter" 
+                        Command="{Binding LoadCatsCommand}" 
+                        Margin="0,0,0,15" />
+
+                <!-- 2. SÖK PÅ FÄRG -->
+                <TextBlock Text="Sök på färg:" FontWeight="Bold" Margin="0,0,0,5" />
+                <ComboBox SelectedValue="{Binding SelectedColor}" 
+                          SelectedValuePath="Content" 
+                          Margin="0,0,0,5">
+                    <ComboBoxItem>Vit</ComboBoxItem>
+                    <ComboBoxItem>Svart</ComboBoxItem>
+                    <ComboBoxItem>Grå</ComboBoxItem>
+                    <ComboBoxItem>Brun</ComboBoxItem>
+                </ComboBox>
+
+                <Button Content="Sök på färg" 
+                        Command="{Binding LoadCatsByColorCommand}" 
+                        Margin="0,0,0,15" />
+
+                <!-- 3. VÄLJ KATTHEM (SHELTER) -->
+                <TextBlock Text="Välj Katthem (Shelter):" FontWeight="Bold" Margin="0,0,0,5" />
+                <ComboBox ItemsSource="{Binding Shelters}"
+                          SelectedItem="{Binding SelectedShelter}"
+                          DisplayMemberPath="Name" 
+                          Margin="0,0,0,5" />
+
+                <Button Content="Visa katter från valt shelter" 
+                        Command="{Binding LoadCatsByShelterCommand}" 
+                        Margin="0,0,0,15" />
+
+                <!-- 4. RESULTATLISTA MED ALL INFO OM VARJE KATT -->
+                <TextBlock Text="Katter:" FontWeight="Bold" Margin="0,0,0,5" />
+                <ListBox ItemsSource="{Binding Cats}" 
+                         SelectedItem="{Binding SelectedCat}" 
+                         Height="200">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Visar Namn, Ålder och Färg på samma rad för varje katt -->
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,0,15,0"/>
+                                <TextBlock Text="{Binding Age, StringFormat='Ålder: {0}'}" Margin="0,0,15,0"/>
+                                <TextBlock Text="{Binding Color, StringFormat='Färg: {0}'}" Foreground="Gray"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
