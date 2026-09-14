@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GrupparbeteVecka4.Views.HistoryPage"
              Title="Title Placeholder"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Background="{StaticResource LiveBackground}">
     <Grid>
         <VerticalStackLayout>
             <Label 
@@ -17,8 +18,8 @@
                 HeightRequest="40"
                 WidthRequest="90"
                 FontSize="13"
-                BackgroundColor="#6200EE"
-                TextColor="White"
+                BackgroundColor="{StaticResource PrimaryButtonColor}"
+                TextColor="{StaticResource PrimaryTextColor}"
                 CornerRadius="8"
                 HorizontalOptions="Start"
                 VerticalOptions="End" />
