@@ -6,9 +6,13 @@
     xmlns:views="clr-namespace:GrupparbeteVecka4.Views"
     Title="GrupparbeteVecka4">
 
+    <!--
+        Ändra startsidan för applikationen i ContentTemplate="{DataTemplate views:
+        Skriv namnet på sidan.
+    -->
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+        Title="Home"        
+        ContentTemplate="{DataTemplate views:QuestionPresentation}"
+        Route="MainPage"/>
 
 </Shell>
