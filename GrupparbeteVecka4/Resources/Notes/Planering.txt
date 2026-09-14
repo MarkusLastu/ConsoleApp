@@ -1,0 +1,103 @@
+﻿
+
+
+MVP - Minimal Viable Product
+- Startsida
+- Ett fungerade frågeflöde/spel
+	
+	- En vy där frågor och svarsalternativ visas
+- DB koppling
+	- Frågor 
+	- Svar
+	- Spelare
+	- Spelomgång
+	- Visa resultat
+
+MarcusB
+- Fixa upp DB
+
+Niklas
+- Startsidan
+	- Nytt spel
+	- Stäng app
+	- Tidigare spelresultat
+
+Sebbe
+- Ta fram frågor och svar
+
+
+Funktioner
+- Startsida
+- Topplista
+- Timer
+- Olika speltyper
+	- välj 1 av 4 svar
+	- Gissa år mellan X och Y - slider. Fler poäng om man har litet spann
+- Välj kategorier
+- Skapa spelare
+- Antal frågor
+- Slumpgenerator
+	- Samma fråga kan inte ställas 2 ggr i samma spelomgång
+- Poängsystem
+	- Svara snabbt --> fler poäng
+	- Litet spann mellan år --> fler poäng
+- Bildfrågor
+	- Vilken film är detta?
+- Spelarprofil
+	- Namn	
+	- Resultat
+	- Foto?
+
+
+
+DB
+- Frågor + Svar (1 el 2 tabeller?)
+- Spelare
+- Tidigare spelomgångar
+- Kategorier
+
+
+
+Vyer
+- Startsida
+- Spelomgång
+	- Välj spelare
+	- Välj kategorier
+	- Välj typ av frågor
+	- Frågor och svar	
+- Toplista/Tidigare omgångar/Resultat
+	- Sammanfattning av omgång
+		- Lista frågor och rätt och fel svar
+
+
+
+
+Förslag från ChatGPT:
+Models
+├── Category.cs
+├── Question.cs
+├── Answer.cs
+├── Player.cs
+└── QuizResult.cs
+
+Services
+├── QuestionService.cs
+├── CategoryService.cs
+├── QuizService.cs
+└── PlayerService.cs
+
+ViewModels
+├── MainViewModel.cs
+├── QuizSetupViewModel.cs
+├── QuizViewModel.cs
+├── ResultViewModel.cs
+├── HighscoreViewModel.cs
+└── AdminViewModel.cs
+
+Views
+├── MainPage.xaml
+├── QuizSetupPage.xaml
+├── QuizPage.xaml
+├── ResultPage.xaml
+├── HighscorePage.xaml
+└── AdminPage.xaml
