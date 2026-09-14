@@ -9,15 +9,16 @@
         VerticalOptions="Center"
         HorizontalOptions="Center">
         <!-- Rubrik -->
-            <Label Text="Quiz"
-                   FontSize="32"
-                   FontAttributes="Bold"
-                   TextColor="#1F1F1F"
-                   HorizontalOptions="Center" />
-            <Label 
-                Text="{Binding QuestionCount}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+        <Label Text="Quiz"
+               FontSize="32"
+               FontAttributes="Bold"
+               TextColor="#1F1F1F"
+               HorizontalOptions="Center" />
+        
+        <Label 
+            Text="{Binding QuestionCount}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
 
         <!-- Kategori -->
 
@@ -33,15 +34,17 @@
             HorizontalOptions="Center" />
         <Image
             Source="{Binding CategoryImage}"
-            Height = "200"
+            HeightRequest="200"
             Aspect="AspectFit"/>
 
         <!-- Fråga -->
-        
-        <Label 
-            Text="{Binding QuestionText}"
-            VerticalOptions="Center" 
+
+        <Label
+            Text="{Binding QuestionText}"  
+            FontSize="24"
+            TextColor="Black"
             HorizontalOptions="Center" />
+        
         <!-- Svarsalternativ -->
         <Grid
             RowDefinitions="*,*"
