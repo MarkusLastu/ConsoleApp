@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using GrupparbeteVecka4.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GrupparbeteVecka4
 {
@@ -7,6 +8,11 @@ namespace GrupparbeteVecka4
         public App()
         {
             InitializeComponent();
+
+            Routing.RegisterRoute(nameof(QuizPage), typeof(QuizPage));
+            Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
+            Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
