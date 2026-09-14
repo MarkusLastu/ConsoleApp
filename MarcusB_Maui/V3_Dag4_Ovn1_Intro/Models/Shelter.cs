@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
+
+namespace V3_Dag4_Ovn1_Intro.Models
+{
+    [Table("shelters")]
+    public class Shelter : BaseModel
+    {
+        [PrimaryKey("id")]
+        public long Id { get; set; }
+
+        [Column("name")]
+        public string Name { get; set; }
+
+        [Column("city")]
+        public string City{ get; set; }
+
+    }
+}

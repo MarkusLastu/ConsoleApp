@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="V3_Dag4_Ovn1_Intro.Views.InsertCatPage"
+             Title="InsertCatPage">
+    <ScrollView>
+
+
+        <VerticalStackLayout
+        Padding="30"
+        Spacing="20">
+
+            <Image
+                Source="insert_cat.jpeg"
+                HeightRequest="200"
+                Aspect="AspectFit"/>
+
+            <Label
+                Text="Registrera ny katt"
+                FontSize="30"
+                HorizontalOptions="Center" />
+
+            <Entry
+                Placeholder="Kattens namn"
+                Text="{Binding Name}" />
+
+            <Entry
+                Placeholder="Ålder"
+                Keyboard="Numeric"
+                Text="{Binding Age}" />
+
+            <Entry
+                Placeholder="Färg"
+                Text="{Binding Color}" />
+
+            
+            <Picker
+                Title="Katthem"
+                ItemsSource="{Binding Shelters}"
+                SelectedItem="{Binding SelectedShelter}"
+                ItemDisplayBinding="{Binding Name}"/>
+            
+
+
+            <Button
+                Text="Spara katt"
+                Command="{Binding SaveCommand}"/>
+
+            <Button
+                Text="Tillbaka"
+                Command="{Binding BackCommand}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
