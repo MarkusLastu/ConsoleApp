@@ -6,4 +6,9 @@ public partial class SettingsPage : ContentPage
 	{
 		InitializeComponent();
 	}
+    private async void OnBackButtonClicked(object sender, EventArgs e)
+    {
+        // ".." betyder att Shell navigerar bakåt till föregående sida (MainPage)
+        await Shell.Current.GoToAsync("..");
+    }
 }
