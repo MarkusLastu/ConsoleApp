@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 //using static Android.Graphics.Paint;
 using System.Diagnostics;
+using GrupparbeteVecka4.Models;
 
 
 namespace GrupparbeteVecka4.Service
@@ -14,14 +15,15 @@ namespace GrupparbeteVecka4.Service
         public DBService()
         {
             _client = new Supabase.Client(
-        "https://xxx.supabase.co",
-        "sb_publishable_xxx");
+        "https://ktpuemywoxwbvgfmxubq.supabase.co",
+        "sb_publishable_iOrATByFyeZdE6qcbiUdNw_H_UymafK");
+        
     }
-public async Task<List<Xxx>> GetXxxAsync()
+public async Task<List<Question>> GetQuestionAsync()
         {
             var result = await _client
-                .From<cats>()
-                .Select("*, shelter:shelters(*)")
+                .From<Question>()
+                .Select("*, answers(*), categories(*)")
                 .Get();
 
             return result.Models;
