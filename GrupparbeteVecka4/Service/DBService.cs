@@ -5,7 +5,7 @@ using System.Text;
 using System.Diagnostics;
 
 
-namespace GrupparbeteVecka4.Service
+/*namespace GrupparbeteVecka4.Service
 {
     public class DBService
     {
@@ -27,4 +27,4 @@ public async Task<List<Xxx>> GetXxxAsync()
             return result.Models;
         }
     }
-}
+}*/

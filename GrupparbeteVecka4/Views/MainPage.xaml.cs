@@ -4,22 +4,33 @@ namespace GrupparbeteVecka4.Views;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
-
     public MainPage()
     {
         InitializeComponent();
     }
 
-    private void OnCounterClicked(object? sender, EventArgs e)
+    private async void OnButtonClicked(object sender, EventArgs e)
     {
-        count++;
+        if (sender is Button button)
+        {
+            switch (button.Text)
+            {
+                case "Starta Quiz":
+                    await DisplayAlert("Meny", "Startar Quiz...", "OK");
+                    break;
 
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
+                case "Profil":
+                    await DisplayAlert("Meny", "Öppnar Profil...", "OK");
+                    break;
 
-        SemanticScreenReader.Announce(CounterBtn.Text);
+                case "Historik":
+                    await DisplayAlert("Meny", "Öppnar Historik...", "OK");
+                    break;
+
+                case "Inställningar":
+                    await DisplayAlert("Meny", "Öppnar Inställningar...", "OK");
+                    break;
+            }
+        }
     }
 }
