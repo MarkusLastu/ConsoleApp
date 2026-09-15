@@ -30,29 +30,37 @@
                 <Button Text="Starta Quiz"
                         Clicked="OnButtonClicked"
                         CommandParameter="QuizPage"
-                        BackgroundColor="{StaticResource PrimaryButtonColor}"
-                        TextColor="{StaticResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BorderColor="{DynamicResource PrimaryBorderColor}"
+                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
                         FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
 
                 <Button Text="Profil"
                         Clicked="OnButtonClicked"
                         CommandParameter="ProfilePage"
-                        BackgroundColor="{StaticResource PrimaryButtonColor}"
-                        TextColor="{StaticResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BorderColor="{DynamicResource PrimaryBorderColor}"
+                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
                         FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
 
                 <Button Text="Historik"
                         Clicked="OnButtonClicked"
                         CommandParameter="HistoryPage"
-                        BackgroundColor="{StaticResource PrimaryButtonColor}"
-                        TextColor="{StaticResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BorderColor="{DynamicResource PrimaryBorderColor}"
+                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
                         FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
 
                 <Button Text="Inställningar"
                         Clicked="OnButtonClicked"
                         CommandParameter="SettingsPage"
-                        BackgroundColor="{StaticResource PrimaryButtonColor}"
-                        TextColor="{StaticResource PrimaryTextColor}"
+                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BorderColor="{DynamicResource PrimaryBorderColor}"
+                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
                         FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
 
             </VerticalStackLayout>
