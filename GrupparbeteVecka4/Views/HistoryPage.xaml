@@ -18,8 +18,8 @@
                 HeightRequest="40"
                 WidthRequest="90"
                 FontSize="13"
-                BackgroundColor="#2E7D32"
-                TextColor="Black"
+                BackgroundColor="{StaticResource PrimaryButtonBackground}"
+                TextColor="{StaticResource PrimaryButtonText}"
                 CornerRadius="8"
                 HorizontalOptions="Start"
                 VerticalOptions="End" />
