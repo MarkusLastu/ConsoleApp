@@ -12,7 +12,7 @@ namespace GrupparbeteVecka4.Models
         [PrimaryKey("category_id")]
         public long Id { get; set; }
 
-        [Column("category")]
+        [Column("category_name")]
         public string CategoryName { get; set; }
 
         [Column("category_image_url")]

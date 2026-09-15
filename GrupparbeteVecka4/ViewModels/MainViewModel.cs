@@ -14,8 +14,8 @@ namespace GrupparbeteVecka4.ViewModels
 
         public MainViewModel()
         {
-            InsertCatCommand = new RelayCommand(InsertCat);
-            SearchCatCommand = new RelayCommand(SearchCat);
+            //InsertCatCommand = new RelayCommand(InsertCat);
+            //SearchCatCommand = new RelayCommand(SearchCat);
         }
 
         private async Task InsertCat()
