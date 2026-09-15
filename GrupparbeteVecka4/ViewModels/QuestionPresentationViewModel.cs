@@ -27,7 +27,7 @@ namespace GrupparbeteVecka4.ViewModels
                 return currentQuestion?.QuestionText;
             }
         }
-        public string CategoryText
+        public string CategoryName
         {
             get
             {
@@ -94,7 +94,7 @@ namespace GrupparbeteVecka4.ViewModels
 
             PropertyChanged?.Invoke(
                 this,
-                new PropertyChangedEventArgs(nameof(Category)));
+                new PropertyChangedEventArgs(nameof(CategoryName)));
 
             PropertyChanged?.Invoke(
                 this,

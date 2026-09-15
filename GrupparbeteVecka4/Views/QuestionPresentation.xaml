@@ -29,7 +29,7 @@
             TextColor="#1F1F1F"
             HorizontalOptions="Center"/>
         <Label 
-            Text="{Binding CategoryText}"                        
+            Text="{Binding CategoryName}"                        
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Image
