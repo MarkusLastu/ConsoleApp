@@ -12,7 +12,7 @@ namespace GrupparbeteVecka4.Models
         [PrimaryKey("question_id")]
         public long Id { get; set; }
 
-        [Column("question")]
+        [Column("question_text")]
         public string QuestionText { get; set; }
 
         [Column("category_id")]

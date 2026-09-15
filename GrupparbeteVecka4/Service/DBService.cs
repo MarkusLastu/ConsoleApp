@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 //using static Android.Graphics.Paint;
 using System.Diagnostics;
+using System.Text;
 using GrupparbeteVecka4.Models;
+//using static Android.Graphics.Paint;
 
 
 namespace GrupparbeteVecka4.Service
@@ -20,35 +21,6 @@ namespace GrupparbeteVecka4.Service
 
         }
 
-
-        public async Task<List<long>> GetRandomQuestionIdsAsync(int numberOfQuestions)
-        {
-            var result = await _client
-                .From<Question>()
-                .Select("question_id")
-                .Get();
-
-            return result.Models
-                .OrderBy(q => Random.Shared.Next())
-                .Take(numberOfQuestions)
-                .Select(q => q.Id)
-                .ToList();
-        }
-        //public async Task<List<Question>> GetQuestionsAsync(List<long> randomQuestions)
-        //{
-        //    string questionIds = $"({string.Join(",", randomQuestions)})";
-
-        //    var result = await _client
-        //        .From<Question>()
-        //        .Select("*, answers(*), categories(*)")
-        //        .Filter(
-        //            "question_id",
-        //            Supabase.Postgrest.Constants.Operator.In,
-        //            questionIds)
-        //        .Get();
-
-        //    return result.Models;
-        //}
 
         public async Task<List<Question>> GetRandomQuestionsAsync(int numberOfQuestions)
         {
@@ -74,6 +46,14 @@ namespace GrupparbeteVecka4.Service
 
                 throw;
             }
+        }
+
+        public async Task SaveQuestionAnswerAsync(QuestionInSession newAnswer){
+            Debug.WriteLine($"Skriver tiil DB: {newAnswer}");
+            var result = await _client
+                .From<QuestionInSession>()
+                .Insert(newAnswer);
+            Debug.WriteLine($"Skriver tiil DB: KLART!");
         }
     }
 }
