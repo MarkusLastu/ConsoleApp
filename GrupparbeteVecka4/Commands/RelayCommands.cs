@@ -7,8 +7,8 @@ namespace GrupparbeteVecka4.Commands
 {
     public class RelayCommand : ICommand
     {
-        private readonly Func<Task> _execute;
-        public RelayCommand(Func<Task> execute)
+        private readonly Func<object, Task> _execute;
+        public RelayCommand(Func<object, Task> execute)
         {
             _execute = execute;
         }
@@ -19,7 +19,7 @@ namespace GrupparbeteVecka4.Commands
         }
         public async void Execute(object parameter)
         {
-            await _execute();
+            await _execute(parameter);
         }
     }
 }
