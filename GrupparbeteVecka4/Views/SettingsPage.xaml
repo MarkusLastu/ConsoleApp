@@ -68,8 +68,8 @@
                         <Button Grid.Column="1" 
                                 Text="Välj" 
                                 Clicked="OnDarkThemeClicked"
-                                BackgroundColor="{DynamicResource PrimaryButtonColor}"
-                                TextColor="{DynamicResource PrimaryTextColor}"
+                                BackgroundColor="Black"
+                                TextColor="White"
                                 FontAttributes="Bold"
                                 CornerRadius="8"
                                 HeightRequest="40" />
@@ -99,14 +99,39 @@
                         <Button Grid.Column="1" 
                                 Text="Välj" 
                                 Clicked="OnGreenThemeClicked"
-                                BackgroundColor="{DynamicResource PrimaryButtonColor}"
-                                TextColor="{DynamicResource PrimaryTextColor}"
+                                BackgroundColor="#2E7D32"
+                                TextColor="White"
                                 CornerRadius="8"
                                 HeightRequest="40" />
                     </Grid>
-                </Border>
 
+                </Border>
+                
+                <Border Padding="15" StrokeShape="RoundRectangle 12" BackgroundColor="#20FFFFFF">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Label Text="Förhandsvisning" 
+                               FontSize="14" 
+                               FontAttributes="Bold" 
+                               TextColor="Black" 
+                               HorizontalOptions="Center" />
+
+                        <!-- Testknappen som ändras direkt när ett tema väljs -->
+                        <Button Text="Förhandsvisning"
+                        InputTransparent="True"
+                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        BorderColor="{DynamicResource PrimaryBorderColor}"
+                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
+                        HeightRequest="50"
+                        WidthRequest="220"
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        CornerRadius="12" />
+                    </VerticalStackLayout>
+                </Border>
+                
             </VerticalStackLayout>
+            
         </ScrollView>
 
         <!-- Bakåtknapp -->
