@@ -1,0 +1,39 @@
+<Window x:Class="QuizApp.ProfileView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Välj eller skapa profil" Height="450" Width="600"
+        Background="#F0F4F8">
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Sektion 1: Välj befintlig profil -->
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+            <TextBlock Text="Välj befintlig profil" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" Foreground="#333"/>
+
+            <ListBox x:Name="ProfileListBox" Height="200" Margin="0,0,0,10">
+                <!-- Exempel på statiska items, fylls annars på via C# -->
+                <ListBoxItem Content="Spelare1" />
+                <ListBoxItem Content="QuizMaster99" />
+            </ListBox>
+
+            <Button x:Name="SelectProfileButton" Content="Startaspel med vald" 
+                    Background="#4CAF50" Foreground="White" Padding="10" Click="SelectProfileButton_Click"/>
+        </StackPanel>
+
+        <!-- Sektion 2: Skapa ny profil -->
+        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+            <TextBlock Text="Skapa ny profil" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" Foreground="#333"/>
+
+            <TextBlock Text="Ange användarnamn:" Margin="0,0,0,5"/>
+            <TextBox x:Name="NewProfileTextBox" Height="30" Padding="5" Margin="0,0,0,15"/>
+
+            <Button x:Name="CreateProfileButton" Content="Skapa &amp; Starta" 
+                    Background="#2196F3" Foreground="White" Padding="10" Click="CreateProfileButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

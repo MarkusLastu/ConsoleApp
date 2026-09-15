@@ -71,4 +71,16 @@
 		<PackageReference Include="Supabase" Version="8.1.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Views\UsersProfile.xaml.cs">
+	    <DependentUpon>UsersProfile.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\UsersProfile.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
