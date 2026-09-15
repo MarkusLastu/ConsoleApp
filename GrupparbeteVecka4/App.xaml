@@ -5,10 +5,23 @@
              x:Class="GrupparbeteVecka4.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- Länk till standardresurser om du har det -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Dina egna anpassade färger -->
+            <LinearGradientBrush x:Key="LiveBackground" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FFF5F5" Offset="0.0" />
+                <GradientStop Color="#FED7D7" Offset="1.0" />
+            </LinearGradientBrush>
+            
+            <Color x:Key="PrimaryButtonColor">#0F172A</Color>
+            <Color x:Key="PrimaryTextColor">#FFFFFF</Color>
+            <Color x:Key="HeaderTextColor">#0F172A</Color>
+            <Color x:Key="SubHeaderTextColor">#475569</Color>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

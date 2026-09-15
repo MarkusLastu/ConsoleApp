@@ -3,75 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GrupparbeteVecka4.Views.MainPage"
              Title="Grupparbete Vecka 4: QuizAppen"
-             BackgroundColor="#F5F5F5">
+             Background="{StaticResource LiveBackground}">
 
-    <Grid RowDefinitions="Auto, *" 
-          Padding="30">
+    <Grid RowDefinitions="Auto, Auto, *" Padding="20">
 
-        <!-- Rubrik och undertext -->
-        <VerticalStackLayout Grid.Row="0" 
-                             Spacing="5" 
-                             Margin="0,40,0,0" 
-                             HorizontalOptions="Center">
-            <Label Text="Huvudmeny"
-                   FontSize="32"
+        <!-- Rubriker -->
+        <VerticalStackLayout Grid.Row="1" Spacing="5" Margin="0,0,0,20" HorizontalOptions="Center">
+            <Label Text="Quiz Appen"
+                   FontSize="28"
                    FontAttributes="Bold"
-                   TextColor="#1F1F1F"
+                   TextColor="{StaticResource HeaderTextColor}"
                    HorizontalOptions="Center" />
 
-            <Label Text="Välj ett alternativ nedan"
-                   FontSize="16"
-                   TextColor="#666666"
+            <Label Text="Välkommen! Välj ett alternativ nedan."
+                   FontSize="15"
+                   TextColor="{StaticResource SubHeaderTextColor}"
                    HorizontalOptions="Center" />
         </VerticalStackLayout>
 
         <!-- Menyknappar -->
-        <VerticalStackLayout Grid.Row="1"
-                             Spacing="15"
-                             VerticalOptions="Center"
-                             MaximumWidthRequest="320">
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Spacing="15"
+                                 VerticalOptions="Center"
+                                 MaximumWidthRequest="320">
 
-            <Button Text="Starta Quiz"
-                    Clicked="OnButtonClicked"
-                    CommandParameter="QuizPage"
-                    BackgroundColor="#512BD4"
-                    TextColor="White"
-                    FontSize="16"
-                    FontAttributes="Bold"
-                    HeightRequest="55"
-                    CornerRadius="12" />
+                <Button Text="Starta Quiz"
+                        Clicked="OnButtonClicked"
+                        CommandParameter="QuizPage"
+                        BackgroundColor="{StaticResource PrimaryButtonColor}"
+                        TextColor="{StaticResource PrimaryTextColor}"
+                        FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
 
-            <Button Text="Profil"
-                    Clicked="OnButtonClicked"
-                    CommandParameter="ProfilePage"
-                    BackgroundColor="#512BD4"
-                    TextColor="White"
-                    FontSize="16"
-                    FontAttributes="Bold"
-                    HeightRequest="55"
-                    CornerRadius="12" />
+                <Button Text="Profil"
+                        Clicked="OnButtonClicked"
+                        CommandParameter="ProfilePage"
+                        BackgroundColor="{StaticResource PrimaryButtonColor}"
+                        TextColor="{StaticResource PrimaryTextColor}"
+                        FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
 
-            <Button Text="Historik"
-                    Clicked="OnButtonClicked"
-                    CommandParameter="HistoryPage"
-                    BackgroundColor="#512BD4"
-                    TextColor="White"
-                    FontSize="16"
-                    FontAttributes="Bold"
-                    HeightRequest="55"
-                    CornerRadius="12" />
+                <Button Text="Historik"
+                        Clicked="OnButtonClicked"
+                        CommandParameter="HistoryPage"
+                        BackgroundColor="{StaticResource PrimaryButtonColor}"
+                        TextColor="{StaticResource PrimaryTextColor}"
+                        FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
 
-            <Button Text="Inställningar"
-                    Clicked="OnButtonClicked"
-                    CommandParameter="SettingsPage"
-                    BackgroundColor="#512BD4"
-                    TextColor="White"
-                    FontSize="16"
-                    FontAttributes="Bold"
-                    HeightRequest="55"
-                    CornerRadius="12" />
+                <Button Text="Inställningar"
+                        Clicked="OnButtonClicked"
+                        CommandParameter="SettingsPage"
+                        BackgroundColor="{StaticResource PrimaryButtonColor}"
+                        TextColor="{StaticResource PrimaryTextColor}"
+                        FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
 
-        </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
     </Grid>
 
 </ContentPage>

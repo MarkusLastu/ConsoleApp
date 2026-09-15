@@ -3,24 +3,147 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GrupparbeteVecka4.Views.ProfilePage"
              Title="ProfilePage"
-             Shell.NavBarIsVisible="False">
-    <Grid>
-        <VerticalStackLayout>
-            <Label 
-                Text="Welcome to .NET MAUI!"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-        </VerticalStackLayout>
-        
+             Shell.NavBarIsVisible="False"
+             Background="{StaticResource LiveBackground}">
+
+    <Grid Padding="20">
+        <ScrollView Margin="0,0,0,60">
+            <VerticalStackLayout Spacing="25">
+
+                <!-- 1. Profil-header -->
+                <VerticalStackLayout 
+                    Spacing="10" 
+                    HorizontalOptions="Center" 
+                    Margin="0,20,0,0">
+                    <!-- Tillfällig avatar-cirkel -->
+                    <Border StrokeShape="RoundRectangle 50"
+                            WidthRequest="100"
+                            HeightRequest="100"
+                            BackgroundColor="#512BD4"
+                            HorizontalOptions="Center">
+                        <Label Text="JD"
+                               TextColor="White"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
+
+                    <Label Text="Grupp 4"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="#1F1F1F" />
+
+                    <Label Text="Nivå 5 • Quiz-MästareN"
+                           FontSize="14"
+                           TextColor="#666666"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <!-- 2. Statistik-kort i ett Grid -->
+                <Grid ColumnDefinitions="*, *" 
+                      ColumnSpacing="15" 
+                      RowDefinitions="Auto, Auto" 
+                      RowSpacing="15">
+
+                    <Border 
+                        Grid.Row="0" 
+                        Grid.Column="0" 
+                        Padding="15" 
+                        StrokeShape="RoundRectangle 12" 
+                        BackgroundColor="White">
+                        <VerticalStackLayout 
+                            Spacing="5">
+                            <Label 
+                                Text="42" 
+                                FontSize="22" 
+                                FontAttributes="Bold" 
+                                TextColor="#512BD4" />
+                            <Label Text="Spelade Quiz" 
+                                FontSize="12" 
+                                 TextColor="#666666" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="0" 
+                            Grid.Column="1" 
+                            Padding="15" 
+                            StrokeShape="RoundRectangle 12" 
+                            BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5">
+                            <Label 
+                                Text="85%" 
+                                FontSize="22" 
+                                FontAttributes="Bold" 
+                                TextColor="#2B8A3E" />
+                            <Label Text="Rätt svar" 
+                                   FontSize="12" 
+                                   TextColor="#666666" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border 
+                        Grid.Row="1" 
+                        Grid.Column="0" 
+                        Padding="15" 
+                        StrokeShape="RoundRectangle 12" 
+                        BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5">
+                            <Label 
+                                Text="1 250" 
+                                FontSize="22" 
+                                FontAttributes="Bold" 
+                                TextColor="#E67E22" />
+                            <Label 
+                                Text="Total Poäng" 
+                                FontSize="12" 
+                                TextColor="#666666" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="1" 
+                            Grid.Column="1" 
+                            Padding="15" 
+                            StrokeShape="RoundRectangle 12" 
+                            BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="7 dagar" 
+                                   FontSize="22" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#D9480F" />
+                            <Label 
+                                Text="Streak" 
+                                FontSize="12" 
+                                TextColor="#666666" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- 3. Inställningar & Val -->
+                <VerticalStackLayout Spacing="10">
+                    <Button Text="Redigera Profil"
+                            BackgroundColor="White"
+                            TextColor="#1F1F1F"
+                            HeightRequest="50"
+                            CornerRadius="10" />
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Liten bakåtknapp längst ner till vänster -->
         <Button Text="← Bakåt"
                 Clicked="OnBackButtonClicked"
                 HeightRequest="40"
                 WidthRequest="90"
                 FontSize="13"
-                BackgroundColor="#6200EE"
-                TextColor="White"
+                BackgroundColor="{StaticResource PrimaryButtonColor}"
+                TextColor="{StaticResource PrimaryTextColor}"
                 CornerRadius="8"
                 HorizontalOptions="Start"
                 VerticalOptions="End" />
     </Grid>
+
 </ContentPage>
