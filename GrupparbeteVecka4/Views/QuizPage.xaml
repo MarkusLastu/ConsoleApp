@@ -33,7 +33,7 @@
                     Style="{StaticResource DefaultPickerStyle}" />
 
             <Button
-                    Text="Starta nytt spel"
+                    Text="Starta nytt spel"                    
                     Style="{StaticResource DefaultButtonStyle}" />
 
         </VerticalStackLayout>

@@ -78,6 +78,12 @@ namespace GrupparbeteVecka4.ViewModels
             Players = await _service.GetPlayersAsync();
         }
 
+        private async Task CreateQuizSession()
+        {
+            Debug.WriteLine("Ej implementerad än...");
+            Players = await _service.GetPlayersAsync();
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
