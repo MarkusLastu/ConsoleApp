@@ -9,6 +9,7 @@ using System.Windows.Input;
 using GrupparbeteVecka4.Commands;
 using GrupparbeteVecka4.Models;
 using GrupparbeteVecka4.Service;
+using GrupparbeteVecka4.Views;
 
 namespace GrupparbeteVecka4.ViewModels
 {
@@ -17,6 +18,11 @@ namespace GrupparbeteVecka4.ViewModels
     {
 
         private readonly DBService _service;
+        private readonly QuizState _quizState;
+
+        public long CurrentSessionId;
+        public long CurrentPlayerId;
+
 
         // ------ Hämta personer ------
         // private Question currentQuestion;
@@ -65,32 +71,53 @@ namespace GrupparbeteVecka4.ViewModels
 
         private QuizSession quizSession;
 
-
         // ------ Här är konstruktorn för min ViewModel ------
-        public QuizPageViewModel(DBService service)
+        public QuizPageViewModel(DBService service, QuizState quizState)
         {
             _service = service;
+            _quizState = quizState;
 
             _ = LoadPlayers();
             //AnswerCommand = new RelayCommand(HandleAnswer);
+            StartQuizCommand = new RelayCommand(CreateQuizSession);
         }
 
+
+        // ------ Databasanrop ------
         private async Task LoadPlayers()
         {
             Debug.WriteLine("Laddar players...");
             Players = await _service.GetPlayersAsync();
         }
 
-        private async Task CreateQuizSession()
+        public ICommand StartQuizCommand { get; }
+
+        private async Task CreateQuizSession(object parameter)
         {
             Debug.WriteLine("Skapar ny session...");
+            
             quizSession = new QuizSession
             {
                 PlayerId = SelectedPlayer.Id,
-                StartTime = DateTime.UtcNow
+                StartTime = DateTime.UtcNow,
+                Score = 0
             };
             quizSession = await _service.CreateQuizSessionAsync(quizSession);
-            Debug.WriteLine($"Ny session har ID: {quizSession.Id}");
+            Debug.WriteLine($"Player är: {SelectedPlayer.PlayerName}");
+            Debug.WriteLine($"StartTime är: {quizSession.StartTime}");
+            Debug.WriteLine($"--- Följande skickas till QuestionPage ---");
+            Debug.WriteLine($"sessionID: {quizSession.Id}");
+            Debug.WriteLine($"playerID: {SelectedPlayer.Id}");
+            Debug.WriteLine($"numberOfQuestions: {NumberOfQuestions}");
+            Debug.WriteLine($"------------------------------------------");
+
+            _quizState.QuizSessionId = quizSession.Id;
+            _quizState.QuizPlayerId = quizSession.PlayerId;
+            _quizState.QuizNumberOfQuestions = NumberOfQuestions;
+
+            await Shell.Current.GoToAsync(nameof(QuestionPage));
+
+
         }
 
 

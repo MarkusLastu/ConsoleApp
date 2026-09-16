@@ -12,14 +12,14 @@ using GrupparbeteVecka4.Service;
 
 namespace GrupparbeteVecka4.ViewModels
 {
-    public class QuestionPresentationViewModel : INotifyPropertyChanged
+    public class QuestionPageViewModel : INotifyPropertyChanged
     {
 
         private readonly DBService _service;
+        private readonly QuizState _quizState;
 
 
         private List<Question> QuizQuestions = new List<Question>();
-        private int numberOfQuestions = 3;
 
         // ------ Parametrar för aktuell fråga ------
         private Question currentQuestion;
@@ -49,9 +49,16 @@ namespace GrupparbeteVecka4.ViewModels
         
 
         // ------ Här är konstruktorn för min ViewModel ------
-        public QuestionPresentationViewModel(DBService service)
+        public QuestionPageViewModel(DBService service, QuizState quizState)
         {
+            Debug.WriteLine($"--- Följande är mottaget från QuizPage ---");
+            Debug.WriteLine($"Ny session har ID: {quizState.QuizSessionId}");
+            Debug.WriteLine($"Player är: {quizState.QuizPlayerId}");            
+            Debug.WriteLine($"Antal frågor: {quizState.QuizNumberOfQuestions}");
+            Debug.WriteLine($"------------------------------------------");
+            
             _service = service;
+            _quizState = quizState;
 
             _ = LoadQuestions();
             AnswerCommand = new RelayCommand(HandleAnswer);
@@ -61,7 +68,7 @@ namespace GrupparbeteVecka4.ViewModels
         private async Task LoadQuestions()
         {
             QuizQuestions =
-                await _service.GetRandomQuestionsAsync(numberOfQuestions);
+                await _service.GetRandomQuestionsAsync(_quizState.QuizNumberOfQuestions);
 
             currentQuestion = QuizQuestions[0];
             UpdateQuestionProperties();
@@ -70,8 +77,6 @@ namespace GrupparbeteVecka4.ViewModels
         private async Task HandleAnswer(object parameter)
         {
             Answer answer = (Answer)parameter;
-
-            // long answerId = Convert.ToInt64(parameter);
 
             var responseTime = DateTime.UtcNow - questionStartTime;
             var responseTimeMs = (int)responseTime.TotalMilliseconds;
@@ -85,7 +90,7 @@ namespace GrupparbeteVecka4.ViewModels
             // Bygger ett objekt att skicka till DB
             var questionsInSession = new QuestionInSession
             {
-                QuizSessionId = 2,
+                QuizSessionId = _quizState.QuizSessionId,
                 QuestionId = currentQuestion.Id,
                 AnswerId = answer.Id,
                 QuestionOrder = currentQuestionNumber + 1,
@@ -105,6 +110,8 @@ namespace GrupparbeteVecka4.ViewModels
             else
             {
                 Debug.WriteLine("SLUT PÅ FRÅGOR!!!");
+                await Shell.Current.DisplayAlert("Spelet slut!", $"Du fick {_quizState.QuizScore} poäng.", "Gå tlll Startsida");
+                await Shell.Current.GoToAsync("//MainPage");                
             }
 
 

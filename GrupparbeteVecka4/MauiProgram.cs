@@ -21,14 +21,15 @@ namespace GrupparbeteVecka4
 
             builder.Services.AddSingleton<DBService>();
 
-            builder.Services.AddTransient<QuestionPresentationViewModel>();
-            builder.Services.AddTransient<QuestionPresentation>();
+            builder.Services.AddTransient<QuestionPageViewModel>();
+            builder.Services.AddTransient<QuestionPage>();
 
             builder.Services.AddTransient<QuizPageViewModel>();
             builder.Services.AddTransient<QuizPage>();
 
             builder.Services.AddTransient<HistoryPageViewModel>();
             builder.Services.AddTransient<HistoryPage>();
+            builder.Services.AddSingleton<QuizState>();
 
 #if DEBUG
             builder.Logging.AddDebug();

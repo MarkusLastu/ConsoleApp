@@ -2,9 +2,9 @@ using GrupparbeteVecka4.ViewModels;
 
 namespace GrupparbeteVecka4.Views;
 
-public partial class QuestionPresentation : ContentPage
+public partial class QuestionPage : ContentPage
 {
-    public QuestionPresentation(QuestionPresentationViewModel viewModel)
+    public QuestionPage(QuestionPageViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;
