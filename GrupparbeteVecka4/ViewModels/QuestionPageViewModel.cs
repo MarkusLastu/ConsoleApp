@@ -12,7 +12,7 @@ using GrupparbeteVecka4.Service;
 
 namespace GrupparbeteVecka4.ViewModels
 {
-    public class QuestionPresentationViewModel : INotifyPropertyChanged
+    public class QuestionPageViewModel : INotifyPropertyChanged
     {
 
         private readonly DBService _service;
@@ -49,7 +49,7 @@ namespace GrupparbeteVecka4.ViewModels
         
 
         // ------ Här är konstruktorn för min ViewModel ------
-        public QuestionPresentationViewModel(DBService service)
+        public QuestionPageViewModel(DBService service)
         {
             _service = service;
 
