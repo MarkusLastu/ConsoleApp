@@ -15,11 +15,12 @@
                     Text="Välj spelare för ditt quiz"
                     Style="{StaticResource SubHeaderLabelStyle}" />
 
-            <Picker
-                    Title="Välj spelare"
+        
+            <Picker Title="Välj spelare"
                     ItemsSource="{Binding Players}"
                     ItemDisplayBinding="{Binding PlayerName}"
                     SelectedItem="{Binding SelectedPlayer}"
+                    SelectedIndexChanged="OnPlayerPickerSelectedIndexChanged"
                     Style="{StaticResource DefaultPickerStyle}"/>
 
             <Label
@@ -32,9 +33,23 @@
                     SelectedItem="{Binding NumberOfQuestions}"
                     Style="{StaticResource DefaultPickerStyle}" />
 
-            <Button
-                    Text="Starta nytt spel"                    
-                    Style="{StaticResource DefaultButtonStyle}" />
+            <Button x:Name="StartGameButton"
+                    Text="Starta nytt spel"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
+                    BorderColor="{DynamicResource PrimaryBorderColor}"
+                    BorderWidth="{DynamicResource PrimaryBorderWidth}"
+                    IsVisible="False">
+                <Button.Triggers>
+                    <!-- Visa knappen endast när SelectedPlayer inte är null -->
+                    <DataTrigger TargetType="Button"
+                     Binding="{Binding SelectedPlayer, Converter={x:StaticResource IsNotNullConverter}}"
+                     Value="True">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
 
         </VerticalStackLayout>
 

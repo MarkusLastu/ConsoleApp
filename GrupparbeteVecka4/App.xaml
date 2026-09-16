@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GrupparbeteVecka4.Views"
+             xmlns:converters="clr-namespace:GrupparbeteVecka4.Converters"
              x:Class="GrupparbeteVecka4.App">
     <Application.Resources>
 
@@ -12,7 +13,9 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
+            
+            <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+            
             <!-- Egna färger och bakgrunder -->
             <LinearGradientBrush 
                 x:Key="LiveBackground" StartPoint="0,0" EndPoint="1,1">
