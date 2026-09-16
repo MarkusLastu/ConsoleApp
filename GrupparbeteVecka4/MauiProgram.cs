@@ -21,8 +21,8 @@ namespace GrupparbeteVecka4
 
             builder.Services.AddSingleton<DBService>();
 
-            builder.Services.AddTransient<QuestionPresentationViewModel>();
-            builder.Services.AddTransient<QuestionPresentation>();
+            builder.Services.AddTransient<QuestionPageViewModel>();
+            builder.Services.AddTransient<QuestionPage>();
 
             builder.Services.AddTransient<QuizPageViewModel>();
             builder.Services.AddTransient<QuizPage>();

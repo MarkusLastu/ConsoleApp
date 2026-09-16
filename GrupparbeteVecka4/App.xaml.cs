@@ -13,6 +13,7 @@ namespace GrupparbeteVecka4
             Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
             Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+            Routing.RegisterRoute(nameof(QuestionPage), typeof(QuestionPage));
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

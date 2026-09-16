@@ -9,6 +9,7 @@ using System.Windows.Input;
 using GrupparbeteVecka4.Commands;
 using GrupparbeteVecka4.Models;
 using GrupparbeteVecka4.Service;
+using GrupparbeteVecka4.Views;
 
 namespace GrupparbeteVecka4.ViewModels
 {
@@ -65,7 +66,6 @@ namespace GrupparbeteVecka4.ViewModels
 
         private QuizSession quizSession;
 
-
         // ------ Här är konstruktorn för min ViewModel ------
         public QuizPageViewModel(DBService service)
         {
@@ -73,15 +73,21 @@ namespace GrupparbeteVecka4.ViewModels
 
             _ = LoadPlayers();
             //AnswerCommand = new RelayCommand(HandleAnswer);
+            StartQuizCommand = new RelayCommand(CreateQuizSession);
         }
 
+
+        // ------ Databasanrop ------
         private async Task LoadPlayers()
         {
             Debug.WriteLine("Laddar players...");
             Players = await _service.GetPlayersAsync();
         }
 
-        private async Task CreateQuizSession()
+        public ICommand StartQuizCommand { get; }
+        
+
+        private async Task CreateQuizSession(object parameter)
         {
             Debug.WriteLine("Skapar ny session...");
             quizSession = new QuizSession
@@ -91,6 +97,12 @@ namespace GrupparbeteVecka4.ViewModels
             };
             quizSession = await _service.CreateQuizSessionAsync(quizSession);
             Debug.WriteLine($"Ny session har ID: {quizSession.Id}");
+            Debug.WriteLine($"Player är: {SelectedPlayer.PlayerName}");
+            Debug.WriteLine($"StartTime är: {quizSession.StartTime}");
+
+            await Shell.Current.GoToAsync(nameof(QuestionPage));
+
+
         }
 
 

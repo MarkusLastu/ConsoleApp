@@ -34,7 +34,8 @@
                     Style="{StaticResource DefaultPickerStyle}" />
 
             <Button x:Name="StartGameButton"
-                    Text="Starta nytt spel"                    
+                    Text="Starta nytt spel"
+                    Command="{Binding StartQuizCommand}"
                     Style="{StaticResource DefaultButtonStyle}"
                     BackgroundColor="{DynamicResource PrimaryButtonColor}"
                     TextColor="{DynamicResource PrimaryTextColor}"
