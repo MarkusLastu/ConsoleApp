@@ -23,6 +23,9 @@ namespace GrupparbeteVecka4.ViewModels
         private Question _currentQuestion;
         private int _currentQuestionNumber;
         private DateTime _questionStartTime;
+        private QuizSession _quizSession;
+        
+
 
 
         // ==========================================
@@ -66,6 +69,11 @@ namespace GrupparbeteVecka4.ViewModels
         // ==========================================
         // PROPERTIES FÖR VISNING
         // ==========================================
+
+        public string QuestionProgressText =>
+            $"Fråga {_currentQuestionNumber + 1} av {_quizQuestions.Count}";
+
+        public string QuizScoreText => $"Poäng: {_quizState.QuizScore}";
 
         private bool _isQuestionVisible = true;
 
@@ -264,11 +272,14 @@ namespace GrupparbeteVecka4.ViewModels
             {
                 Debug.WriteLine("SLUT PÅ FRÅGOR!!!");
 
+                await UpdateQuizSession();
+
                 await Shell.Current.DisplayAlert(
                     "Spelet slut!",
                     $"Du fick {_quizState.QuizScore} poäng.",
                     "Gå till startsida");
 
+                
 
 
                 await Shell.Current.GoToAsync("//MainPage");
@@ -298,8 +309,29 @@ namespace GrupparbeteVecka4.ViewModels
             OnPropertyChanged(nameof(Answer4));
             OnPropertyChanged(nameof(Answer4Text));
 
+            OnPropertyChanged(nameof(QuestionProgressText));
+            OnPropertyChanged(nameof(QuizScoreText));            
+
             _questionStartTime = DateTime.UtcNow;
         }
+
+        // ==========================================
+        // UPPDATERA QUIZSESSION I DB
+        // ==========================================
+
+        private async Task UpdateQuizSession()
+        {
+            Debug.WriteLine("Uppdaterar sessionen...");
+
+            var quizSession = new QuizSession
+            {
+                Id = _quizState.QuizSessionId,
+                EndTime = DateTime.UtcNow,
+                Score = _quizState.QuizScore
+            };
+            await _service.UpdateFinishedQuizSessionAsync(quizSession);
+        }
+
 
 
         // ==========================================
