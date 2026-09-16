@@ -9,15 +9,22 @@ public partial class QuizPage : ContentPage
 		InitializeComponent();
         BindingContext = viewModel;
     }
+    private void OnPlayerSelectedIndexChanged(object sender, EventArgs e)
+    {
+        bool hasPlayer = PlayerPicker.SelectedIndex != -1;
+
+        // Visa båda knapparna när en spelare har valts
+        StartGameButton.IsVisible = hasPlayer;
+        HistoryButton.IsVisible = hasPlayer;
+    }
+
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {
-        // ".." betyder att Shell navigerar bakåt till föregående sida (MainPage)
         await Shell.Current.GoToAsync("..");
     }
-    private void OnPlayerPickerSelectedIndexChanged(object sender, EventArgs e)
+
+    private async void OnHistoryButtonClicked(object sender, EventArgs e)
     {
-        var picker = (Picker)sender;
-        // Visar knappen så fort ett giltigt val har gjorts i Pickern
-        StartGameButton.IsVisible = picker.SelectedIndex != -1;
+        await Shell.Current.GoToAsync(nameof(HistoryPage));
     }
 }
