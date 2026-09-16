@@ -1,9 +1,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:GrupparbeteVecka4.ViewModels"
              x:Class="GrupparbeteVecka4.Views.SettingsPage"
              Title="SettingsPage"
              Shell.NavBarIsVisible="False"
              Background="{StaticResource LiveBackground}">
+
+    <!-- Instansiera ViewModel direkt i BindingContext -->
+    <ContentPage.BindingContext>
+        <viewmodels:SettingsPageViewModel />
+    </ContentPage.BindingContext>
 
     <Grid Padding="20">
         <ScrollView Margin="0,0,0,60">
@@ -20,11 +26,8 @@
                     Padding="15" 
                     StrokeShape="RoundRectangle 12" 
                     BackgroundColor="#40FFFFFF">
-                    <Grid 
-                        ColumnDefinitions="*, Auto">
-                        <VerticalStackLayout 
-                            Grid.Column="0" 
-                            Spacing="5">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="5">
                             <Label Text="Frostat Glas" 
                                    FontSize="18" 
                                    FontAttributes="Bold" 
@@ -35,7 +38,7 @@
                         </VerticalStackLayout>
                         <Button Grid.Column="1" 
                                 Text="Välj" 
-                                Clicked="OnGlassThemeClicked"
+                                Command="{Binding GlassThemeCommand}"
                                 BackgroundColor="#40FFFFFF"
                                 TextColor="Black"
                                 BorderColor="#40000000"
@@ -50,24 +53,19 @@
                     Padding="15" 
                     StrokeShape="RoundRectangle 12" 
                     BackgroundColor="#1E1E2E">
-                    <Grid 
-                        ColumnDefinitions="*, Auto">
-                        <VerticalStackLayout 
-                            Grid.Column="0" 
-                            Spacing="5">
-                            <Label 
-                                Text="Mörka Knappar" 
-                                FontSize="18" 
-                                FontAttributes="Bold" 
-                                TextColor="White" />
-                            <Label 
-                                Text="Grafitgrå knappar för en mörkare känsla" 
-                                FontSize="13" 
-                                TextColor="#A6ADC8" />
+                    <Grid ColumnDefinitions="*, Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                            <Label Text="Mörka Knappar" 
+                                   FontSize="18" 
+                                   FontAttributes="Bold" 
+                                   TextColor="White" />
+                            <Label Text="Grafitgrå knappar för en mörkare känsla" 
+                                   FontSize="13" 
+                                   TextColor="#A6ADC8" />
                         </VerticalStackLayout>
                         <Button Grid.Column="1" 
                                 Text="Välj" 
-                                Clicked="OnDarkThemeClicked"
+                                Command="{Binding DarkThemeCommand}"
                                 BackgroundColor="Black"
                                 TextColor="White"
                                 FontAttributes="Bold"
@@ -81,32 +79,27 @@
                     Padding="15" 
                     StrokeShape="RoundRectangle 12" 
                     BackgroundColor="#E8F5E9">
-                    <Grid 
-                        ColumnDefinitions="*, Auto">
-                        <VerticalStackLayout 
-                            Grid.Column="0" 
-                            Spacing="5">
-                            <Label 
-                                Text="Skogsgrön" 
-                                FontSize="18" 
-                                FontAttributes="Bold" 
-                                TextColor="#1B4332" />
-                            <Label 
-                                Text="En lugn och fräsch grön nyans" 
-                                FontSize="13" 
-                                TextColor="#40916C" />
+                    <Grid ColumnDefinitions="*, Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                            <Label Text="Skogsgrön" 
+                                   FontSize="18" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#1B4332" />
+                            <Label Text="En lugn och fräsch grön nyans" 
+                                   FontSize="13" 
+                                   TextColor="#40916C" />
                         </VerticalStackLayout>
                         <Button Grid.Column="1" 
                                 Text="Välj" 
-                                Clicked="OnGreenThemeClicked"
+                                Command="{Binding GreenThemeCommand}"
                                 BackgroundColor="#2E7D32"
                                 TextColor="White"
                                 CornerRadius="8"
                                 HeightRequest="40" />
                     </Grid>
-
                 </Border>
-                
+
+                <!-- Förhandsvisning -->
                 <Border Padding="15" StrokeShape="RoundRectangle 12" BackgroundColor="#20FFFFFF">
                     <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
                         <Label Text="Förhandsvisning" 
@@ -115,28 +108,26 @@
                                TextColor="Black" 
                                HorizontalOptions="Center" />
 
-                        <!-- Testknappen som ändras direkt när ett tema väljs -->
                         <Button Text="Förhandsvisning"
-                        InputTransparent="True"
-                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
-                        TextColor="{DynamicResource PrimaryTextColor}"
-                        BorderColor="{DynamicResource PrimaryBorderColor}"
-                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
-                        HeightRequest="50"
-                        WidthRequest="220"
-                        FontSize="15"
-                        FontAttributes="Bold"
-                        CornerRadius="12" />
+                                InputTransparent="True"
+                                BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                                TextColor="{DynamicResource PrimaryTextColor}"
+                                BorderColor="{DynamicResource PrimaryBorderColor}"
+                                BorderWidth="{DynamicResource PrimaryBorderWidth}"
+                                HeightRequest="50"
+                                WidthRequest="220"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                CornerRadius="12" />
                     </VerticalStackLayout>
                 </Border>
-                
+
             </VerticalStackLayout>
-            
         </ScrollView>
 
         <!-- Bakåtknapp -->
         <Button Text="← Bakåt"
-                Clicked="OnBackButtonClicked"
+                Command="{Binding BackCommand}"
                 BackgroundColor="{DynamicResource PrimaryButtonColor}"
                 TextColor="{DynamicResource PrimaryTextColor}"
                 BorderColor="{DynamicResource PrimaryBorderColor}"

@@ -1,34 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.ComponentModel.Design;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Input;
 using GrupparbeteVecka4.Commands;
 using GrupparbeteVecka4.Models;
 using GrupparbeteVecka4.Service;
 using GrupparbeteVecka4.Views;
+using Microsoft.Maui.Controls;
 
 namespace GrupparbeteVecka4.ViewModels
 {
-
     public class QuizPageViewModel : INotifyPropertyChanged
     {
-
         private readonly DBService _service;
         private readonly QuizState _quizState;
 
         public long CurrentSessionId;
         public long CurrentPlayerId;
 
-
-        // ------ Hämta personer ------
-        // private Question currentQuestion;
-        // public ICommand AnswerCommand { get; }
-
-        // ------ Hämta personer ------
+        // ------ Spelare ------
         private List<Player> _players = new();
         public List<Player> Players
         {
@@ -36,13 +27,34 @@ namespace GrupparbeteVecka4.ViewModels
             set
             {
                 _players = value;
-                PropertyChanged?.Invoke(
-                    this,
-                    new PropertyChangedEventArgs(nameof(Players)));
+                OnPropertyChanged(nameof(Players));
             }
         }
-        public Player SelectedPlayer { get; set; }
 
+        private Player? _selectedPlayer;
+        public Player? SelectedPlayer
+        {
+            get => _selectedPlayer;
+            set
+            {
+                _selectedPlayer = value;
+                OnPropertyChanged(nameof(SelectedPlayer));
+
+                // Uppdatera synligheten för knappar när en spelare väljs
+                IsPlayerSelected = _selectedPlayer != null;
+            }
+        }
+
+        private bool _isPlayerSelected;
+        public bool IsPlayerSelected
+        {
+            get => _isPlayerSelected;
+            set
+            {
+                _isPlayerSelected = value;
+                OnPropertyChanged(nameof(IsPlayerSelected));
+            }
+        }
 
         // ------ Antal frågor ------
         public List<int> QuestionCounts { get; } = new()
@@ -56,46 +68,49 @@ namespace GrupparbeteVecka4.ViewModels
         };
 
         private int _numberOfQuestions = 10;
-
         public int NumberOfQuestions
         {
             get => _numberOfQuestions;
             set
             {
                 _numberOfQuestions = value;
-                PropertyChanged?.Invoke(
-                    this,
-                    new PropertyChangedEventArgs(nameof(NumberOfQuestions)));
+                OnPropertyChanged(nameof(NumberOfQuestions));
             }
         }
 
-        private QuizSession quizSession;
+        private QuizSession? quizSession;
 
-        // ------ Här är konstruktorn för min ViewModel ------
+        // ------ Kommandon ------
+        public ICommand StartQuizCommand { get; }
+        public ICommand HistoryCommand { get; }
+        public ICommand BackCommand { get; }
+
+        // ------ Konstruktor ------
         public QuizPageViewModel(DBService service, QuizState quizState)
         {
             _service = service;
             _quizState = quizState;
 
             _ = LoadPlayers();
-            //AnswerCommand = new RelayCommand(HandleAnswer);
+
             StartQuizCommand = new RelayCommand(CreateQuizSession);
+            HistoryCommand = new RelayCommand(ExecuteHistory);
+            BackCommand = new RelayCommand(ExecuteBack);
         }
 
-
-        // ------ Databasanrop ------
+        // ------ Databasanrop & Logik ------
         private async Task LoadPlayers()
         {
             Debug.WriteLine("Laddar players...");
             Players = await _service.GetPlayersAsync();
         }
 
-        public ICommand StartQuizCommand { get; }
-
         private async Task CreateQuizSession(object parameter)
         {
+            if (SelectedPlayer == null) return;
+
             Debug.WriteLine("Skapar ny session...");
-            
+
             quizSession = new QuizSession
             {
                 PlayerId = SelectedPlayer.Id,
@@ -103,6 +118,7 @@ namespace GrupparbeteVecka4.ViewModels
                 Score = 0
             };
             quizSession = await _service.CreateQuizSessionAsync(quizSession);
+
             Debug.WriteLine($"Player är: {SelectedPlayer.PlayerName}");
             Debug.WriteLine($"StartTime är: {quizSession.StartTime}");
             Debug.WriteLine($"--- Följande skickas till QuestionPage ---");
@@ -116,13 +132,25 @@ namespace GrupparbeteVecka4.ViewModels
             _quizState.QuizNumberOfQuestions = NumberOfQuestions;
 
             await Shell.Current.GoToAsync(nameof(QuestionPage));
-
-
         }
 
+        private async Task ExecuteHistory(object parameter)
+        {
+            if (SelectedPlayer != null)
+            {
+                await Shell.Current.GoToAsync($"{nameof(HistoryPage)}?PlayerId={SelectedPlayer.Id}");
+            }
+        }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
+        private async Task ExecuteBack(object parameter)
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+        // ------ INotifyPropertyChanged ------
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

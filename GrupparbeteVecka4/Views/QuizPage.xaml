@@ -17,12 +17,11 @@
             <Label Text="Välj spelare för ditt quiz"
                    Style="{StaticResource SubHeaderLabelStyle}" />
 
-            <Picker x:Name="PlayerPicker"
-                    Title="Välj spelare"
+            <!-- SelectedItem styr automatiskt IsPlayerSelected i ViewModel -->
+            <Picker Title="Välj spelare"
                     ItemsSource="{Binding Players}"
                     ItemDisplayBinding="{Binding PlayerName}"
                     SelectedItem="{Binding SelectedPlayer}"
-                    SelectedIndexChanged="OnPlayerSelectedIndexChanged"
                     Style="{StaticResource DefaultPickerStyle}"/>
 
             <Label Text="Antal frågor"
@@ -33,22 +32,22 @@
                     SelectedItem="{Binding NumberOfQuestions}"
                     Style="{StaticResource DefaultPickerStyle}" />
 
-            <Button x:Name="StartGameButton"
-                    Text="Starta nytt spel"
+            <!-- IsVisible styrs dynamiskt från ViewModel -->
+            <Button Text="Starta nytt spel"
                     Command="{Binding StartQuizCommand}"
                     Style="{StaticResource DefaultButtonStyle}"
                     BackgroundColor="{DynamicResource PrimaryButtonColor}"
                     TextColor="{DynamicResource PrimaryTextColor}"
                     BorderColor="{DynamicResource PrimaryBorderColor}"
                     BorderWidth="{DynamicResource PrimaryBorderWidth}"
-                    IsVisible="False" />
+                    IsVisible="{Binding IsPlayerSelected}" />
         </VerticalStackLayout>
 
         <!-- NEDRE KNAPPAR (Rad 1) -->
         <Grid Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="End" Margin="0,10,0,0">
-            <!-- Bakåtknapp längst till vänster -->
+            <!-- Bakåtknapp kopplad till BackCommand -->
             <Button Text="← Bakåt"
-                    Clicked="OnBackButtonClicked"
+                    Command="{Binding BackCommand}"
                     HeightRequest="40"
                     WidthRequest="90"
                     FontSize="13"
@@ -57,10 +56,9 @@
                     CornerRadius="8"
                     HorizontalOptions="Start" />
 
-            <!-- Historikknapp i mitten (Syns bara när spelare är vald) -->
-            <Button x:Name="HistoryButton"
-                    Text="Historik"
-                    Clicked="OnHistoryButtonClicked"
+            <!-- Historikknapp kopplad till HistoryCommand och IsPlayerSelected -->
+            <Button Text="Historik"
+                    Command="{Binding HistoryCommand}"
                     HeightRequest="40"
                     WidthRequest="120"
                     FontSize="13"
@@ -70,9 +68,8 @@
                     BorderWidth="{DynamicResource PrimaryBorderWidth}"
                     CornerRadius="8"
                     HorizontalOptions="Center"
-                    IsVisible="False" />
+                    IsVisible="{Binding IsPlayerSelected}" />
         </Grid>
 
     </Grid>
-    
 </ContentPage>

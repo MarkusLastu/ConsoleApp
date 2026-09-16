@@ -10,14 +10,11 @@
         <!-- Rubriker -->
         <VerticalStackLayout Grid.Row="1" Spacing="5" Margin="0,0,0,20" HorizontalOptions="Center">
             <Label Text="Quiz Appen"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   TextColor="{StaticResource HeaderTextColor}"
+                   Style="{StaticResource HeaderLabelStyle}"
                    HorizontalOptions="Center" />
 
             <Label Text="Välkommen! Välj ett alternativ nedan."
-                   FontSize="15"
-                   TextColor="{StaticResource SubHeaderTextColor}"
+                   Style="{StaticResource SubHeaderLabelStyle}"
                    HorizontalOptions="Center" />
         </VerticalStackLayout>
 
@@ -28,31 +25,19 @@
                                  MaximumWidthRequest="320">
 
                 <Button Text="Starta Quiz"
-                        Clicked="OnButtonClicked"
+                        Command="{Binding NavigateCommand}"
                         CommandParameter="QuizPage"
-                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
-                        TextColor="{DynamicResource PrimaryTextColor}"
-                        BorderColor="{DynamicResource PrimaryBorderColor}"
-                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
-                        FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
+                        Style="{StaticResource DefaultButtonStyle}" />
 
                 <Button Text="Profil"
-                        Clicked="OnButtonClicked"
+                        Command="{Binding NavigateCommand}"
                         CommandParameter="ProfilePage"
-                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
-                        TextColor="{DynamicResource PrimaryTextColor}"
-                        BorderColor="{DynamicResource PrimaryBorderColor}"
-                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
-                        FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
+                        Style="{StaticResource DefaultButtonStyle}" />
 
                 <Button Text="Inställningar"
-                        Clicked="OnButtonClicked"
+                        Command="{Binding NavigateCommand}"
                         CommandParameter="SettingsPage"
-                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
-                        TextColor="{DynamicResource PrimaryTextColor}"
-                        BorderColor="{DynamicResource PrimaryBorderColor}"
-                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
-                        FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
+                        Style="{StaticResource DefaultButtonStyle}" />
 
             </VerticalStackLayout>
         </ScrollView>
