@@ -3,9 +3,9 @@
 
 MVP - Minimal Viable Product
 - Startsida
-- Ett fungerade frågeflöde/spel
-	
+- Ett fungerade frågeflöde/spel	
 	- En vy där frågor och svarsalternativ visas
+
 - DB koppling
 	- Frågor 
 	- Svar
@@ -14,16 +14,20 @@ MVP - Minimal Viable Product
 	- Visa resultat
 
 MarcusB
-- Fixa upp DB
+- Fixa upp DB - Klar
+- Skapa sida som visar frågan - Klar
+- Skapa funktionalitet för att ta hand om svaret och bläddra genom alla frågor
 
 Niklas
-- Startsidan
+- Startsidan - Klar
 	- Nytt spel
 	- Stäng app
 	- Tidigare spelresultat
+- Fixar med Inställningar och Historik
 
 Sebbe
-- Ta fram frågor och svar
+- Ta fram frågor och svar - Klar
+- Fixa en sida för spelarprofil
 
 
 Funktioner

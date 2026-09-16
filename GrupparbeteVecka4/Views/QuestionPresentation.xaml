@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrupparbeteVecka4.Views.QuestionPresentation"
+             Title="QuestionPresentation"
+             Background="{StaticResource LiveBackground}">
+    
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+        <!-- Rubrik -->
+        <Label Text="Quiz"
+               FontSize="32"
+               FontAttributes="Bold"
+               TextColor="{StaticResource HeaderTextColor}"
+               HorizontalOptions="Center" />
+        
+        <Label 
+            Text="{Binding QuestionCount}"
+            TextColor="{StaticResource SubHeaderTextColor}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <!-- Kategori -->
+
+        <Label 
+            Text="Kategori:"                        
+            FontSize="18"
+            FontAttributes="Bold"
+            TextColor="{StaticResource SubHeaderTextColor}"
+            HorizontalOptions="Center"/>
+        <Label 
+            Text="{Binding CategoryName}"                        
+            TextColor="{StaticResource SubHeaderTextColor}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Image
+            Source="{Binding CategoryImage}"
+            HeightRequest="200"
+            Aspect="AspectFit"/>
+
+        <!-- Fråga -->
+
+        <Label
+            Text="{Binding QuestionText}"  
+            FontSize="24"
+            TextColor="Black"
+            HorizontalOptions="Center" />
+        
+        <!-- Svarsalternativ -->
+        <Grid
+            RowDefinitions="*,*"
+            ColumnDefinitions="200, 200"
+            ColumnSpacing="10"
+            RowSpacing="10">
+
+            <Button Text="{Binding Answer1Text}"
+                    Grid.Row="0"
+                    Grid.Column="0"    
+                    Command="{Binding AnswerCommand}"
+                    CommandParameter="{Binding Answer1}"
+                    Style="{StaticResource AnswerButtonStyle}"/>
+            <Button Text="{Binding Answer2Text}"
+                    Grid.Row="0"
+                    Grid.Column="1"    
+                    Command="{Binding AnswerCommand}"
+                    CommandParameter="{Binding Answer2}"
+                    Style="{StaticResource AnswerButtonStyle}"/>
+            <Button Text="{Binding Answer3Text}"
+                    Grid.Row="1"
+                    Grid.Column="0"    
+                    Command="{Binding AnswerCommand}"
+                    CommandParameter="{Binding Answer3}"
+                    Style="{StaticResource AnswerButtonStyle}"/>
+            <Button Text="{Binding Answer4Text}"
+                    Grid.Row="1"
+                    Grid.Column="1"    
+                    Command="{Binding AnswerCommand}"
+                    CommandParameter="{Binding Answer4}"
+                    Style="{StaticResource AnswerButtonStyle}"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

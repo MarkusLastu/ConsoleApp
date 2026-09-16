@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using GrupparbeteVecka4.Service;
+using GrupparbeteVecka4.ViewModels;
+using GrupparbeteVecka4.Views;
 
 namespace GrupparbeteVecka4
 {
@@ -7,6 +10,7 @@ namespace GrupparbeteVecka4
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -15,8 +19,16 @@ namespace GrupparbeteVecka4
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<DBService>();
+
+            builder.Services.AddTransient<QuestionPresentationViewModel>();
+            builder.Services.AddTransient<QuestionPresentation>();
+
+            builder.Services.AddTransient<QuizPageViewModel>();
+            builder.Services.AddTransient<QuizPage>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

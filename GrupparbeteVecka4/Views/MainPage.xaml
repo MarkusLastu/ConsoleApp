@@ -45,15 +45,6 @@
                         BorderWidth="{DynamicResource PrimaryBorderWidth}"
                         FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
 
-                <Button Text="Historik"
-                        Clicked="OnButtonClicked"
-                        CommandParameter="HistoryPage"
-                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
-                        TextColor="{DynamicResource PrimaryTextColor}"
-                        BorderColor="{DynamicResource PrimaryBorderColor}"
-                        BorderWidth="{DynamicResource PrimaryBorderWidth}"
-                        FontSize="16" FontAttributes="Bold" HeightRequest="55" CornerRadius="12" />
-
                 <Button Text="Inställningar"
                         Clicked="OnButtonClicked"
                         CommandParameter="SettingsPage"

@@ -5,13 +5,22 @@ namespace GrupparbeteVecka4.Views;
 
 public partial class QuizPage : ContentPage
 {
-	public QuizPage()
+	public QuizPage(QuizPageViewModel viewModel)
 	{
 		InitializeComponent();
-	}
+        BindingContext = viewModel;
+    }
+    private void OnPlayerSelectedIndexChanged(object sender, EventArgs e)
+    {
+        bool hasPlayer = PlayerPicker.SelectedIndex != -1;
+
+        // Visa båda knapparna när en spelare har valts
+        StartGameButton.IsVisible = hasPlayer;
+        HistoryButton.IsVisible = hasPlayer;
+    }
+
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {
-        // ".." betyder att Shell navigerar bakåt till föregående sida (MainPage)
         await Shell.Current.GoToAsync("..");
     }
 
