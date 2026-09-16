@@ -78,7 +78,6 @@ namespace GrupparbeteVecka4.ViewModels
 
             isAnsweredCorrect = answer.IsCorrect;
 
-
             Debug.WriteLine($"Valt answerId: {answer.Id}");
             Debug.WriteLine($"Tid för svar: {responseTimeMs}");
             Debug.WriteLine($"Är det rätt svar: {isAnsweredCorrect}");

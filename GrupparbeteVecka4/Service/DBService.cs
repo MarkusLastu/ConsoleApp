@@ -21,7 +21,6 @@ namespace GrupparbeteVecka4.Service
 
         }
 
-
         public async Task<List<Question>> GetRandomQuestionsAsync(int numberOfQuestions)
         {
             try
@@ -54,6 +53,19 @@ namespace GrupparbeteVecka4.Service
                 .From<QuestionInSession>()
                 .Insert(newAnswer);
             Debug.WriteLine($"Skriver tiil DB: KLART!");
+        }
+
+        public async Task<List<Player>> GetPlayersAsync()
+        {
+            Debug.WriteLine($"Hämtar players från DB:");
+            var result = await _client
+                    .From<Player>()
+                    .Select("*")
+                    .Order(p => p.PlayerName, Supabase.Postgrest.Constants.Ordering.Ascending)
+                    .Get();
+            Debug.WriteLine($"{result.Count} players hämtade.");
+
+            return result.Models;
         }
     }
 }
