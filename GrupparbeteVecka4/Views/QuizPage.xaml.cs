@@ -26,7 +26,7 @@ public partial class QuizPage : ContentPage
 
     private async void OnHistoryButtonClicked(object sender, EventArgs e)
     {
-        if (selectedPlayer is Player selectedPlayer)
+        if (PlayerPicker.SelectedItem is Player selectedPlayer)
         {
             // Skickar med player_id som query-parameter till HistoryPage
             await Shell.Current.GoToAsync($"{nameof(HistoryPage)}?PlayerId={selectedPlayer.Id}");

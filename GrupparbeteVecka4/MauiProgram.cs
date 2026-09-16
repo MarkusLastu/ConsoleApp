@@ -27,6 +27,9 @@ namespace GrupparbeteVecka4
             builder.Services.AddTransient<QuizPageViewModel>();
             builder.Services.AddTransient<QuizPage>();
 
+            builder.Services.AddTransient<HistoryPageViewModel>();
+            builder.Services.AddTransient<HistoryPage>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
