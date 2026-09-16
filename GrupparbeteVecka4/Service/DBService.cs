@@ -134,6 +134,37 @@ namespace GrupparbeteVecka4.Service
             }
         }
 
+        public async Task<List<QuizSession>> GetSessionsAsync(long playerId)
+        {
+            Debug.WriteLine($"Hämtar sessions från DB:");
+            var result = await _client
+                    .From<QuizSession>()
+                    .Where(x => x.PlayerId == playerId)
+                    .Select("*")
+                    .Order(q => q.StartTime, Supabase.Postgrest.Constants.Ordering.Descending)
+                    .Limit(4)
+                    .Get();
+                    
+            Debug.WriteLine($"{result.Count} sessions hämtade.");
+
+            return result.Models;
+        }
+
+        public async Task<dynamic> GetPlayerHistoryAsync(
+            long playerId,
+            int numberOfSessions)
+        {
+            var result = await _client.Rpc(
+                "get_player_history",
+                new Dictionary<string, object>
+                {
+                    { "p_player_id", playerId },
+                    { "p_number_of_sessions", numberOfSessions }
+                });
+            Debug.WriteLine($"Hämtar historik för playerId: {playerId}, antal sessions: {numberOfSessions}");
+            Debug.WriteLine(result.ToString());
+            return result;
+        }
 
         public async Task UpdateQuizSessionAsync()
         {
