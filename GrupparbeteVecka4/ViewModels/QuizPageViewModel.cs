@@ -63,6 +63,9 @@ namespace GrupparbeteVecka4.ViewModels
             }
         }
 
+        private QuizSession quizSession;
+
+
         // ------ Här är konstruktorn för min ViewModel ------
         public QuizPageViewModel(DBService service)
         {
@@ -80,8 +83,14 @@ namespace GrupparbeteVecka4.ViewModels
 
         private async Task CreateQuizSession()
         {
-            Debug.WriteLine("Ej implementerad än...");
-            Players = await _service.GetPlayersAsync();
+            Debug.WriteLine("Skapar ny session...");
+            quizSession = new QuizSession
+            {
+                PlayerId = SelectedPlayer.Id,
+                StartTime = DateTime.UtcNow
+            };
+            quizSession = await _service.CreateQuizSessionAsync(quizSession);
+            Debug.WriteLine($"Ny session har ID: {quizSession.Id}");
         }
 
 

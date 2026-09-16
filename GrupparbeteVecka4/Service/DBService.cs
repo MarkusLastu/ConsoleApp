@@ -46,15 +46,6 @@ namespace GrupparbeteVecka4.Service
                 throw;
             }
         }
-
-        public async Task SaveQuestionAnswerAsync(QuestionInSession newAnswer){
-            Debug.WriteLine($"Skriver tiil DB: {newAnswer}");
-            var result = await _client
-                .From<QuestionInSession>()
-                .Insert(newAnswer);
-            Debug.WriteLine($"Skriver tiil DB: KLART!");
-        }
-
         public async Task<List<Player>> GetPlayersAsync()
         {
             Debug.WriteLine($"Hämtar players från DB:");
@@ -67,5 +58,33 @@ namespace GrupparbeteVecka4.Service
 
             return result.Models;
         }
+        public async Task<QuizSession> CreateQuizSessionAsync(QuizSession newSession)
+        {
+            Debug.WriteLine($"Skapar ny session: ");
+            //StartTime & PlayerId
+            var result = await _client
+                .From<QuizSession>()
+                .Insert(newSession);
+
+            Debug.WriteLine($"Ny session skapad med ID: {result.Models.First().Id}");
+
+
+            return result.Models.First();
+        }
+        public async Task SaveQuestionAnswerAsync(QuestionInSession newAnswer){
+            Debug.WriteLine($"Skriver tiil DB: {newAnswer}");
+            var result = await _client
+                .From<QuestionInSession>()
+                .Insert(newAnswer);
+            Debug.WriteLine($"Skriver tiil DB: KLART!");
+        }
+        
+
+        public async Task UpdateQuizSessionAsync()
+        {
+            Debug.WriteLine($"Uppdaterar sessionen med end_time och score.");
+
+            Debug.WriteLine($"Sessionen uppdaterad");
+        }   
     }
 }
