@@ -25,7 +25,16 @@ namespace GrupparbeteVecka4.Models
         [Column("player_id")]
         public long PlayerId { get; set; }
 
+        [Column("quiz_type_id")]
+        public long QuizTypeId{ get; set; }
+
+        [Column("duration_seconds")]
+        public int? DurationSeconds { get; set; }
+
         [Reference(typeof(Player))]
         public Player Player { get; set; }
+        
+        [Reference(typeof(QuizType))]
+        public QuizType QuizType { get; set; }
     }
 }
