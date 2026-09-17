@@ -20,6 +20,7 @@ namespace GrupparbeteVecka4
                 });
 
             builder.Services.AddSingleton<DBService>();
+            builder.Services.AddSingleton<QuizState>();
 
             builder.Services.AddTransient<QuestionPageViewModel>();
             builder.Services.AddTransient<QuestionPage>();
@@ -32,7 +33,10 @@ namespace GrupparbeteVecka4
 
             builder.Services.AddTransient<HistoryPageViewModel>();
             builder.Services.AddTransient<HistoryPage>();
-            builder.Services.AddSingleton<QuizState>();
+
+            builder.Services.AddTransient<ProfileSelectViewModel>();
+            builder.Services.AddTransient<ProfileSelectPage>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();

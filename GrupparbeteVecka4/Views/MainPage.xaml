@@ -31,7 +31,7 @@
 
                 <Button Text="Profil"
                         Command="{Binding NavigateCommand}"
-                        CommandParameter="ProfilePage"
+                        CommandParameter="ProfileSelectPage"
                         Style="{StaticResource DefaultButtonStyle}" />
 
                 <Button Text="Inställningar"

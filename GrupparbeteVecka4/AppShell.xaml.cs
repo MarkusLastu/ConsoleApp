@@ -2,7 +2,7 @@
 
 namespace GrupparbeteVecka4
 {
-    public AppShell()
+    public partial class AppShell : Shell
     {
         public AppShell()
         {
