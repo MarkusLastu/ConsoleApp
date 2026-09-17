@@ -113,6 +113,24 @@ namespace GrupparbeteVecka4.Service
             return result.Models;
         }
 
+        public async Task<List<QuizSessionResult>> GetSessionResultsAsync(long quizSessionId)
+        {
+            Debug.WriteLine(
+                $"Hämtar resultat för QuizSession: {quizSessionId}");
+
+            var result = await _client.Rpc<List<QuizSessionResult>>(
+                "get_quiz_session_result",
+                new Dictionary<string, object>
+                {
+            { "p_quiz_session_id", quizSessionId }
+                });
+
+            Debug.WriteLine(
+                $"Antal resultatrader hämtade: {result?.Count ?? 0}");
+
+            return result ?? new List<QuizSessionResult>();
+        }
+
 
         // ========================================== 
         // INSERT INTO DB

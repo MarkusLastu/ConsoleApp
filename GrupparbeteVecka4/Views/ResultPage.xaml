@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GrupparbeteVecka4.Views.ResultPage"
+    Title="Resultat"
+    Background="{StaticResource LiveBackground}">
+
+    <Grid
+        Padding="20,10"
+        RowDefinitions="Auto,*,Auto">
+
+        <!-- ================================= -->
+        <!-- RESULTAT                          -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="0"
+            ColumnDefinitions="*,Auto,Auto"
+            ColumnSpacing="25"
+            Margin="0,0,0,12">
+
+            <!-- Quiz klart + speltyp -->
+
+            <VerticalStackLayout
+                Grid.Column="0"
+                Spacing="0"
+                VerticalOptions="Center">
+
+                <Label
+                    Text="Quiz klart!"
+                    Style="{StaticResource HeaderLabelStyle}" />
+
+                <Label
+                    Text="{Binding PlayerName}"
+                    Style="{StaticResource DefaultLabelStyle}" />
+
+                <Label
+                    Text="{Binding QuizTypeText}"
+                    Style="{StaticResource SubHeaderLabelStyle}" />
+
+            </VerticalStackLayout>
+
+
+            <!-- Poäng -->
+
+            <VerticalStackLayout
+                Grid.Column="1"
+                Spacing="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+
+                <Label
+                    Text="Poäng"
+                    Style="{StaticResource SubHeaderLabelStyle}"
+                    HorizontalOptions="Center" />
+
+                <Label
+                    Text="{Binding Score}"
+                    Style="{StaticResource HeaderLabelStyle}"
+                    HorizontalOptions="Center" />
+
+            </VerticalStackLayout>
+
+
+            <!-- Tid -->
+
+            <VerticalStackLayout
+                Grid.Column="2"
+                Spacing="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+
+                <Label
+                    Text="Tid"
+                    Style="{StaticResource SubHeaderLabelStyle}"
+                    HorizontalOptions="Center" />
+
+                <Label
+                    Text="{Binding QuizDurationText}"
+                    Style="{StaticResource HeaderLabelStyle}"
+                    HorizontalOptions="Center" />
+
+            </VerticalStackLayout>
+
+        </Grid>
+
+
+        <!-- ================================= -->
+        <!-- FRÅGOR                            -->
+        <!-- ================================= -->
+
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding SessionResults}"
+            SelectionMode="None">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="8" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border
+                        Padding="10"
+                        BackgroundColor="White"
+                        Stroke="#E2E8F0"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 10">
+
+                        <VerticalStackLayout
+                            Spacing="3">
+
+                            <!-- Fråga X + Rätt/Fel -->
+
+                            <Grid
+                                ColumnDefinitions="*,Auto">
+
+                                <Label
+                                    Grid.Column="0"
+                                    Text="{Binding QuestionOrder, StringFormat='Fråga {0}'}"
+                                    Style="{StaticResource SubHeaderLabelStyle}" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Style="{StaticResource SubHeaderLabelStyle}"
+                                    FontAttributes="Bold">
+
+                                    <Label.Triggers>
+
+                                        <DataTrigger
+                                            TargetType="Label"
+                                            Binding="{Binding SelectedAnswerIsCorrect}"
+                                            Value="True">
+
+                                            <Setter
+                                                Property="Text"
+                                                Value="✓ Rätt" />
+
+                                            <Setter
+                                                Property="TextColor"
+                                                Value="#16A34A" />
+
+                                        </DataTrigger>
+
+                                        <DataTrigger
+                                            TargetType="Label"
+                                            Binding="{Binding SelectedAnswerIsCorrect}"
+                                            Value="False">
+
+                                            <Setter
+                                                Property="Text"
+                                                Value="✗ Fel" />
+
+                                            <Setter
+                                                Property="TextColor"
+                                                Value="#DC2626" />
+
+                                        </DataTrigger>
+
+                                    </Label.Triggers>
+
+                                </Label>
+
+                            </Grid>
+
+
+                            <!-- Frågan -->
+
+                            <Label
+                                Text="{Binding QuestionText}"
+                                Style="{StaticResource SubHeaderLabelStyle}"
+                                FontAttributes="Bold"
+                                LineBreakMode="WordWrap"
+                                Margin="0,2,0,2" />
+
+
+                            <!-- Kategori -->
+
+                            <Label
+                                Text="{Binding CategoryName}"
+                                Style="{StaticResource DefaultLabelStyle}" />
+
+
+                            <!-- Ditt svar -->
+
+                            <HorizontalStackLayout
+                                Spacing="6">
+
+                                <Label
+                                    Text="Ditt svar:"
+                                    Style="{StaticResource DefaultLabelStyle}" />
+
+                                <Label
+                                    Text="{Binding SelectedAnswerText}"
+                                    Style="{StaticResource DefaultLabelStyle}" />
+
+                            </HorizontalStackLayout>
+
+
+                            <!-- Rätt svar -->
+
+                            <HorizontalStackLayout
+                                Spacing="6">
+
+                                <Label
+                                    Text="Rätt svar:"
+                                    Style="{StaticResource DefaultLabelStyle}" />
+
+                                <Label
+                                    Text="{Binding CorrectAnswerText}"
+                                    Style="{StaticResource DefaultLabelStyle}"
+                                    FontAttributes="Bold" />
+
+                            </HorizontalStackLayout>
+
+
+                            <!-- Svarstid -->
+
+                            <Label
+                                Text="{Binding ResponseTimeMs, StringFormat='Svarstid: {0} ms'}"
+                                Style="{StaticResource DefaultLabelStyle}" />
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <!-- ================================= -->
+        <!-- TILLBAKA                          -->
+        <!-- ================================= -->
+
+        <Button
+            Grid.Row="2"
+            Text="← Bakåt"
+            Command="{Binding BackCommand}"
+            HeightRequest="40"
+            WidthRequest="90"
+            FontSize="13"
+            BackgroundColor="{StaticResource PrimaryButtonColor}"
+            TextColor="{StaticResource PrimaryTextColor}"
+            CornerRadius="8"
+            HorizontalOptions="Start"
+            VerticalOptions="End"
+            Margin="0,8,0,0" />
+
+    </Grid>
+
+</ContentPage>

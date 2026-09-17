@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows.Input;
 using GrupparbeteVecka4.Commands;
 using GrupparbeteVecka4.Models;
 using GrupparbeteVecka4.Service;
-using System.Threading;
+using GrupparbeteVecka4.Views;
 
 namespace GrupparbeteVecka4.ViewModels
 {
@@ -24,10 +25,10 @@ namespace GrupparbeteVecka4.ViewModels
         private Question _currentQuestion;
         private int _currentQuestionNumber;
         private DateTime _questionStartTime;
-        private QuizSession _quizSession;
         private DateTime _quizStartTime;
         private DateTime _quizEndTime;
         private CancellationTokenSource? _timerCancellation;
+        private bool _quizFinished;
 
 
 
@@ -261,7 +262,16 @@ namespace GrupparbeteVecka4.ViewModels
             else
             {
                 AnswerResultText = "Fel svar";
-                PointsText = "0 poäng";
+                
+                if (_quizState.QuizTypeId == 2)
+                {
+                    _quizEndTime = _quizEndTime.AddSeconds(-5);
+                    PointsText = "0 poäng - Minus 5 sekunder på klockan också!!!";
+                    Debug.WriteLine("Fel svar! 5 sekunder dras från timern.");
+                } else
+                {
+                    PointsText = "0 poäng";
+                }
             }
 
             CorrectAnswerText =
@@ -303,16 +313,21 @@ namespace GrupparbeteVecka4.ViewModels
 
         private async Task FinishQuizSession()
         {
+            if (_quizFinished)
+                return;
+
+            _quizFinished = true;
+
+            _timerCancellation?.Cancel();
+
             Debug.WriteLine("SLUT PÅ FRÅGOR!!!");
 
             await UpdateQuizSession();
 
-            await Shell.Current.DisplayAlert(
-                "Spelet slut!",
-                $"Du fick {_quizState.QuizScore} poäng.",
-                "Gå till startsida");
-
-            await Shell.Current.GoToAsync("//MainPage");
+            await Shell.Current.GoToAsync(
+                $"{nameof(ResultPage)}" +
+                $"?QuizSessionId={_quizState.QuizSessionId}" +
+                $"&BackRoute=//MainPage");
         }
 
         // ==========================================
@@ -323,35 +338,43 @@ namespace GrupparbeteVecka4.ViewModels
         {
             _timerCancellation = new CancellationTokenSource();
 
-            while (!_timerCancellation.Token.IsCancellationRequested)
+            try
             {
-                if (_quizState.QuizTypeId == 1)
+                while (!_timerCancellation.Token.IsCancellationRequested)
                 {
-                    // Classic: räkna upp från 0
-                    TimeSpan elapsed = DateTime.UtcNow - _quizStartTime;
-
-                    TimerText = elapsed.ToString(@"mm\:ss");
-                }
-                else if (_quizState.QuizTypeId == 2)
-                {
-                    // Timed: räkna ner
-                    TimeSpan remaining = _quizEndTime - DateTime.UtcNow;
-
-                    if (remaining <= TimeSpan.Zero)
+                    if (_quizState.QuizTypeId == 1)
                     {
-                        TimerText = "00:00";
+                        TimeSpan elapsed =
+                            DateTime.UtcNow - _quizStartTime;
 
-                        // Vi tar hand om detta senare.
-                        Debug.WriteLine("TIDEN ÄR SLUT!");
-                        await FinishQuizSession();
+                        TimerText = elapsed.ToString(@"mm\:ss");
+                    }
+                    else if (_quizState.QuizTypeId == 2)
+                    {
+                        TimeSpan remaining =
+                            _quizEndTime - DateTime.UtcNow;
 
-                        return;
+                        if (remaining <= TimeSpan.Zero)
+                        {
+                            TimerText = "00:00";
+
+                            Debug.WriteLine("TIDEN ÄR SLUT!");
+
+                            await FinishQuizSession();
+                            return;
+                        }
+
+                        TimerText = remaining.ToString(@"mm\:ss");
                     }
 
-                    TimerText = remaining.ToString(@"mm\:ss");
+                    await Task.Delay(
+                        250,
+                        _timerCancellation.Token);
                 }
-
-                await Task.Delay(250, _timerCancellation.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                Debug.WriteLine("Timern stoppad.");
             }
         }
 
