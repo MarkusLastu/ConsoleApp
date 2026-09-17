@@ -10,21 +10,34 @@
     <Grid
         Padding="20,10"
         RowDefinitions="Auto,*,Auto">
-
+        
         <!-- ================================= -->
         <!-- RESULTAT                          -->
         <!-- ================================= -->
 
         <Grid
             Grid.Row="0"
-            ColumnDefinitions="*,Auto,Auto"
+            ColumnDefinitions="*,*,Auto,Auto"
             ColumnSpacing="25"
             Margin="0,0,0,12">
+
+            <!-- BAKÅTKNAPP (Högst upp till vänster) -->
+            <HorizontalStackLayout Grid.Column="0" 
+                                   Margin="0,0,0,10">
+                <Button Text="← Bakåt"
+                        Command="{Binding BackCommand}"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        HeightRequest="36"
+                        WidthRequest="80"
+                        FontSize="12"
+                        CornerRadius="8"
+                        HorizontalOptions="Start" />
+            </HorizontalStackLayout>
 
             <!-- Quiz klart + speltyp -->
 
             <VerticalStackLayout
-                Grid.Column="0"
+                Grid.Column="1"
                 Spacing="0"
                 VerticalOptions="Center">
 
@@ -46,7 +59,7 @@
             <!-- Poäng -->
 
             <VerticalStackLayout
-                Grid.Column="1"
+                Grid.Column="2"
                 Spacing="0"
                 HorizontalOptions="Center"
                 VerticalOptions="Center">
@@ -67,13 +80,13 @@
             <!-- Tid -->
 
             <VerticalStackLayout
-                Grid.Column="2"
+                Grid.Column="3"
                 Spacing="0"
                 HorizontalOptions="Center"
                 VerticalOptions="Center">
 
                 <Label
-                    Text="Tid"
+                    Text="Total tid"
                     Style="{StaticResource SubHeaderLabelStyle}"
                     HorizontalOptions="Center" />
 
@@ -241,19 +254,7 @@
         <!-- TILLBAKA                          -->
         <!-- ================================= -->
 
-        <Button
-            Grid.Row="2"
-            Text="← Bakåt"
-            Command="{Binding BackCommand}"
-            HeightRequest="40"
-            WidthRequest="90"
-            FontSize="13"
-            BackgroundColor="{StaticResource PrimaryButtonColor}"
-            TextColor="{StaticResource PrimaryTextColor}"
-            CornerRadius="8"
-            HorizontalOptions="Start"
-            VerticalOptions="End"
-            Margin="0,8,0,0" />
+
 
     </Grid>
 

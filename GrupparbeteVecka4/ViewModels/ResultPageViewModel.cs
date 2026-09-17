@@ -193,8 +193,16 @@ namespace GrupparbeteVecka4.ViewModels
                 var first = results[0];
 
                 PlayerName = first.PlayerName;
-                QuizTypeText = first.QuizTypeText;
                 Score = first.Score ?? 0;
+
+                if(first.QuizTypeId == 2)
+                {
+                    QuizTypeText = $"{first.QuizTypeText} - ner från {first.DurationSeconds} sek";
+                }
+                else
+                {
+                    QuizTypeText = first.QuizTypeText;
+                }
 
                 if (first.EndTime.HasValue)
                 {

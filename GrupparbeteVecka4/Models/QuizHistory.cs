@@ -26,6 +26,9 @@ namespace GrupparbeteVecka4.Models
         [JsonPropertyName("score")]
         public int Score { get; set; }
 
+        [JsonPropertyName("quiz_type_text")]
+        public string? QuizTypeText { get; set; }
+
         [JsonPropertyName("question_order")]
         public int QuestionOrder { get; set; }
 
@@ -55,9 +58,6 @@ namespace GrupparbeteVecka4.Models
 
         [JsonPropertyName("category_image_url")]
         public string? CategoryImageUrl { get; set; }
-
-        [JsonPropertyName("quiz_type_text")]
-        public string? QuizTypeText { get; set; }
 
         // Beräknade/Aggregerade egenskaper för gränssnittet
         public int TotalQuestions { get; set; }

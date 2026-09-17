@@ -44,7 +44,12 @@
                 </Border>
 
                 <!-- LISTA MED HISTORIK -->
-                <CollectionView ItemsSource="{Binding QuizHistories}">
+                <CollectionView 
+                    x:Name="QuizHistoryCollection"
+                    ItemsSource="{Binding QuizHistories}"
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding SelectQuizCommand}"
+                    SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference QuizHistoryCollection}}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:QuizHistory">
                             <Border Margin="0,0,0,8"

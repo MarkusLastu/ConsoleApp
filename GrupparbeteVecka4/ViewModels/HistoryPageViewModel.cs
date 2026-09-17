@@ -6,10 +6,11 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Diagnostics;
 using GrupparbeteVecka4.Converters;
 using GrupparbeteVecka4.Models;
 using GrupparbeteVecka4.Service;
-using Microsoft.Maui.Controls;
+using GrupparbeteVecka4.Views;
 
 namespace GrupparbeteVecka4.ViewModels
 {
@@ -17,7 +18,12 @@ namespace GrupparbeteVecka4.ViewModels
     {
         private readonly DBService _service;
 
+        // ==========================================
+        // HISTORIK
+        // ==========================================
+
         private List<QuizHistory> _quizHistories = new();
+
         public List<QuizHistory> QuizHistories
         {
             get => _quizHistories;
@@ -28,81 +34,152 @@ namespace GrupparbeteVecka4.ViewModels
             }
         }
 
+
+        // ==========================================
+        // COMMANDS
+        // ==========================================
+
         public ICommand BackCommand { get; }
+        public ICommand SelectQuizCommand { get; }
+
+
+        // ==========================================
+        // KONSTRUKTOR
+        // ==========================================
 
         public HistoryPageViewModel(DBService service)
         {
             _service = service;
-            BackCommand = new Command(async () => await Shell.Current.GoToAsync(".."));
+
+            BackCommand = new Command(
+                async () => await Shell.Current.GoToAsync(".."));
+
+            SelectQuizCommand = new Command<QuizHistory>(
+                async selectedQuiz => await ExecuteSelectQuiz(selectedQuiz));
         }
 
-        public async void ApplyQueryAttributes(IDictionary<string, object> query)
+
+        // ==========================================
+        // NAVIGATION PARAMETER
+        // ==========================================
+
+        public async void ApplyQueryAttributes(
+            IDictionary<string, object> query)
         {
             if (query.TryGetValue("PlayerId", out var playerIdObj))
             {
-                if (long.TryParse(playerIdObj?.ToString(), out long playerId) && playerId > 0)
+                if (long.TryParse(
+                    playerIdObj?.ToString(),
+                    out long playerId) &&
+                    playerId > 0)
                 {
                     await LoadHistoryAsync(playerId);
                 }
             }
         }
 
+
+        // ==========================================
+        // HÄMTA HISTORIK
+        // ==========================================
+
         public async Task LoadHistoryAsync(long playerId)
         {
             try
             {
-                var result = await _service.GetPlayerHistoryAsync(playerId, 4);
+                var result =
+                    await _service.GetPlayerHistoryAsync(
+                        playerId,
+                        4);
 
-                if (result != null && !string.IsNullOrWhiteSpace(result.Content))
+                if (result == null ||
+                    string.IsNullOrWhiteSpace(result.Content))
                 {
-                    string json = result.Content;
-
-                    var options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    options.Converters.Add(new FlexibleIntConverter());
-
-                    var rawHistoryList = JsonSerializer.Deserialize<List<QuizHistory>>(json, options) ?? new List<QuizHistory>();
-
-                    // Gruppera efter unik QuizSessionId
-                    QuizHistories = rawHistoryList
-                        .GroupBy(h => h.QuizSessionId)
-                        .Select(g =>
-                        {
-                            var first = g.First();
-
-                            // Bestäm texten baserat på QuizTypeId (1 = Klassiskt, 2 = Tidsbaserat)
-                            string gameModeText = first.QuizTypeId switch
-                            {
-                                1 => "Klassiskt",
-                                2 => "Tidsbaserat",
-                                _ => "Klassiskt" // Standard fallback
-                            };
-
-                            return new QuizHistory
-                            {
-                                QuizSessionId = g.Key,
-                                StartTime = first.StartTime,
-                                Score = first.Score,
-                                TotalQuestions = g.Count(),
-                                QuizTypeText = gameModeText
-                            };
-                        })
-                        .OrderByDescending(h => h.StartTime)
-                        .ToList();
+                    QuizHistories = new List<QuizHistory>();
+                    return;
                 }
-            } // <--- Denna saknades ovanför catch
+
+                string json = result.Content;
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                options.Converters.Add(
+                    new FlexibleIntConverter());
+
+                var rawHistoryList =
+                    JsonSerializer.Deserialize<List<QuizHistory>>(
+                        json,
+                        options)
+                    ?? new List<QuizHistory>();
+
+
+                // Gruppera efter unik QuizSessionId
+
+                QuizHistories = rawHistoryList
+                    .GroupBy(h => h.QuizSessionId)
+                    .Select(g =>
+                    {
+                        var first = g.First();
+
+                        return new QuizHistory
+                        {
+                            QuizSessionId = g.Key,
+                            StartTime = first.StartTime,
+                            Score = first.Score,
+
+                            // Antal besvarade frågor
+                            TotalQuestions = g.Count(),
+
+                            // Hämtas nu från quiz_types
+                            QuizTypeText = first.QuizTypeText
+                        };
+                    })
+                    .OrderByDescending(h => h.StartTime)
+                    .ToList();
+            }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Fel vid inläsning av historik: {ex.Message}");
+                Debug.WriteLine(
+                    $"Fel vid inläsning av historik: {ex}");
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+
+        // ==========================================
+        // VÄLJ EN SESSION
+        // ==========================================
+
+        private async Task ExecuteSelectQuiz(
+            QuizHistory selectedQuiz)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (selectedQuiz == null)
+                return;
+
+            Debug.WriteLine(
+                $"Valde QuizSession: {selectedQuiz.QuizSessionId}");
+
+            await Shell.Current.GoToAsync(
+                $"{nameof(ResultPage)}" +
+                $"?QuizSessionId={selectedQuiz.QuizSessionId}" +
+                $"&BackRoute=..");
+        }
+
+
+        // ==========================================
+        // PROPERTYCHANGED
+        // ==========================================
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void OnPropertyChanged(
+            [CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(
+                this,
+                new PropertyChangedEventArgs(propertyName));
         }
     }
 }
