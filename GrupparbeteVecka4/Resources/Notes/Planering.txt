@@ -6,77 +6,96 @@ MVP - Minimal Viable Product
 - Ett fungerade frågeflöde/spel	
 	- En vy där frågor och svarsalternativ visas
 
-- DB koppling
-	- Frågor 
-	- Svar
-	- Spelare
-	- Spelomgång
-	- Visa resultat
+
 
 MarcusB
-- Fixa upp DB - Klar
-- Skapa sida som visar frågan - Klar
-- Skapa funktionalitet för att ta hand om svaret och bläddra genom alla frågor
+- Sammanfattning av omgång - Lista frågor och rätt och fel svar
 
 Niklas
+
+
+Sebbe
+--------------------------------------------------------------
+
+
+Funktioner
+
+- Topplista
+- Speltyp - Gissa år mellan X och Y - slider. Fler poäng om man har litet spann
+- Speltyp - Välj kategorier
+
+- Bildfrågor
+	- Vilken film är detta?
+
+
+
+
+
+
+--------------------------------------------------------------
+
+Vyer
+- Startsida
+- Spelomgång
+	
+	- Välj kategorier
+- Toplista/Tidigare omgångar/Resultat
+	- Sammanfattning av omgång
+		- Lista frågor och rätt och fel svar
+--------------------------------------------------------------
+--- DET SOM ÄR KLART ---
+
+- Fixa upp DB - Klar
+- Skapa sida som visar frågan - Klar
+- Skapa funktionalitet för att ta hand om svaret och bläddra genom alla frågor - Klar
 - Startsidan - Klar
 	- Nytt spel
 	- Stäng app
 	- Tidigare spelresultat
 - Fixar med Inställningar och Historik
 
-Sebbe
-- Ta fram frågor och svar - Klar
-- Fixa en sida för spelarprofil
 
-
-Funktioner
 - Startsida
-- Topplista
-- Timer
-- Olika speltyper
-	- välj 1 av 4 svar
-	- Gissa år mellan X och Y - slider. Fler poäng om man har litet spann
-- Välj kategorier
-- Skapa spelare
-- Antal frågor
-- Slumpgenerator
-	- Samma fråga kan inte ställas 2 ggr i samma spelomgång
-- Poängsystem
-	- Svara snabbt --> fler poäng
-	- Litet spann mellan år --> fler poäng
-- Bildfrågor
-	- Vilken film är detta?
-- Spelarprofil
-	- Namn	
-	- Resultat
-	- Foto?
-
-
-
+- DB koppling
+	- Frågor 
+	- Svar
+	- Spelare
+	- Spelomgång
+	- Visa resultat
 DB
 - Frågor + Svar (1 el 2 tabeller?)
 - Spelare
 - Tidigare spelomgångar
 - Kategorier
 
+- Ta fram frågor och svar - Klar
+- Fixa en sida för spelarprofil - Klar
 
+- Timer
+- Olika speltyper
+	- välj 1 av 4 svar
 
-Vyer
-- Startsida
 - Spelomgång
 	- Välj spelare
-	- Välj kategorier
+	
 	- Välj typ av frågor
 	- Frågor och svar	
-- Toplista/Tidigare omgångar/Resultat
-	- Sammanfattning av omgång
-		- Lista frågor och rätt och fel svar
+
+	- Spelarprofil
+	- Namn	
+	- Resultat
+	- Foto?
+
+	- Skapa spelare
+- Antal frågor
+- Slumpgenerator
+	- Samma fråga kan inte ställas 2 ggr i samma spelomgång
+- Poängsystem
+	- Svara snabbt --> fler poäng
+	- Litet spann mellan år --> fler poäng
 
 
-
-
-Förslag från ChatGPT:
+--- Förslag från ChatGPT---
 Models
 ├── Category.cs
 ├── Question.cs
