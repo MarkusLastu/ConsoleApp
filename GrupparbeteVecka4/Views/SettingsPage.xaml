@@ -7,9 +7,22 @@
              Shell.NavBarIsVisible="False"
              Background="{StaticResource LiveBackground}">
 
-    <Grid Padding="15">
-        <ScrollView Margin="0,0,0,50">
-            <!-- Minskat Spacing mellan alla temakort från 15 till 8 -->
+    <Grid RowDefinitions="Auto, *" Padding="15">
+
+        <!-- BAKÅTKNAPP (Rad 0 - Högst upp till vänster) -->
+        <HorizontalStackLayout Grid.Row="0" Margin="0,0,0,10">
+            <Button Text="← Bakåt"
+                    Command="{Binding BackCommand}"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    HeightRequest="36"
+                    WidthRequest="80"
+                    FontSize="12"
+                    CornerRadius="8"
+                    HorizontalOptions="Start" />
+        </HorizontalStackLayout>
+
+        <!-- INNEHÅLL (Rad 1) -->
+        <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
 
                 <!-- RUBRIK MED DYNAMISK BAKGRUND -->
@@ -20,7 +33,7 @@
                         StrokeThickness="{DynamicResource PrimaryBorderWidth}"
                         HorizontalOptions="Center"
                         Margin="0,0,0,5">
-                    
+
                     <Label Text="Välj Knapptema"
                            FontSize="20"
                            FontAttributes="Bold"
@@ -29,7 +42,7 @@
                            VerticalOptions="Center" />
                 </Border>
 
-                <!-- TEMA 1: Mörka Knappar (Smalare kort: 240px, smalare knapp: 55px) -->
+                <!-- TEMA 1: Mörka Knappar -->
                 <Border Padding="8,10" 
                         StrokeShape="RoundRectangle 10" 
                         BackgroundColor="#1E1E2E"
@@ -37,7 +50,7 @@
                         WidthRequest="240"
                         HorizontalOptions="Center">
                     <Grid ColumnDefinitions="*, Auto">
-                        
+
                         <VerticalStackLayout Grid.Column="0" Spacing="1" VerticalOptions="Center">
                             <Label Text="Mörka Knappar" 
                                    FontSize="15" 
@@ -47,7 +60,7 @@
                                    FontSize="15" 
                                    TextColor="White" />
                         </VerticalStackLayout>
-                        
+
                         <Button Grid.Column="1" 
                                 Text="Välj" 
                                 Command="{Binding DarkThemeCommand}"
@@ -64,7 +77,7 @@
                     </Grid>
                 </Border>
 
-                <!-- TEMA 2: Frostat Glas (Smalare kort: 240px, smalare knapp: 55px) -->
+                <!-- TEMA 2: Frostat Glas -->
                 <Border Padding="8,10" 
                         StrokeShape="RoundRectangle 10" 
                         BackgroundColor="#40FFFFFF"
@@ -73,7 +86,7 @@
                         MaximumWidthRequest="240"
                         WidthRequest="240"
                         HorizontalOptions="Center">
-                    
+
                     <Grid ColumnDefinitions="*, Auto">
                         <VerticalStackLayout Grid.Column="0" Spacing="1" VerticalOptions="Center">
                             <Label Text="Frostat Glas" 
@@ -84,7 +97,7 @@
                                    FontSize="14" 
                                    TextColor="Black" />
                         </VerticalStackLayout>
-                        
+
                         <Button Grid.Column="1" 
                                 Text="Välj" 
                                 Command="{Binding GlassThemeCommand}"
@@ -100,7 +113,7 @@
                     </Grid>
                 </Border>
 
-                <!-- TEMA 3: Skogsgrön (Smalare kort: 240px, smalare knapp: 55px) -->
+                <!-- TEMA 3: Skogsgrön -->
                 <Border Padding="8,10" 
                         StrokeShape="RoundRectangle 10" 
                         BackgroundColor="#E8F5E9"
@@ -157,15 +170,5 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Bakåtknapp -->
-        <Button Text="← Bakåt"
-                Command="{Binding BackCommand}"
-                Style="{StaticResource DefaultButtonStyle}"
-                HeightRequest="36"
-                WidthRequest="80"
-                FontSize="12"
-                CornerRadius="8"
-                HorizontalOptions="Start"
-                VerticalOptions="End" />
     </Grid>
 </ContentPage>

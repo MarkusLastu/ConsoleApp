@@ -3,61 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GrupparbeteVecka4.Views.QuizPage"
              Title="QuizPage"
+             Shell.NavBarIsVisible="False"
              Background="{StaticResource LiveBackground}">
-    <Grid RowDefinitions="*, Auto" Padding="20">
 
-        <!-- ÖVRE INNEHÅLL (Rad 0) -->
-        <VerticalStackLayout Grid.Row="0"
+    <Grid RowDefinitions="Auto, *" Padding="20">
+
+        <!-- BAKÅTKNAPP (Rad 0 - Högst upp till vänster) -->
+        <HorizontalStackLayout Grid.Row="0" Margin="0,0,0,10">
+            <Button Text="← Bakåt"
+                    Command="{Binding BackCommand}"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    HeightRequest="36"
+                    WidthRequest="80"
+                    FontSize="12"
+                    CornerRadius="8"
+                    HorizontalOptions="Start" />
+        </HorizontalStackLayout>
+
+        <!-- ÖVRE INNEHÅLL (Rad 1 - Centrerat i resten av skärmen) -->
+        <VerticalStackLayout Grid.Row="1"
                              HorizontalOptions="Center"
                              VerticalOptions="Center"
                              Spacing="12">
+
             <Label Text="Nytt spel!"
                    Style="{StaticResource HeaderLabelStyle}" />
 
-            <!-- SelectedItem styr automatiskt IsPlayerSelected i ViewModel -->
+            <!-- Spelarkontroll -->
             <Picker Title="Välj spelare"
                     ItemsSource="{Binding Players}"
                     ItemDisplayBinding="{Binding PlayerName}"
                     SelectedItem="{Binding SelectedPlayer}"
                     Style="{StaticResource DefaultPickerStyle}"/>
 
+            <!-- Speltyp -->
             <Picker Title="Välj typ av spel"
                     ItemsSource="{Binding QuizTypes}"
                     ItemDisplayBinding="{Binding QuizTypeText}"
                     SelectedItem="{Binding SelectedQuizType}"
                     Style="{StaticResource DefaultPickerStyle}"/>
 
+            <!-- Antal frågor (Syns vid klassiskt spel) -->
             <Picker Title="Välj antal frågor"
                     ItemsSource="{Binding QuestionsCount}"
                     SelectedItem="{Binding NumberOfQuestions}"
                     Style="{StaticResource DefaultPickerStyle}"
                     IsVisible="{Binding QuizTypeClassic}" />
 
+            <!-- Antal sekunder (Syns vid tidsbaserat spel) -->
             <Picker Title="Välj antal sekunder"
                     ItemsSource="{Binding SecondsCount}"
                     SelectedItem="{Binding NumberOfSeconds}"
                     Style="{StaticResource DefaultPickerStyle}"
-                    IsVisible="{Binding QuizTypeTimed}" />            
+                    IsVisible="{Binding QuizTypeTimed}" />
 
-            <!-- IsVisible styrs dynamiskt från ViewModel -->
+            <!-- Startknapp -->
             <Button Text="Starta nytt spel"
                     Command="{Binding StartQuizCommand}"
                     Style="{StaticResource DefaultButtonStyle}"
-                    IsVisible="{Binding IsPlayerSelected}" />
+                    IsVisible="{Binding IsPlayerSelected}"
+                    Margin="0,10,0,0" />
         </VerticalStackLayout>
-
-        <!-- NEDRE KNAPPAR (Rad 1) -->
-        <Grid Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="End" Margin="0,10,0,0">
-            <!-- Bakåtknapp med samma dynamic border och färgtema -->
-            <Button Text="← Bakåt"
-                    Command="{Binding BackCommand}"
-                    Style="{StaticResource DefaultButtonStyle}"
-                    HeightRequest="40"
-                    WidthRequest="90"
-                    FontSize="13"
-                    CornerRadius="8"
-                    HorizontalOptions="Start" />
-        </Grid>
 
     </Grid>
 </ContentPage>
