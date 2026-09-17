@@ -16,6 +16,7 @@ namespace GrupparbeteVecka4
         Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         Routing.RegisterRoute(nameof(QuestionPage), typeof(QuestionPage));
         Routing.RegisterRoute(nameof(ProfileSelectPage), typeof(ProfileSelectPage));
+        Routing.RegisterRoute(nameof(ResultPage), typeof(ResultPage));
         }
     }
 }

@@ -40,6 +40,9 @@ namespace GrupparbeteVecka4
             builder.Services.AddTransient<SettingsPageViewModel>();
             builder.Services.AddTransient<SettingsPage>();
 
+            builder.Services.AddTransient<ResultPageViewModel>();
+            builder.Services.AddTransient<ResultPage>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();
