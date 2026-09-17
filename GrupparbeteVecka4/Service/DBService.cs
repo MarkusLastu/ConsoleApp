@@ -36,6 +36,11 @@ namespace GrupparbeteVecka4.Service
 
                 Debug.WriteLine($"Antal frågor från DB: {result.Models.Count}");
 
+                if (numberOfQuestions <= 0)
+                {
+                    numberOfQuestions = result.Models.Count;
+                }
+
                 return result.Models
                     .OrderBy(q => Random.Shared.Next())
                     .Take(numberOfQuestions)
@@ -63,12 +68,55 @@ namespace GrupparbeteVecka4.Service
             return result.Models;
         }
 
+        public async Task<List<QuizSession>> GetSessionsAsync(long playerId)
+        {
+            Debug.WriteLine($"Hämtar sessions från DB:");
+            var result = await _client
+                    .From<QuizSession>()
+                    .Where(x => x.PlayerId == playerId)
+                    .Select("*")
+                    .Order(q => q.StartTime, Supabase.Postgrest.Constants.Ordering.Descending)
+                    .Limit(4)
+                    .Get();
+
+            Debug.WriteLine($"{result.Count} sessions hämtade.");
+
+            return result.Models;
+        }
+
+        public async Task<dynamic> GetPlayerHistoryAsync(
+            long playerId,
+            int numberOfSessions)
+        {
+            var result = await _client.Rpc(
+                "get_player_history",
+                new Dictionary<string, object>
+                {
+                    { "p_player_id", playerId },
+                    { "p_number_of_sessions", numberOfSessions }
+                });
+            Debug.WriteLine($"Hämtar historik för playerId: {playerId}, antal sessions: {numberOfSessions}");
+            Debug.WriteLine(result.ToString());
+            return result;
+        }
+
+        public async Task<List<QuizType>> GetQuizTypesAsync()
+        {
+            Debug.WriteLine($"Hämtar QuizTypes från DB:");
+            var result = await _client
+                    .From<QuizType>()
+                    .Select("*")
+                    .Order(q => q.QuizTypeText, Supabase.Postgrest.Constants.Ordering.Ascending)
+                    .Get();
+            Debug.WriteLine($"{result.Count} QuizTypes hämtade.");
+
+            return result.Models;
+        }
+
 
         // ========================================== 
         // INSERT INTO DB
         // ========================================== 
-
-
 
         public async Task<QuizSession> CreateQuizSessionAsync(QuizSession newSession)
         {
@@ -89,6 +137,21 @@ namespace GrupparbeteVecka4.Service
                 .From<QuestionInSession>()
                 .Insert(newAnswer);
             Debug.WriteLine($"Skriver tiil DB: KLART!");
+        }
+        public async Task<Player> CreatePlayerAsync(string playerName, string imageUrl = "")  // SebbeKod0000000000000
+        {
+            var newPlayer = new Player
+            {
+                PlayerName = playerName,
+                PlayerImageUrl = imageUrl
+            };
+
+            var result = await _client
+                .From<Player>()
+                .Insert(newPlayer);
+
+            Debug.WriteLine($"Ny spelare skapad: {result.Models.First().PlayerName}");
+            return result.Models.First();                                                   //Sebbekod0000000000000
         }
 
 
@@ -134,58 +197,12 @@ namespace GrupparbeteVecka4.Service
             }
         }
 
-        public async Task<List<QuizSession>> GetSessionsAsync(long playerId)
-        {
-            Debug.WriteLine($"Hämtar sessions från DB:");
-            var result = await _client
-                    .From<QuizSession>()
-                    .Where(x => x.PlayerId == playerId)
-                    .Select("*")
-                    .Order(q => q.StartTime, Supabase.Postgrest.Constants.Ordering.Descending)
-                    .Limit(4)
-                    .Get();
-                    
-            Debug.WriteLine($"{result.Count} sessions hämtade.");
-
-            return result.Models;
-        }
-
-        public async Task<dynamic> GetPlayerHistoryAsync(
-            long playerId,
-            int numberOfSessions)
-        {
-            var result = await _client.Rpc(
-                "get_player_history",
-                new Dictionary<string, object>
-                {
-                    { "p_player_id", playerId },
-                    { "p_number_of_sessions", numberOfSessions }
-                });
-            Debug.WriteLine($"Hämtar historik för playerId: {playerId}, antal sessions: {numberOfSessions}");
-            Debug.WriteLine(result.ToString());
-            return result;
-        }
-
         public async Task UpdateQuizSessionAsync()
         {
             Debug.WriteLine($"Uppdaterar sessionen med end_time och score.");
 
             Debug.WriteLine($"Sessionen uppdaterad");
         }
-        public async Task<Player> CreatePlayerAsync(string playerName, string imageUrl = "")  // SebbeKod0000000000000
-        {
-            var newPlayer = new Player
-            {
-                PlayerName = playerName,
-                PlayerImageUrl = imageUrl
-            };
-
-            var result = await _client
-                .From<Player>()
-                .Insert(newPlayer);
-
-            Debug.WriteLine($"Ny spelare skapad: {result.Models.First().PlayerName}");
-            return result.Models.First();                                                   //Sebbekod0000000000000
-        }
+        
     }
 }

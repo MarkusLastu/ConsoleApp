@@ -14,9 +14,6 @@
             <Label Text="Nytt spel!"
                    Style="{StaticResource HeaderLabelStyle}" />
 
-            <Label Text="Välj spelare för ditt quiz"
-                   Style="{StaticResource SubHeaderLabelStyle}" />
-
             <!-- SelectedItem styr automatiskt IsPlayerSelected i ViewModel -->
             <Picker Title="Välj spelare"
                     ItemsSource="{Binding Players}"
@@ -24,13 +21,23 @@
                     SelectedItem="{Binding SelectedPlayer}"
                     Style="{StaticResource DefaultPickerStyle}"/>
 
-            <Label Text="Antal frågor"
-                   Style="{StaticResource DefaultLabelStyle}" />
+            <Picker Title="Välj typ av spel"
+                    ItemsSource="{Binding QuizTypes}"
+                    ItemDisplayBinding="{Binding QuizTypeText}"
+                    SelectedItem="{Binding SelectedQuizType}"
+                    Style="{StaticResource DefaultPickerStyle}"/>
 
             <Picker Title="Välj antal frågor"
-                    ItemsSource="{Binding QuestionCounts}"
+                    ItemsSource="{Binding QuestionsCount}"
                     SelectedItem="{Binding NumberOfQuestions}"
-                    Style="{StaticResource DefaultPickerStyle}" />
+                    Style="{StaticResource DefaultPickerStyle}"
+                    IsVisible="{Binding QuizTypeClassic}" />
+
+            <Picker Title="Välj antal sekunder"
+                    ItemsSource="{Binding SecondsCount}"
+                    SelectedItem="{Binding NumberOfSeconds}"
+                    Style="{StaticResource DefaultPickerStyle}"
+                    IsVisible="{Binding QuizTypeTimed}" />            
 
             <!-- IsVisible styrs dynamiskt från ViewModel -->
             <Button Text="Starta nytt spel"

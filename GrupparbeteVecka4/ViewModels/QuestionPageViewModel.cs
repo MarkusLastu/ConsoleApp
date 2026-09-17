@@ -6,6 +6,7 @@ using System.Windows.Input;
 using GrupparbeteVecka4.Commands;
 using GrupparbeteVecka4.Models;
 using GrupparbeteVecka4.Service;
+using System.Threading;
 
 namespace GrupparbeteVecka4.ViewModels
 {
@@ -24,7 +25,10 @@ namespace GrupparbeteVecka4.ViewModels
         private int _currentQuestionNumber;
         private DateTime _questionStartTime;
         private QuizSession _quizSession;
-        
+        private DateTime _quizStartTime;
+        private DateTime _quizEndTime;
+        private CancellationTokenSource? _timerCancellation;
+
 
 
 
@@ -135,6 +139,19 @@ namespace GrupparbeteVecka4.ViewModels
             }
         }
 
+        private string _timerText;
+
+        public string TimerText
+        {
+            get => _timerText;
+            set
+            {
+                _timerText = value;
+                OnPropertyChanged(nameof(TimerText));
+            }
+        }
+
+
 
         // ==========================================
         // COMMANDS
@@ -182,6 +199,16 @@ namespace GrupparbeteVecka4.ViewModels
             _currentQuestion = _quizQuestions[0];
 
             UpdateQuestionProperties();
+
+            _quizStartTime = DateTime.UtcNow;
+
+            if (_quizState.QuizTypeId == 2)
+            {
+                _quizEndTime = _quizStartTime.AddSeconds(
+                    _quizState.QuizNumberOfSeconds);
+            }
+
+            _ = StartTimer();
         }
 
 
@@ -270,21 +297,64 @@ namespace GrupparbeteVecka4.ViewModels
             }
             else
             {
-                Debug.WriteLine("SLUT PÅ FRÅGOR!!!");
-
-                await UpdateQuizSession();
-
-                await Shell.Current.DisplayAlert(
-                    "Spelet slut!",
-                    $"Du fick {_quizState.QuizScore} poäng.",
-                    "Gå till startsida");
-
-                
-
-
-                await Shell.Current.GoToAsync("//MainPage");
+                await FinishQuizSession();
             }
         }
+
+        private async Task FinishQuizSession()
+        {
+            Debug.WriteLine("SLUT PÅ FRÅGOR!!!");
+
+            await UpdateQuizSession();
+
+            await Shell.Current.DisplayAlert(
+                "Spelet slut!",
+                $"Du fick {_quizState.QuizScore} poäng.",
+                "Gå till startsida");
+
+            await Shell.Current.GoToAsync("//MainPage");
+        }
+
+        // ==========================================
+        // TIMER logik
+        // ==========================================
+
+        private async Task StartTimer()
+        {
+            _timerCancellation = new CancellationTokenSource();
+
+            while (!_timerCancellation.Token.IsCancellationRequested)
+            {
+                if (_quizState.QuizTypeId == 1)
+                {
+                    // Classic: räkna upp från 0
+                    TimeSpan elapsed = DateTime.UtcNow - _quizStartTime;
+
+                    TimerText = elapsed.ToString(@"mm\:ss");
+                }
+                else if (_quizState.QuizTypeId == 2)
+                {
+                    // Timed: räkna ner
+                    TimeSpan remaining = _quizEndTime - DateTime.UtcNow;
+
+                    if (remaining <= TimeSpan.Zero)
+                    {
+                        TimerText = "00:00";
+
+                        // Vi tar hand om detta senare.
+                        Debug.WriteLine("TIDEN ÄR SLUT!");
+                        await FinishQuizSession();
+
+                        return;
+                    }
+
+                    TimerText = remaining.ToString(@"mm\:ss");
+                }
+
+                await Task.Delay(250, _timerCancellation.Token);
+            }
+        }
+
 
 
         // ==========================================

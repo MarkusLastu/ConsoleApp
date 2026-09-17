@@ -16,17 +16,27 @@
 
         <Grid
             Grid.Row="0"
-            ColumnDefinitions="*,*">
+            ColumnDefinitions="*,*"
+            RowDefinitions="*,*">
 
             <Label
                 Grid.Column="0"
+                Grid.Row="0"
                 Text="{Binding QuestionProgressText}"
                 Style="{StaticResource SubHeaderLabelStyle}"
                 HorizontalOptions="Start" />
 
             <Label
                 Grid.Column="1"
+                Grid.Row="0"
                 Text="{Binding QuizScoreText}"
+                Style="{StaticResource SubHeaderLabelStyle}"
+                HorizontalOptions="End" />
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="{Binding TimerText}"
                 Style="{StaticResource SubHeaderLabelStyle}"
                 HorizontalOptions="End" />
 

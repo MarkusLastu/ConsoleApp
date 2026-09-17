@@ -8,7 +8,11 @@ namespace GrupparbeteVecka4.Service
     {
         public long QuizSessionId { get; set; }
         public long QuizPlayerId { get; set; }
+        public long QuizTypeId { get; set; }
         public int QuizNumberOfQuestions { get; set; }
+        public int QuizNumberOfSeconds { get; set; }
         public int QuizScore{ get; set; }
+        
+        
     }
 }
