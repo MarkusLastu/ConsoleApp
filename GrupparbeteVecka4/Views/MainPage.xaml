@@ -38,7 +38,21 @@
                         Command="{Binding NavigateCommand}"
                         CommandParameter="SettingsPage"
                         Style="{StaticResource DefaultButtonStyle}" />
-
+                
+                <Button Text="❌ Avsluta"
+                        Command="{Binding ExitCommand}"
+                        BackgroundColor="#D32F2F"
+                        TextColor="White"
+                        BorderColor="#9A0007"
+                        BorderWidth="1.5"
+                        HeightRequest="42"
+                        WidthRequest="120"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"
+                        Margin="0,0,0,15" />
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

@@ -68,18 +68,7 @@ public class SettingsPageViewModel : INotifyPropertyChanged
 
     private async Task ExecuteBackAsync()
     {
-        if (Application.Current?.MainPage == null) return;
-
-        bool answer = await Application.Current.MainPage.DisplayAlert(
-            "Gå tillbaka?",
-            "Vill du lämna inställningarna?",
-            "Ja",
-            "Nej");
-
-        if (answer)
-        {
-            await Shell.Current.GoToAsync("..");
-        }
+        await Shell.Current.GoToAsync("..");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
