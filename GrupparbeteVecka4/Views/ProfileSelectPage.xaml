@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"              
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:GrupparbeteVecka4.ViewModels"
+             x:Class="GrupparbeteVecka4.Views.ProfileSelectPage"
+             Title="Välj eller skapa profil">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ProfileSelectViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid Padding="20" RowDefinitions="Auto, *, Auto" RowSpacing="20">
+
+        <!-- Rubrik / Skapa ny -->
+        <VerticalStackLayout Grid.Row="0" Spacing="10">
+            <Label Text="Skapa ny profil" FontSize="18" FontAttributes="Bold" />
+            <HorizontalStackLayout Spacing="10">
+                <Entry Placeholder="Skriv ditt namn..." 
+                       Text="{Binding NewPlayerName}" 
+                       HorizontalOptions="FillAndExpand" 
+                       WidthRequest="250"/>
+                <Button Text="Skapa" 
+                        Command="{Binding CreatePlayerCommand}" 
+                        BackgroundColor="#512BD4" 
+                        TextColor="White"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <!-- Välj befintlig spelare -->
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <Label Text="Eller välj befintlig spelare:" FontSize="18" FontAttributes="Bold" />
+
+            <CollectionView ItemsSource="{Binding Players}"
+                            SelectedItem="{Binding SelectedPlayer}"
+                            SelectionMode="Single"
+                            HeightRequest="300">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" Margin="0,5" StrokeShape="RoundRectangle 8" BackgroundColor="White">
+                            <HorizontalStackLayout Spacing="15">
+                                <BoxView WidthRequest="40" HeightRequest="40" Color="#512BD4" CornerRadius="20"/>
+                                <Label Text="{Binding PlayerName}" 
+                                       VerticalOptions="Center" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold" 
+                                       TextColor="Black"/>
+                            </HorizontalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

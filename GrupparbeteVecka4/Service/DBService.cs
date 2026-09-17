@@ -116,6 +116,21 @@ namespace GrupparbeteVecka4.Service
             Debug.WriteLine($"Uppdaterar sessionen med end_time och score.");
 
             Debug.WriteLine($"Sessionen uppdaterad");
-        }   
+        }
+        public async Task<Player> CreatePlayerAsync(string playerName, string imageUrl = "")  // SebbeKod0000000000000
+        {
+            var newPlayer = new Player
+            {
+                PlayerName = playerName,
+                PlayerImageUrl = imageUrl
+            };
+
+            var result = await _client
+                .From<Player>()
+                .Insert(newPlayer);
+
+            Debug.WriteLine($"Ny spelare skapad: {result.Models.First().PlayerName}");
+            return result.Models.First();                                                   //Sebbekod0000000000000
+        }
     }
 }
