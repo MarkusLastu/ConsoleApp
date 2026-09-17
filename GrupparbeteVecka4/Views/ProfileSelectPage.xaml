@@ -92,20 +92,20 @@
 
                                 <!-- Profilbild / Cirkulär Avatar -->
                                 <Border Grid.Column="0"
-                                        WidthRequest="34"
-                                        HeightRequest="34"
-                                        StrokeShape="RoundRectangle 17"
+                                        WidthRequest="250"
+                                        HeightRequest="250"
+                                        StrokeShape="RoundRectangle 24"
                                         Stroke="{DynamicResource PrimaryBorderColor}"
-                                        StrokeThickness="1"
+                                        StrokeThickness="1.5"
                                         BackgroundColor="#20FFFFFF"
                                         HorizontalOptions="Center"
                                         VerticalOptions="Center">
-                                    <Label Text="👤"
-                                           FontSize="16"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center" />
-                                </Border>
 
+                                    <Image Source="{Binding AvatarSource}"
+                                           Aspect="AspectFill"
+                                           WidthRequest="250"
+                                           HeightRequest="250" />
+                                </Border>
                                 <!-- Spelarnamn -->
                                 <Label Grid.Column="1"
                                        Text="{Binding PlayerName}"
