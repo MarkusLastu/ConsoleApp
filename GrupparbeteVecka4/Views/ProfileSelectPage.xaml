@@ -3,53 +3,130 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:GrupparbeteVecka4.ViewModels"
              x:Class="GrupparbeteVecka4.Views.ProfileSelectPage"
-             Title="Välj eller skapa profil">
+             Title="Välj eller skapa profil"
+             Shell.NavBarIsVisible="False"
+             Background="{StaticResource LiveBackground}">
 
-    <ContentPage.BindingContext>
-        <viewmodels:ProfileSelectViewModel />
-    </ContentPage.BindingContext>
+    <Grid RowDefinitions="Auto, Auto, Auto, *" Padding="20">
 
-    <Grid Padding="20" RowDefinitions="Auto, *, Auto" RowSpacing="20">
+        <!-- Bakåtknapp högst upp till vänster -->
+        <HorizontalStackLayout Grid.Row="0" Margin="0,0,0,10">
+            <Button Text="← Bakåt"
+                    Command="{Binding BackCommand}"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    HeightRequest="36"
+                    WidthRequest="80"
+                    FontSize="12"
+                    CornerRadius="8"
+                    HorizontalOptions="Start" />
+        </HorizontalStackLayout>
 
-        <!-- Rubrik / Skapa ny -->
-        <VerticalStackLayout Grid.Row="0" Spacing="10">
-            <Label Text="Skapa ny profil" FontSize="18" FontAttributes="Bold" />
-            <HorizontalStackLayout Spacing="10">
-                <Entry Placeholder="Skriv ditt namn..." 
-                       Text="{Binding NewPlayerName}" 
-                       HorizontalOptions="FillAndExpand" 
-                       WidthRequest="250"/>
-                <Button Text="Skapa" 
-                        Command="{Binding CreatePlayerCommand}" 
-                        BackgroundColor="#512BD4" 
-                        TextColor="White"/>
-            </HorizontalStackLayout>
+        <!-- Rubrik -->
+        <VerticalStackLayout Grid.Row="1" HorizontalOptions="Center" Spacing="6" Margin="0,0,0,15">
+            <Label Text="Profilhantering"
+                   Style="{StaticResource HeaderLabelStyle}"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Välj eller skapa en spelare för att se historik"
+                   Style="{StaticResource SubHeaderLabelStyle}"
+                   HorizontalOptions="Center" />
         </VerticalStackLayout>
 
-        <!-- Välj befintlig spelare -->
-        <VerticalStackLayout Grid.Row="1" Spacing="10">
-            <Label Text="Eller välj befintlig spelare:" FontSize="18" FontAttributes="Bold" />
+        <!-- Skapa ny spelare-sektion -->
+        <Border Grid.Row="2"
+                Padding="16"
+                Margin="0,0,0,15"
+                StrokeShape="RoundRectangle 12"
+                Stroke="{DynamicResource PrimaryBorderColor}"
+                StrokeThickness="{DynamicResource PrimaryBorderWidth}"
+                BackgroundColor="{DynamicResource PrimaryButtonColor}">
+            <VerticalStackLayout Spacing="10" Padding="0">
+                <Label Text="Skapa ny spelare"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource PrimaryTextColor}" />
 
+                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                    <Entry Placeholder="Ange spelarnamn..."
+                           Text="{Binding NewPlayerName}"
+                           Style="{StaticResource DefaultEntryStyle}" />
+
+                    <Button Grid.Column="1"
+                            Text="Skapa"
+                            Command="{Binding CreatePlayerCommand}"
+                            Style="{StaticResource DefaultButtonStyle}"
+                            WidthRequest="90" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Lista över befintliga spelare -->
+        <Grid Grid.Row="3">
             <CollectionView ItemsSource="{Binding Players}"
                             SelectedItem="{Binding SelectedPlayer}"
-                            SelectionMode="Single"
-                            HeightRequest="300">
+                            SelectionMode="Single">
+
+                <!-- Minskat avstånd mellan varje spelarkort (från 18 till 8px) -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="Inga spelare hittades. Skapa en ovan!"
+                               Style="{StaticResource DefaultLabelStyle}"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <!-- Spelarkort -->
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border Padding="10" Margin="0,5" StrokeShape="RoundRectangle 8" BackgroundColor="White">
-                            <HorizontalStackLayout Spacing="15">
-                                <BoxView WidthRequest="40" HeightRequest="40" Color="#512BD4" CornerRadius="20"/>
-                                <Label Text="{Binding PlayerName}" 
-                                       VerticalOptions="Center" 
-                                       FontSize="16" 
-                                       FontAttributes="Bold" 
-                                       TextColor="Black"/>
-                            </HorizontalStackLayout>
+                        <Border Padding="12, 10"
+                                StrokeShape="RoundRectangle 12"
+                                Stroke="{DynamicResource PrimaryBorderColor}"
+                                StrokeThickness="{DynamicResource PrimaryBorderWidth}"
+                                BackgroundColor="{DynamicResource PrimaryButtonColor}">
+
+                            <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="12">
+
+                                <!-- Profilbild / Cirkulär Avatar -->
+                                <Border Grid.Column="0"
+                                        WidthRequest="34"
+                                        HeightRequest="34"
+                                        StrokeShape="RoundRectangle 17"
+                                        Stroke="{DynamicResource PrimaryBorderColor}"
+                                        StrokeThickness="1"
+                                        BackgroundColor="#20FFFFFF"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center">
+                                    <Label Text="👤"
+                                           FontSize="16"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Border>
+
+                                <!-- Spelarnamn -->
+                                <Label Grid.Column="1"
+                                       Text="{Binding PlayerName}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="{DynamicResource PrimaryTextColor}"
+                                       VerticalOptions="Center" />
+
+                                <!-- Välj-indikator -->
+                                <Label Grid.Column="2"
+                                       Text="Välj →"
+                                       FontSize="13"
+                                       TextColor="{DynamicResource PrimaryTextColor}"
+                                       Opacity="0.8"
+                                       VerticalOptions="Center" />
+                            </Grid>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </VerticalStackLayout>
+        </Grid>
 
     </Grid>
 </ContentPage>

@@ -1,10 +1,12 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 
 namespace GrupparbeteVecka4.ViewModels;
 
-public class SettingsPageViewModel
+public class SettingsPageViewModel : INotifyPropertyChanged
 {
     public ICommand GlassThemeCommand { get; }
     public ICommand DarkThemeCommand { get; }
@@ -13,50 +15,74 @@ public class SettingsPageViewModel
 
     public SettingsPageViewModel()
     {
-        GlassThemeCommand = new Command(SetGlassTheme);
-        DarkThemeCommand = new Command(SetDarkTheme);
-        GreenThemeCommand = new Command(SetGreenTheme);
+        // Frostat glas: helsvart kantlinje (Colors.Black) och 2px tjocklek
+        GlassThemeCommand = new Command(() => ApplyTheme(
+            buttonColor: Color.FromArgb("#40FFFFFF"),
+            textColor: Colors.Black,
+            headerColor: Colors.Black,
+            subHeaderColor: Color.FromArgb("#333333"),
+            borderColor: Colors.Black,
+            borderWidth: 2
+        ));
+
+        // Mörkt tema
+        DarkThemeCommand = new Command(() => ApplyTheme(
+            buttonColor: Color.FromArgb("#1E1E2E"),
+            textColor: Colors.White,
+            headerColor: Colors.White,
+            subHeaderColor: Color.FromArgb("#A6ADC8"),
+            borderColor: Color.FromArgb("#313244"),
+            borderWidth: 1
+        ));
+
+        // Skogsgrönt tema
+        GreenThemeCommand = new Command(() => ApplyTheme(
+            buttonColor: Color.FromArgb("#2E7D32"),
+            textColor: Colors.White,
+            headerColor: Color.FromArgb("#1B4332"),
+            subHeaderColor: Color.FromArgb("#40916C"),
+            borderColor: Color.FromArgb("#1B4332"),
+            borderWidth: 1
+        ));
+
         BackCommand = new Command(async () => await ExecuteBackAsync());
     }
 
-    private void SetGlassTheme()
+    private void ApplyTheme(Color buttonColor, Color textColor, Color headerColor, Color subHeaderColor, Color borderColor, double borderWidth)
     {
         if (Application.Current == null) return;
 
-        Application.Current.Resources["PrimaryButtonColor"] = Color.FromArgb("#40FFFFFF");
-        Application.Current.Resources["PrimaryTextColor"] = Color.FromArgb("#000000");
-        Application.Current.Resources["PrimaryBorderColor"] = Color.FromArgb("#40000000");
-        Application.Current.Resources["PrimaryBorderWidth"] = 1.5;
-    }
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            var resources = Application.Current.Resources;
 
-    private void SetDarkTheme()
-    {
-        if (Application.Current == null) return;
-
-        Application.Current.Resources["PrimaryButtonColor"] = Color.FromArgb("#27272A");
-        Application.Current.Resources["PrimaryTextColor"] = Color.FromArgb("#FFFFFF");
-        Application.Current.Resources["PrimaryBorderColor"] = Color.FromArgb("#27272A");
-        Application.Current.Resources["PrimaryBorderWidth"] = 0.0;
-    }
-
-    private void SetGreenTheme()
-    {
-        if (Application.Current == null) return;
-
-        Application.Current.Resources["PrimaryButtonColor"] = Color.FromArgb("#2E7D32");
-        Application.Current.Resources["PrimaryTextColor"] = Color.FromArgb("#FFFFFF");
-        Application.Current.Resources["PrimaryBorderColor"] = Color.FromArgb("#2E7D32");
-        Application.Current.Resources["PrimaryBorderWidth"] = 0.0;
+            // Uppdaterar alla dynamiska resursnycklar för hela appen
+            resources["PrimaryButtonColor"] = buttonColor;
+            resources["PrimaryTextColor"] = textColor;
+            resources["HeaderTextColor"] = headerColor;
+            resources["SubHeaderTextColor"] = subHeaderColor;
+            resources["PrimaryBorderColor"] = borderColor;
+            resources["PrimaryBorderWidth"] = borderWidth;
+        });
     }
 
     private async Task ExecuteBackAsync()
     {
         if (Application.Current?.MainPage == null) return;
 
-        bool answer = await Application.Current.MainPage.DisplayAlert("Gå tillbaka?", "Vill du lämna inställningarna?", "Ja", "Nej");
+        bool answer = await Application.Current.MainPage.DisplayAlert(
+            "Gå tillbaka?",
+            "Vill du lämna inställningarna?",
+            "Ja",
+            "Nej");
+
         if (answer)
         {
             await Shell.Current.GoToAsync("..");
         }
     }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

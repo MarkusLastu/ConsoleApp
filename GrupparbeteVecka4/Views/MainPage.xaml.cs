@@ -11,4 +11,12 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         BindingContext = viewModel;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Tvinga sidan att läsa om sina dynamiska resurser
+        this.OnPropertyChanged(nameof(Background));
+    }
 }

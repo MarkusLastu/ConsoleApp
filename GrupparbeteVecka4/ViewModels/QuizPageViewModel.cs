@@ -94,7 +94,7 @@ namespace GrupparbeteVecka4.ViewModels
             _ = LoadPlayers();
 
             StartQuizCommand = new RelayCommand(CreateQuizSession);
-            HistoryCommand = new RelayCommand(ExecuteHistory);
+            //HistoryCommand = new RelayCommand(ExecuteHistory); -- Används inte längre här! NL
             BackCommand = new RelayCommand(ExecuteBack);
         }
 
@@ -134,13 +134,14 @@ namespace GrupparbeteVecka4.ViewModels
             await Shell.Current.GoToAsync(nameof(QuestionPage));
         }
 
-        private async Task ExecuteHistory(object parameter)
+        /*private async Task ExecuteHistory(object parameter) 
+        -- Vi Flyttade HistoryCommand till ProfileSelectViewModel eftersom det är mer logiskt att hantera historik därifrån. NL --
         {
             if (SelectedPlayer != null)
             {
                 await Shell.Current.GoToAsync($"{nameof(HistoryPage)}?PlayerId={SelectedPlayer.Id}");
             }
-        }
+        }*/
 
         private async Task ExecuteBack(object parameter)
         {

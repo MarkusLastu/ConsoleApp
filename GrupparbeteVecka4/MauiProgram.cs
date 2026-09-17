@@ -37,6 +37,9 @@ namespace GrupparbeteVecka4
             builder.Services.AddTransient<ProfileSelectViewModel>();
             builder.Services.AddTransient<ProfileSelectPage>();
 
+            builder.Services.AddTransient<SettingsPageViewModel>();
+            builder.Services.AddTransient<SettingsPage>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();

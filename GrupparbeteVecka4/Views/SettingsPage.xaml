@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:GrupparbeteVecka4.ViewModels"
@@ -6,87 +7,114 @@
              Shell.NavBarIsVisible="False"
              Background="{StaticResource LiveBackground}">
 
-    <!-- Instansiera ViewModel direkt i BindingContext -->
-    <ContentPage.BindingContext>
-        <viewmodels:SettingsPageViewModel />
-    </ContentPage.BindingContext>
+    <Grid Padding="15">
+        <ScrollView Margin="0,0,0,50">
+            <!-- Minskat Spacing mellan alla temakort från 15 till 8 -->
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
 
-    <Grid Padding="20">
-        <ScrollView Margin="0,0,0,60">
-            <VerticalStackLayout Spacing="20">
-
-                <Label Text="Välj Knapptema"
-                       FontSize="28"
-                       FontAttributes="Bold"
-                       TextColor="{DynamicResource HeaderTextColor}"
-                       Margin="0,10,0,10" />
-
-                <!-- TEMA 1: Frostat Glas (Glassmorphism) -->
-                <Border 
-                    Padding="15" 
-                    StrokeShape="RoundRectangle 12" 
-                    BackgroundColor="#40FFFFFF">
-                    <Grid ColumnDefinitions="*, Auto">
-                        <VerticalStackLayout Grid.Column="0" Spacing="5">
-                            <Label Text="Frostat Glas" 
-                                   FontSize="18" 
-                                   FontAttributes="Bold" 
-                                   TextColor="Black" />
-                            <Label Text="Halvtransparent stil med vit kantlinje" 
-                                   FontSize="13" 
-                                   TextColor="Black" />
-                        </VerticalStackLayout>
-                        <Button Grid.Column="1" 
-                                Text="Välj" 
-                                Command="{Binding GlassThemeCommand}"
-                                BackgroundColor="#40FFFFFF"
-                                TextColor="Black"
-                                BorderColor="#40000000"
-                                BorderWidth="1.5"
-                                CornerRadius="8"
-                                HeightRequest="40" />
-                    </Grid>
+                <!-- RUBRIK MED DYNAMISK BAKGRUND -->
+                <Border Padding="12,6"
+                        StrokeShape="RoundRectangle 10"
+                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                        Stroke="{DynamicResource PrimaryBorderColor}"
+                        StrokeThickness="{DynamicResource PrimaryBorderWidth}"
+                        HorizontalOptions="Center"
+                        Margin="0,0,0,5">
+                    
+                    <Label Text="Välj Knapptema"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource PrimaryTextColor}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
                 </Border>
 
-                <!-- TEMA 2: Mörka Knappar -->
-                <Border 
-                    Padding="15" 
-                    StrokeShape="RoundRectangle 12" 
-                    BackgroundColor="#1E1E2E">
+                <!-- TEMA 1: Mörka Knappar (Smalare kort: 240px, smalare knapp: 55px) -->
+                <Border Padding="8,10" 
+                        StrokeShape="RoundRectangle 10" 
+                        BackgroundColor="#1E1E2E"
+                        MaximumWidthRequest="240"
+                        WidthRequest="240"
+                        HorizontalOptions="Center">
                     <Grid ColumnDefinitions="*, Auto">
-                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                        
+                        <VerticalStackLayout Grid.Column="0" Spacing="1" VerticalOptions="Center">
                             <Label Text="Mörka Knappar" 
-                                   FontSize="18" 
+                                   FontSize="15" 
                                    FontAttributes="Bold" 
                                    TextColor="White" />
-                            <Label Text="Grafitgrå knappar för en mörkare känsla" 
-                                   FontSize="13" 
-                                   TextColor="#A6ADC8" />
+                            <Label Text="Vit stil" 
+                                   FontSize="15" 
+                                   TextColor="White" />
                         </VerticalStackLayout>
+                        
                         <Button Grid.Column="1" 
                                 Text="Välj" 
                                 Command="{Binding DarkThemeCommand}"
                                 BackgroundColor="Black"
                                 TextColor="White"
+                                BorderColor="White"
+                                BorderWidth="2"
                                 FontAttributes="Bold"
-                                CornerRadius="8"
-                                HeightRequest="40" />
+                                CornerRadius="6"
+                                HeightRequest="32"
+                                WidthRequest="55"
+                                FontSize="12"
+                                Padding="0" />
                     </Grid>
                 </Border>
 
-                <!-- TEMA 3: Skogsgrön -->
-                <Border 
-                    Padding="15" 
-                    StrokeShape="RoundRectangle 12" 
-                    BackgroundColor="#E8F5E9">
+                <!-- TEMA 2: Frostat Glas (Smalare kort: 240px, smalare knapp: 55px) -->
+                <Border Padding="8,10" 
+                        StrokeShape="RoundRectangle 10" 
+                        BackgroundColor="#40FFFFFF"
+                        Stroke="Black"
+                        StrokeThickness="2"
+                        MaximumWidthRequest="240"
+                        WidthRequest="240"
+                        HorizontalOptions="Center">
+                    
                     <Grid ColumnDefinitions="*, Auto">
-                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                        <VerticalStackLayout Grid.Column="0" Spacing="1" VerticalOptions="Center">
+                            <Label Text="Frostat Glas" 
+                                   FontSize="15" 
+                                   FontAttributes="Bold" 
+                                   TextColor="Black" />
+                            <Label Text="Helsvart kantlinje" 
+                                   FontSize="14" 
+                                   TextColor="Black" />
+                        </VerticalStackLayout>
+                        
+                        <Button Grid.Column="1" 
+                                Text="Välj" 
+                                Command="{Binding GlassThemeCommand}"
+                                BackgroundColor="#40FFFFFF"
+                                TextColor="Black"
+                                BorderColor="Black"
+                                BorderWidth="2"
+                                CornerRadius="6"
+                                HeightRequest="32"
+                                WidthRequest="55"
+                                FontSize="12"
+                                Padding="0" />
+                    </Grid>
+                </Border>
+
+                <!-- TEMA 3: Skogsgrön (Smalare kort: 240px, smalare knapp: 55px) -->
+                <Border Padding="8,10" 
+                        StrokeShape="RoundRectangle 10" 
+                        BackgroundColor="#E8F5E9"
+                        MaximumWidthRequest="240"
+                        WidthRequest="240"
+                        HorizontalOptions="Center">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="1" VerticalOptions="Center">
                             <Label Text="Skogsgrön" 
-                                   FontSize="18" 
+                                   FontSize="15" 
                                    FontAttributes="Bold" 
                                    TextColor="#1B4332" />
-                            <Label Text="En lugn och fräsch grön nyans" 
-                                   FontSize="13" 
+                            <Label Text="grön nyans" 
+                                   FontSize="15" 
                                    TextColor="#40916C" />
                         </VerticalStackLayout>
                         <Button Grid.Column="1" 
@@ -94,31 +122,35 @@
                                 Command="{Binding GreenThemeCommand}"
                                 BackgroundColor="#2E7D32"
                                 TextColor="White"
-                                CornerRadius="8"
-                                HeightRequest="40" />
+                                CornerRadius="6"
+                                HeightRequest="32"
+                                WidthRequest="55"
+                                FontSize="12"
+                                Padding="0" />
                     </Grid>
                 </Border>
 
                 <!-- Förhandsvisning -->
-                <Border Padding="15" StrokeShape="RoundRectangle 12" BackgroundColor="#20FFFFFF">
-                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
-                        <Label Text="Förhandsvisning" 
-                               FontSize="14" 
+                <Border Padding="8,10" 
+                        StrokeShape="RoundRectangle 10" 
+                        BackgroundColor="#20FFFFFF"
+                        MaximumWidthRequest="240"
+                        WidthRequest="240"
+                        HorizontalOptions="Center">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Label Text="Förhandsvisning:" 
+                               FontSize="12" 
                                FontAttributes="Bold" 
                                TextColor="Black" 
                                HorizontalOptions="Center" />
 
-                        <Button Text="Förhandsvisning"
+                        <Button Text="Knapp Tema"
                                 InputTransparent="True"
-                                BackgroundColor="{DynamicResource PrimaryButtonColor}"
-                                TextColor="{DynamicResource PrimaryTextColor}"
-                                BorderColor="{DynamicResource PrimaryBorderColor}"
-                                BorderWidth="{DynamicResource PrimaryBorderWidth}"
-                                HeightRequest="50"
-                                WidthRequest="220"
-                                FontSize="15"
-                                FontAttributes="Bold"
-                                CornerRadius="12" />
+                                Style="{StaticResource DefaultButtonStyle}"
+                                WidthRequest="150"
+                                HeightRequest="36"
+                                FontSize="13"
+                                FontAttributes="Bold" />
                     </VerticalStackLayout>
                 </Border>
 
@@ -128,15 +160,11 @@
         <!-- Bakåtknapp -->
         <Button Text="← Bakåt"
                 Command="{Binding BackCommand}"
-                BackgroundColor="{DynamicResource PrimaryButtonColor}"
-                TextColor="{DynamicResource PrimaryTextColor}"
-                BorderColor="{DynamicResource PrimaryBorderColor}"
-                BorderWidth="{DynamicResource PrimaryBorderWidth}"
-                HeightRequest="45"
-                WidthRequest="100"
-                FontSize="14"
-                FontAttributes="Bold"
-                CornerRadius="12"
+                Style="{StaticResource DefaultButtonStyle}"
+                HeightRequest="36"
+                WidthRequest="80"
+                FontSize="12"
+                CornerRadius="8"
                 HorizontalOptions="Start"
                 VerticalOptions="End" />
     </Grid>

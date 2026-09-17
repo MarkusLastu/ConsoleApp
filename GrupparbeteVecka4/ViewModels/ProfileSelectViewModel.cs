@@ -1,9 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using GrupparbeteVecka4.Models;
+using GrupparbeteVecka4.Service;
+using GrupparbeteVecka4.Views;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using GrupparbeteVecka4.Models;
-using GrupparbeteVecka4.Service;
 
 namespace GrupparbeteVecka4.ViewModels
 {
@@ -37,12 +38,18 @@ namespace GrupparbeteVecka4.ViewModels
         }
 
         public ICommand CreatePlayerCommand { get; }
+        public ICommand BackCommand { get; }
 
         public ProfileSelectViewModel()
         {
             _dbService = new DBService();
             CreatePlayerCommand = new Command(async () => await CreateNewPlayer());
+            BackCommand = new Command(async () => await ExecuteBackAsync());
             _ = LoadPlayersAsync();
+        }
+        private async Task ExecuteBackAsync()
+        {
+            await Shell.Current.GoToAsync("..");
         }
 
         private async Task LoadPlayersAsync()
@@ -73,6 +80,7 @@ namespace GrupparbeteVecka4.ViewModels
         {
             // Exempel: Skicka med spelaren till nästa sida (Quiz-sidan)
             // await Shell.Current.GoToAsync($"QuizPage?playerId={player.PlayerId}");
+            await Shell.Current.GoToAsync($"{nameof(HistoryPage)}?PlayerId={player.Id}");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
