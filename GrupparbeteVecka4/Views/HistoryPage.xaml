@@ -1,86 +1,104 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:GrupparbeteVecka4.ViewModels"
+             xmlns:models="clr-namespace:GrupparbeteVecka4.Models"
              x:Class="GrupparbeteVecka4.Views.HistoryPage"
-             Title="Historik"
+             Title="HistoryPage"
+             Shell.NavBarIsVisible="False"
              Background="{StaticResource LiveBackground}">
 
-    <Grid RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, *" Padding="15">
 
-        <!-- Header -->
-        <Grid Grid.Row="0" 
-              ColumnDefinitions="Auto, *" 
-              Padding="15, 10" 
-              BackgroundColor="{DynamicResource PrimaryButtonColor}">
-
-            <!-- Rensad knapp: Transparent bakgrund med textfärg från temat -->
+        <!-- BAKÅTKNAPP (Högst upp till vänster) -->
+        <HorizontalStackLayout Grid.Row="0" Margin="0,0,0,10">
             <Button Text="← Bakåt"
                     Command="{Binding BackCommand}"
-                    BackgroundColor="Transparent"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="16" />
+                    Style="{StaticResource DefaultButtonStyle}"
+                    HeightRequest="36"
+                    WidthRequest="80"
+                    FontSize="12"
+                    CornerRadius="8"
+                    HorizontalOptions="Start" />
+        </HorizontalStackLayout>
 
-            <Label Grid.Column="1"
-                   Text="Spelhistorik"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="{DynamicResource PrimaryTextColor}"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center" />
-        </Grid>
+        <!-- INNEHÅLL -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center" MaximumWidthRequest="280">
 
-        <!-- Lista över spelomgångar -->
-        <Grid Grid.Row="1" Padding="16">
-            <CollectionView x:Name="HistoryCollectionView"
-                            ItemsSource="{Binding QuizHistories}">
+                <!-- RUBRIK MED DYNAMISK BAKGRUND -->
+                <Border Padding="12,6"
+                        StrokeShape="RoundRectangle 10"
+                        BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                        Stroke="{DynamicResource PrimaryBorderColor}"
+                        StrokeThickness="{DynamicResource PrimaryBorderWidth}"
+                        HorizontalOptions="Center"
+                        Margin="0,0,0,5">
 
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="16" />
-                </CollectionView.ItemsLayout>
+                    <Label Text="Spelhistorik"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource PrimaryTextColor}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
 
-                <!-- Tom vy -->
-                <CollectionView.EmptyView>
-                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
-                        <Label Text="Ingen spelhistorik hittades."
-                               Style="{StaticResource DefaultLabelStyle}"
-                               HorizontalOptions="Center" />
-                    </VerticalStackLayout>
-                </CollectionView.EmptyView>
+                <!-- LISTA MED HISTORIK -->
+                <CollectionView ItemsSource="{Binding QuizHistories}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:QuizHistory">
+                            <Border Margin="0,0,0,8"
+                                    Padding="10,8"
+                                    StrokeShape="RoundRectangle 10"
+                                    BackgroundColor="{DynamicResource PrimaryButtonColor}"
+                                    Stroke="{DynamicResource PrimaryBorderColor}"
+                                    StrokeThickness="{DynamicResource PrimaryBorderWidth}">
 
-                <!-- Historik-kort -->
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Padding="18, 16"
-                                StrokeShape="RoundRectangle 12"
-                                Stroke="{DynamicResource PrimaryBorderColor}"
-                                StrokeThickness="{DynamicResource PrimaryBorderWidth}"
-                                BackgroundColor="{DynamicResource PrimaryButtonColor}">
-                            <Grid ColumnDefinitions="*, Auto">
-                                <!-- Vänster sida: Datum & Tid -->
-                                <VerticalStackLayout Grid.Column="0" Padding="0" Spacing="6">
-                                    <Label Text="{Binding FormattedDate}"
-                                           FontSize="16"
-                                           FontAttributes="Bold"
-                                           TextColor="{DynamicResource PrimaryTextColor}" />
-                                    <Label Text="{Binding TotalQuestions, StringFormat='Antal frågor: {0}'}"
-                                           FontSize="14"
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <!-- Vänster sida: Datum, Speltyp & Poäng -->
+                                    <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                        <Label Text="{Binding FormattedDate}"
+                                               FontSize="12"
+                                               TextColor="{DynamicResource PrimaryTextColor}"
+                                               Opacity="0.8" />
+
+                                        <Label Text="{Binding QuizTypeText}"
+                                               FontSize="11"
+                                               FontAttributes="Italic"
+                                               TextColor="{DynamicResource PrimaryTextColor}"
+                                               Opacity="0.6" />
+
+                                        <Label Text="{Binding Score, StringFormat='Poäng: {0}'}"
+                                               FontSize="14"
+                                               FontAttributes="Bold"
+                                               TextColor="{DynamicResource PrimaryTextColor}"
+                                               Margin="0,2,0,0" />
+                                    </VerticalStackLayout>
+
+                                    <!-- Höger sida: Antal frågor -->
+                                    <Label Grid.Column="1"
+                                           Text="{Binding TotalQuestions, StringFormat='{0} frågor'}"
+                                           FontSize="13"
                                            TextColor="{DynamicResource PrimaryTextColor}"
-                                           Opacity="0.8" />
-                                </VerticalStackLayout>
+                                           VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
 
-                                <!-- Höger sida: Poäng -->
-                                <VerticalStackLayout Grid.Column="1" Padding="0" VerticalOptions="Center" HorizontalOptions="End">
-                                    <Label Text="{Binding ScoreText}"
-                                           FontSize="18"
-                                           FontAttributes="Bold"
-                                           TextColor="{DynamicResource PrimaryTextColor}" />
-                                </VerticalStackLayout>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
+                    <!-- OM HISTORIKEN ÄR TOM -->
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout Padding="20" HorizontalOptions="Center">
+                            <Label Text="Ingen historik hittades."
+                                   FontSize="14"
+                                   TextColor="{DynamicResource PrimaryTextColor}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
 
     </Grid>
 </ContentPage>

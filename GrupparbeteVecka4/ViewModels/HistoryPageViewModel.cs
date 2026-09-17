@@ -1,7 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using GrupparbeteVecka4.Converters;
 using GrupparbeteVecka4.Models;
@@ -33,7 +36,6 @@ namespace GrupparbeteVecka4.ViewModels
             BackCommand = new Command(async () => await Shell.Current.GoToAsync(".."));
         }
 
-        // Fångar upp parametern "PlayerId" när Shell navigerar hit
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             if (query.TryGetValue("PlayerId", out var playerIdObj))
@@ -51,7 +53,7 @@ namespace GrupparbeteVecka4.ViewModels
             {
                 var result = await _service.GetPlayerHistoryAsync(playerId, 4);
 
-                if (result != null && result.Content != null)
+                if (result != null && !string.IsNullOrWhiteSpace(result.Content))
                 {
                     string json = result.Content;
 
@@ -63,18 +65,34 @@ namespace GrupparbeteVecka4.ViewModels
 
                     var rawHistoryList = JsonSerializer.Deserialize<List<QuizHistory>>(json, options) ?? new List<QuizHistory>();
 
+                    // Gruppera efter unik QuizSessionId
                     QuizHistories = rawHistoryList
                         .GroupBy(h => h.QuizSessionId)
-                        .Select(g => new QuizHistory
+                        .Select(g =>
                         {
-                            QuizSessionId = g.Key,
-                            StartTime = g.First().StartTime,
-                            Score = g.First().Score,
-                            TotalQuestions = g.Count()
+                            var first = g.First();
+
+                            // Bestäm texten baserat på QuizTypeId (1 = Klassiskt, 2 = Tidsbaserat)
+                            string gameModeText = first.QuizTypeId switch
+                            {
+                                1 => "Klassiskt",
+                                2 => "Tidsbaserat",
+                                _ => "Klassiskt" // Standard fallback
+                            };
+
+                            return new QuizHistory
+                            {
+                                QuizSessionId = g.Key,
+                                StartTime = first.StartTime,
+                                Score = first.Score,
+                                TotalQuestions = g.Count(),
+                                QuizTypeText = gameModeText
+                            };
                         })
+                        .OrderByDescending(h => h.StartTime)
                         .ToList();
                 }
-            }
+            } // <--- Denna saknades ovanför catch
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Fel vid inläsning av historik: {ex.Message}");
