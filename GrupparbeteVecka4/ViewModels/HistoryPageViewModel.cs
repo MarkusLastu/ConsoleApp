@@ -1,14 +1,16 @@
-﻿using GrupparbeteVecka4.Converters;
-using GrupparbeteVecka4.Models;
-using GrupparbeteVecka4.Service;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Windows.Input;
+using GrupparbeteVecka4.Converters;
+using GrupparbeteVecka4.Models;
+using GrupparbeteVecka4.Service;
+using Microsoft.Maui.Controls;
 
 namespace GrupparbeteVecka4.ViewModels
 {
-    public class HistoryPageViewModel : INotifyPropertyChanged
+    public class HistoryPageViewModel : INotifyPropertyChanged, IQueryAttributable
     {
         private readonly DBService _service;
 
@@ -23,9 +25,24 @@ namespace GrupparbeteVecka4.ViewModels
             }
         }
 
+        public ICommand BackCommand { get; }
+
         public HistoryPageViewModel(DBService service)
         {
             _service = service;
+            BackCommand = new Command(async () => await Shell.Current.GoToAsync(".."));
+        }
+
+        // Fångar upp parametern "PlayerId" när Shell navigerar hit
+        public async void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            if (query.TryGetValue("PlayerId", out var playerIdObj))
+            {
+                if (long.TryParse(playerIdObj?.ToString(), out long playerId) && playerId > 0)
+                {
+                    await LoadHistoryAsync(playerId);
+                }
+            }
         }
 
         public async Task LoadHistoryAsync(long playerId)
@@ -46,7 +63,6 @@ namespace GrupparbeteVecka4.ViewModels
 
                     var rawHistoryList = JsonSerializer.Deserialize<List<QuizHistory>>(json, options) ?? new List<QuizHistory>();
 
-                    // Gruppera på session och räkna antalet rader/frågor
                     QuizHistories = rawHistoryList
                         .GroupBy(h => h.QuizSessionId)
                         .Select(g => new QuizHistory
@@ -54,7 +70,7 @@ namespace GrupparbeteVecka4.ViewModels
                             QuizSessionId = g.Key,
                             StartTime = g.First().StartTime,
                             Score = g.First().Score,
-                            TotalQuestions = g.Count() // Räknar antalet rader/frågor i sessionen
+                            TotalQuestions = g.Count()
                         })
                         .ToList();
                 }

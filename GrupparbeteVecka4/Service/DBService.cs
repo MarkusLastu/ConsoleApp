@@ -21,6 +21,10 @@ namespace GrupparbeteVecka4.Service
 
         }
 
+        // ========================================== 
+        // SELECT FROM DB
+        // ========================================== 
+
         public async Task<List<Question>> GetRandomQuestionsAsync(int numberOfQuestions)
         {
             try
@@ -58,6 +62,14 @@ namespace GrupparbeteVecka4.Service
 
             return result.Models;
         }
+
+
+        // ========================================== 
+        // INSERT INTO DB
+        // ========================================== 
+
+
+
         public async Task<QuizSession> CreateQuizSessionAsync(QuizSession newSession)
         {
             Debug.WriteLine($"Skapar ny session: ");
@@ -77,6 +89,49 @@ namespace GrupparbeteVecka4.Service
                 .From<QuestionInSession>()
                 .Insert(newAnswer);
             Debug.WriteLine($"Skriver tiil DB: KLART!");
+        }
+
+
+
+        // ========================================== 
+        // UPDATE DB
+        // ========================================== 
+
+        public async Task UpdateFinishedQuizSessionAsync(QuizSession finishedSession)
+        {
+            Debug.WriteLine("========== UPPDATERAR QUIZSESSION ==========");
+            Debug.WriteLine($"SessionId: {finishedSession.Id}");
+            Debug.WriteLine($"EndTime: {finishedSession.EndTime}");
+            Debug.WriteLine($"Score: {finishedSession.Score}");
+
+            try
+            {
+                var result = await _client
+                        .From<QuizSession>()
+                        .Where(s => s.Id == finishedSession.Id)
+                        .Set(s => s.EndTime, finishedSession.EndTime)
+                        .Set(s => s.Score, finishedSession.Score)
+                        .Update();
+
+                Debug.WriteLine($"Antal uppdaterade modeller: {result.Models.Count}");
+
+                foreach (var session in result.Models)
+                {
+                    Debug.WriteLine($"Uppdaterad SessionId: {session.Id}");
+                    Debug.WriteLine($"EndTime: {session.EndTime}");
+                    Debug.WriteLine($"Score: {session.Score}");
+                }
+
+                Debug.WriteLine("============================================");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("========== UPDATE ERROR ==========");
+                Debug.WriteLine(ex.ToString());
+                Debug.WriteLine("==================================");
+
+                throw;
+            }
         }
 
         public async Task<List<QuizSession>> GetSessionsAsync(long playerId)

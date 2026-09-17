@@ -13,8 +13,9 @@
               Padding="15, 10" 
               BackgroundColor="{DynamicResource PrimaryButtonColor}">
 
+            <!-- Rensad knapp: Transparent bakgrund med textfärg från temat -->
             <Button Text="← Bakåt"
-                    Clicked="OnBackButtonClicked"
+                    Command="{Binding BackCommand}"
                     BackgroundColor="Transparent"
                     TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="16" />
@@ -33,17 +34,15 @@
             <CollectionView x:Name="HistoryCollectionView"
                             ItemsSource="{Binding QuizHistories}">
 
-                <!-- SÄTTER ETT GARANTERAT MELLANRUM MELLAN KORTEN -->
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="16" />
                 </CollectionView.ItemsLayout>
 
                 <!-- Tom vy -->
                 <CollectionView.EmptyView>
-                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
                         <Label Text="Ingen spelhistorik hittades."
-                               FontSize="16"
-                               TextColor="{DynamicResource SubHeaderTextColor}"
+                               Style="{StaticResource DefaultLabelStyle}"
                                HorizontalOptions="Center" />
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
@@ -58,7 +57,7 @@
                                 BackgroundColor="{DynamicResource PrimaryButtonColor}">
                             <Grid ColumnDefinitions="*, Auto">
                                 <!-- Vänster sida: Datum & Tid -->
-                                <VerticalStackLayout Grid.Column="0" Spacing="6">
+                                <VerticalStackLayout Grid.Column="0" Padding="0" Spacing="6">
                                     <Label Text="{Binding FormattedDate}"
                                            FontSize="16"
                                            FontAttributes="Bold"
@@ -70,7 +69,7 @@
                                 </VerticalStackLayout>
 
                                 <!-- Höger sida: Poäng -->
-                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End">
+                                <VerticalStackLayout Grid.Column="1" Padding="0" VerticalOptions="Center" HorizontalOptions="End">
                                     <Label Text="{Binding ScoreText}"
                                            FontSize="18"
                                            FontAttributes="Bold"

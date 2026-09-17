@@ -1,83 +1,175 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GrupparbeteVecka4.Views.QuestionPage"
-             Title="QuestionPage"
-             Background="{StaticResource LiveBackground}">
-    
-    <VerticalStackLayout
-        VerticalOptions="Center"
-        HorizontalOptions="Center">
-        <!-- Rubrik -->
-        <Label Text="Quiz"
-               FontSize="32"
-               FontAttributes="Bold"
-               TextColor="{StaticResource HeaderTextColor}"
-               HorizontalOptions="Center" />
-        
-        <Label 
-            Text="{Binding QuestionCount}"
-            TextColor="{StaticResource SubHeaderTextColor}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GrupparbeteVecka4.Views.QuestionPage"
+    Title="Quiz"
+    Background="{StaticResource LiveBackground}">
 
-        <!-- Kategori -->
+    <Grid
+        Padding="30"
+        RowDefinitions="Auto,*,Auto">
 
-        <Label 
-            Text="Kategori:"                        
-            FontSize="18"
-            FontAttributes="Bold"
-            TextColor="{StaticResource SubHeaderTextColor}"
-            HorizontalOptions="Center"/>
-        <Label 
-            Text="{Binding CategoryName}"                        
-            TextColor="{StaticResource SubHeaderTextColor}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Image
-            Source="{Binding CategoryImage}"
-            HeightRequest="200"
-            Aspect="AspectFit"/>
+        <!-- ========================= -->
+        <!-- ÖVRE INFORMATION -->
+        <!-- ========================= -->
 
-        <!-- Fråga -->
-
-        <Label
-            Text="{Binding QuestionText}"  
-            FontSize="24"
-            TextColor="Black"
-            HorizontalOptions="Center" />
-        
-        <!-- Svarsalternativ -->
         <Grid
-            RowDefinitions="*,*"
-            ColumnDefinitions="200, 200"
-            ColumnSpacing="10"
-            RowSpacing="10">
+            Grid.Row="0"
+            ColumnDefinitions="*,*">
 
-            <Button Text="{Binding Answer1Text}"
+            <Label
+                Grid.Column="0"
+                Text="{Binding QuestionProgressText}"
+                Style="{StaticResource SubHeaderLabelStyle}"
+                HorizontalOptions="Start" />
+
+            <Label
+                Grid.Column="1"
+                Text="{Binding QuizScoreText}"
+                Style="{StaticResource SubHeaderLabelStyle}"
+                HorizontalOptions="End" />
+
+        </Grid>
+
+
+        <!-- ================================================= -->
+        <!-- FRÅGELÄGE                                        -->
+        <!-- ================================================= -->
+
+        <VerticalStackLayout
+            Grid.Row="1"
+            IsVisible="{Binding IsQuestionVisible}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            MaximumWidthRequest="700">
+
+            <Label
+                Text="Kategori"
+                Style="{StaticResource SubHeaderLabelStyle}"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="{Binding CategoryName}"
+                Style="{StaticResource DefaultLabelStyle}"
+                HorizontalOptions="Center" />
+
+            <Image
+                Source="{Binding CategoryImage}"
+                HeightRequest="160"
+                WidthRequest="250"
+                Aspect="AspectFit"
+                Margin="0,5,0,15" />
+
+            <Label
+                Text="{Binding QuestionText}"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="{StaticResource HeaderTextColor}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Margin="0,10,0,25" />
+
+
+            <!-- Svarsalternativ -->
+
+            <Grid
+                RowDefinitions="Auto,Auto"
+                ColumnDefinitions="*,*"
+                RowSpacing="12"
+                ColumnSpacing="12">
+
+                <Button
                     Grid.Row="0"
-                    Grid.Column="0"    
+                    Grid.Column="0"
+                    Text="{Binding Answer1Text}"
                     Command="{Binding AnswerCommand}"
                     CommandParameter="{Binding Answer1}"
-                    Style="{StaticResource AnswerButtonStyle}"/>
-            <Button Text="{Binding Answer2Text}"
+                    Style="{StaticResource AnswerButtonStyle}" />
+
+                <Button
                     Grid.Row="0"
-                    Grid.Column="1"    
+                    Grid.Column="1"
+                    Text="{Binding Answer2Text}"
                     Command="{Binding AnswerCommand}"
                     CommandParameter="{Binding Answer2}"
-                    Style="{StaticResource AnswerButtonStyle}"/>
-            <Button Text="{Binding Answer3Text}"
+                    Style="{StaticResource AnswerButtonStyle}" />
+
+                <Button
                     Grid.Row="1"
-                    Grid.Column="0"    
+                    Grid.Column="0"
+                    Text="{Binding Answer3Text}"
                     Command="{Binding AnswerCommand}"
                     CommandParameter="{Binding Answer3}"
-                    Style="{StaticResource AnswerButtonStyle}"/>
-            <Button Text="{Binding Answer4Text}"
+                    Style="{StaticResource AnswerButtonStyle}" />
+
+                <Button
                     Grid.Row="1"
-                    Grid.Column="1"    
+                    Grid.Column="1"
+                    Text="{Binding Answer4Text}"
                     Command="{Binding AnswerCommand}"
                     CommandParameter="{Binding Answer4}"
-                    Style="{StaticResource AnswerButtonStyle}"/>
-        </Grid>
-    </VerticalStackLayout>
+                    Style="{StaticResource AnswerButtonStyle}" />
+
+            </Grid>
+
+        </VerticalStackLayout>
+
+
+        <!-- ================================================= -->
+        <!-- SVARSLÄGE                                        -->
+        <!-- ================================================= -->
+
+        <VerticalStackLayout
+            Grid.Row="1"
+            IsVisible="{Binding IsAnswerVisible}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            MaximumWidthRequest="600">
+
+            <Label
+                Text="{Binding AnswerResultText}"
+                FontSize="32"
+                FontAttributes="Bold"
+                TextColor="{Binding AnswerResultColor}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center" />
+
+            <Label
+                Text="{Binding CorrectAnswerText}"
+                Style="{StaticResource SubHeaderLabelStyle}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Margin="0,20,0,0" />
+
+            <Label
+                Text="{Binding PointsText}"
+                Style="{StaticResource DefaultLabelStyle}"
+                HorizontalOptions="Center"
+                Margin="0,10,0,20" />
+
+            <Button
+                Text="Nästa fråga →"
+                Command="{Binding NextQuestionCommand}"
+                Style="{StaticResource DefaultButtonStyle}"
+                HorizontalOptions="Center"
+                WidthRequest="220" />
+
+        </VerticalStackLayout>
+
+
+        <!-- ================================================= -->
+        <!-- NEDRE INFORMATION -->
+        <!-- ================================================= -->
+
+        <Label
+            Grid.Row="2"
+            Text="{Binding FooterText}"
+            Style="{StaticResource DefaultLabelStyle}"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            Margin="0,20,0,0" />
+
+    </Grid>
+
 </ContentPage>

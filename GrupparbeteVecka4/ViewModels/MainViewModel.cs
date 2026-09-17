@@ -4,31 +4,23 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using GrupparbeteVecka4.Commands;
+using Microsoft.Maui.Controls;
 
-namespace GrupparbeteVecka4.ViewModels
+namespace GrupparbeteVecka4.ViewModels;
+
+public class MainPageViewModel
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public ICommand NavigateCommand { get; }
+
+    public MainPageViewModel()
     {
-        public ICommand InsertCatCommand { get; }
-        public ICommand SearchCatCommand { get; }
-
-        public MainViewModel()
+        NavigateCommand = new Command<string>(async (pageName) =>
         {
-            //InsertCatCommand = new RelayCommand(InsertCat);
-            //SearchCatCommand = new RelayCommand(SearchCat);
-        }
-
-        private async Task InsertCat()
-        {
-            await Shell.Current.GoToAsync("InsertCatPage");
-        }
-
-        private async Task SearchCat()
-        {
-            await Shell.Current.GoToAsync("SearchCatPage");
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+            if (!string.IsNullOrWhiteSpace(pageName))
+            {
+                await Shell.Current.GoToAsync(pageName);
+            }
+        });
     }
 }
 
