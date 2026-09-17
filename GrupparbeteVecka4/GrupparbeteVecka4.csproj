@@ -72,6 +72,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\ProfileSelectPage.xaml.cs">
+	    <DependentUpon>ProfileSelectPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\QuestionPage.xaml.cs">
 	    <DependentUpon>QuestionPage.xaml</DependentUpon>
 	  </Compile>
@@ -79,6 +82,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\HistoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProfileSelectPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProfilePage.xaml">

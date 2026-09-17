@@ -9,7 +9,7 @@ namespace GrupparbeteVecka4.Models
     [Table("players")]
     public class Player : BaseModel
     {
-        [PrimaryKey("player_id")]
+        [PrimaryKey("player_id")]   //Andra parametern (false): Är en flagga för om värdet skapas automatiskt av databasen (till exempel en räknare som ökar med 1 för varje ny spelare, s.k. auto-increment eller identity).
         public long Id { get; set; }
 
         [Column("player_name")]
