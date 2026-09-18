@@ -1,31 +1,38 @@
 ﻿
+Styling är inte helt klar
+kan inte lägga in en ny bild till en profil eller bara se din profil.
+säkerhetsmässigt är det ingen säkerhet just nu.
+använda alla profiler som finns i DB
 
 
 MVP - Minimal Viable Product
-- Startsida
-- Ett fungerade frågeflöde/spel	
-	- En vy där frågor och svarsalternativ visas
+- Startsida (KLAR)
+- Ett fungerade frågeflöde/spel	(KLAR)
+	- En vy där frågor och svarsalternativ visas (KLAR)
 
 
 
 MarcusB
-- Sammanfattning av omgång - Lista frågor och rätt och fel svar
+- Sammanfattning av omgång - Lista frågor och rätt och fel svar (KLAR)
 
 Niklas
 
 
 Sebbe
+
+
+
 --------------------------------------------------------------
 
 
-Funktioner
+Funktioner som inte blev av!
 
-- Topplista
-- Speltyp - Gissa år mellan X och Y - slider. Fler poäng om man har litet spann
-- Speltyp - Välj kategorier
+- Topplista (inte med tid helt enklt)
+- Speltyp - Gissa år mellan X och Y - slider. Fler poäng om man har litet spann (Vi valde att göra andra Spelinställningar)
+- Speltyp - Välj kategorier - ??
 
-- Bildfrågor
-	- Vilken film är detta?
+- Bildfrågor inte än men finns i DB. Vi kan lägga till det senare. (Vi valde att göra andra Spelinställningar)
+	
 
 
 
@@ -39,9 +46,9 @@ Vyer
 - Spelomgång
 	
 	- Välj kategorier
-- Toplista/Tidigare omgångar/Resultat
-	- Sammanfattning av omgång
-		- Lista frågor och rätt och fel svar
+- Toplista/Tidigare omgångar/Resultat (KLAR) 
+	- Sammanfattning av omgång (KLAR)
+		- Lista frågor och rätt och fel svar (KLAR)
 --------------------------------------------------------------
 --- DET SOM ÄR KLART ---
 

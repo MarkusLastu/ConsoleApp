@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 
 namespace GrupparbeteVecka4.Converters;
-
+//---Denna kod kollar om ett objekt har ett värde (not null) eller inte (null) och returnerar true eller false.----//
 public class IsNotNullConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)

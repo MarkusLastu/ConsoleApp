@@ -2,7 +2,8 @@
 using System.Text.Json.Serialization;
 
 namespace GrupparbeteVecka4.Converters;
-
+//---  Syftet med koden är att göra JSON-inläsningen helt krashsäker när du tar emot tal från API:er eller databaser--- 
+//---  (t.ex. Supabase), oavsett vilket format datan råkar ha när den skickas.---
 public class FlexibleIntConverter : JsonConverter<int>
 {
     public override int Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

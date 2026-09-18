@@ -24,7 +24,7 @@
 
         <!-- INNEHÅLL -->
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Spacing="8" HorizontalOptions="Center" MaximumWidthRequest="280">
+            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" MaximumWidthRequest="280">
 
                 <!-- RUBRIK MED DYNAMISK BAKGRUND -->
                 <Border Padding="12,6"
@@ -52,7 +52,7 @@
                     SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference QuizHistoryCollection}}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:QuizHistory">
-                            <Border Margin="0,0,0,8"
+                            <Border Margin="0,0,0,10"
                                     Padding="10,8"
                                     StrokeShape="RoundRectangle 10"
                                     BackgroundColor="{DynamicResource PrimaryButtonColor}"
