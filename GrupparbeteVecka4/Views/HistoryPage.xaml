@@ -63,18 +63,16 @@
                                     <!-- Vänster sida: Datum, Speltyp & Poäng -->
                                     <VerticalStackLayout Grid.Column="0" Spacing="2">
                                         <Label Text="{Binding FormattedDate}"
-                                               FontSize="12"
-                                               TextColor="{DynamicResource PrimaryTextColor}"
-                                               Opacity="0.8" />
+                                               FontSize="13"
+                                               TextColor="{DynamicResource PrimaryTextColor}"/>
 
                                         <Label Text="{Binding QuizTypeText}"
-                                               FontSize="11"
+                                               FontSize="13"
                                                FontAttributes="Italic"
-                                               TextColor="{DynamicResource PrimaryTextColor}"
-                                               Opacity="0.6" />
+                                               TextColor="{DynamicResource PrimaryTextColor}"/>
 
                                         <Label Text="{Binding Score, StringFormat='Poäng: {0}'}"
-                                               FontSize="14"
+                                               FontSize="15"
                                                FontAttributes="Bold"
                                                TextColor="{DynamicResource PrimaryTextColor}"
                                                Margin="0,2,0,0" />

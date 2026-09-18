@@ -22,31 +22,33 @@
         </HorizontalStackLayout>
 
         <!-- Rubrik -->
-        <VerticalStackLayout Grid.Row="1" HorizontalOptions="Center" Spacing="6" Margin="0,0,0,15">
+        <VerticalStackLayout Grid.Row="1" HorizontalOptions="Center" Spacing="5" Margin="0,0,0,5">
             <Label Text="Profilhantering"
                    Style="{StaticResource HeaderLabelStyle}"
+                   FontSize="23"
                    HorizontalOptions="Center" />
 
             <Label Text="Välj eller skapa en spelare för att se historik"
+                   FontSize="14"
                    Style="{StaticResource SubHeaderLabelStyle}"
                    HorizontalOptions="Center" />
         </VerticalStackLayout>
 
         <!-- Skapa ny spelare-sektion -->
         <Border Grid.Row="2"
-                Padding="16"
-                Margin="0,0,0,15"
+                Padding="12"
+                Margin="0,0,0,5"
                 StrokeShape="RoundRectangle 12"
                 Stroke="{DynamicResource PrimaryBorderColor}"
                 StrokeThickness="{DynamicResource PrimaryBorderWidth}"
                 BackgroundColor="{DynamicResource PrimaryButtonColor}">
-            <VerticalStackLayout Spacing="10" Padding="0">
+            <VerticalStackLayout Spacing="2" Padding="0">
                 <Label Text="Skapa ny spelare"
                        FontSize="16"
                        FontAttributes="Bold"
                        TextColor="{DynamicResource PrimaryTextColor}" />
 
-                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="6">
                     <Entry Placeholder="Ange spelarnamn..."
                            Text="{Binding NewPlayerName}"
                            Style="{StaticResource DefaultEntryStyle}" />
@@ -92,8 +94,8 @@
 
                                 <!-- Profilbild / Cirkulär Avatar -->
                                 <Border Grid.Column="0"
-                                        WidthRequest="250"
-                                        HeightRequest="250"
+                                        WidthRequest="175"
+                                        HeightRequest="175"
                                         StrokeShape="RoundRectangle 24"
                                         Stroke="{DynamicResource PrimaryBorderColor}"
                                         StrokeThickness="1.5"
@@ -103,8 +105,8 @@
 
                                     <Image Source="{Binding AvatarSource}"
                                            Aspect="AspectFill"
-                                           WidthRequest="250"
-                                           HeightRequest="250" />
+                                           WidthRequest="175"
+                                           HeightRequest="175" />
                                 </Border>
                                 <!-- Spelarnamn -->
                                 <Label Grid.Column="1"

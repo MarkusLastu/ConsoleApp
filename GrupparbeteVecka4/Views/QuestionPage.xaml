@@ -4,90 +4,87 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="GrupparbeteVecka4.Views.QuestionPage"
     Title="Quiz"
+    Shell.NavBarIsVisible="False"
     Background="{StaticResource LiveBackground}">
 
-    <Grid
-        Padding="30"
-        RowDefinitions="Auto,*,Auto">
+    <Grid Padding="15" RowDefinitions="Auto, *, Auto">
 
         <!-- ========================= -->
-        <!-- ÖVRE INFORMATION -->
+        <!-- ÖVRE INFORMATION (CENTRERAD) -->
         <!-- ========================= -->
-
         <Grid
             Grid.Row="0"
-            ColumnDefinitions="*,*"
-            RowDefinitions="*,*">
+            HorizontalOptions="Center"
+            MaximumWidthRequest="250"
+            WidthRequest="300"
+            ColumnDefinitions="*, *"
+            RowDefinitions="Auto, Auto">
 
             <Label
-                Grid.Column="0"
                 Grid.Row="0"
+                Grid.Column="0"
                 Text="{Binding QuestionProgressText}"
                 Style="{StaticResource SubHeaderLabelStyle}"
                 HorizontalOptions="Start" />
 
             <Label
-                Grid.Column="1"
                 Grid.Row="0"
+                Grid.Column="1"
                 Text="{Binding QuizScoreText}"
                 Style="{StaticResource SubHeaderLabelStyle}"
                 HorizontalOptions="End" />
 
             <Label
-                Grid.Column="1"
                 Grid.Row="1"
+                Grid.Column="1"
                 Text="{Binding TimerText}"
                 Style="{StaticResource SubHeaderLabelStyle}"
                 HorizontalOptions="End" />
-
         </Grid>
 
 
         <!-- ================================================= -->
         <!-- FRÅGELÄGE                                        -->
         <!-- ================================================= -->
-
         <VerticalStackLayout
             Grid.Row="1"
             IsVisible="{Binding IsQuestionVisible}"
             VerticalOptions="Center"
             HorizontalOptions="Center"
-            MaximumWidthRequest="700">
+            MaximumWidthRequest="600"
+            Spacing="8">
 
-            <Label
-                Text="Kategori"
-                Style="{StaticResource SubHeaderLabelStyle}"
-                HorizontalOptions="Center" />
+            <!-- KATEGORI -->
+            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                <Label Text="Kategori:" Style="{StaticResource SubHeaderLabelStyle}" FontSize="13" />
+                <Label Text="{Binding CategoryName}" Style="{StaticResource DefaultLabelStyle}" FontAttributes="Bold" FontSize="13" />
+            </HorizontalStackLayout>
 
-            <Label
-                Text="{Binding CategoryName}"
-                Style="{StaticResource DefaultLabelStyle}"
-                HorizontalOptions="Center" />
-
+            <!-- BILD -->
             <Image
                 Source="{Binding CategoryImage}"
-                HeightRequest="160"
-                WidthRequest="250"
+                HeightRequest="140"
+                WidthRequest="220"
                 Aspect="AspectFit"
-                Margin="0,5,0,15" />
+                HorizontalOptions="Center" />
 
+            <!-- FRÅGETEXT -->
             <Label
                 Text="{Binding QuestionText}"
-                FontSize="24"
+                FontSize="16"
                 FontAttributes="Bold"
                 TextColor="{StaticResource HeaderTextColor}"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Margin="0,10,0,25" />
+                Margin="0,5,0,10" />
 
-
-            <!-- Svarsalternativ -->
-
+            <!-- SVARSALTERNATIV -->
             <Grid
-                RowDefinitions="Auto,Auto"
-                ColumnDefinitions="*,*"
-                RowSpacing="12"
-                ColumnSpacing="12">
+                RowDefinitions="Auto, Auto"
+                ColumnDefinitions="*, *"
+                RowSpacing="10"
+                ColumnSpacing="10"
+                HorizontalOptions="Fill">
 
                 <Button
                     Grid.Row="0"
@@ -120,7 +117,6 @@
                     Command="{Binding AnswerCommand}"
                     CommandParameter="{Binding Answer4}"
                     Style="{StaticResource AnswerButtonStyle}" />
-
             </Grid>
 
         </VerticalStackLayout>
@@ -129,17 +125,17 @@
         <!-- ================================================= -->
         <!-- SVARSLÄGE                                        -->
         <!-- ================================================= -->
-
         <VerticalStackLayout
             Grid.Row="1"
             IsVisible="{Binding IsAnswerVisible}"
             VerticalOptions="Center"
             HorizontalOptions="Center"
-            MaximumWidthRequest="600">
+            MaximumWidthRequest="500"
+            Spacing="12">
 
             <Label
                 Text="{Binding AnswerResultText}"
-                FontSize="32"
+                FontSize="28"
                 FontAttributes="Bold"
                 TextColor="{Binding AnswerResultColor}"
                 HorizontalOptions="Center"
@@ -149,37 +145,33 @@
                 Text="{Binding CorrectAnswerText}"
                 Style="{StaticResource SubHeaderLabelStyle}"
                 HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                Margin="0,20,0,0" />
+                HorizontalTextAlignment="Center" />
 
             <Label
                 Text="{Binding PointsText}"
                 Style="{StaticResource DefaultLabelStyle}"
-                HorizontalOptions="Center"
-                Margin="0,10,0,20" />
+                HorizontalOptions="Center" />
 
             <Button
                 Text="Nästa fråga →"
                 Command="{Binding NextQuestionCommand}"
                 Style="{StaticResource DefaultButtonStyle}"
                 HorizontalOptions="Center"
-                WidthRequest="220" />
+                WidthRequest="200"
+                Margin="0,10,0,0" />
 
         </VerticalStackLayout>
 
 
         <!-- ================================================= -->
-        <!-- NEDRE INFORMATION -->
+        <!-- NEDRE INFORMATION                                 -->
         <!-- ================================================= -->
-
         <Label
             Grid.Row="2"
             Text="{Binding FooterText}"
             Style="{StaticResource DefaultLabelStyle}"
             HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            Margin="0,20,0,0" />
+            HorizontalTextAlignment="Center" />
 
     </Grid>
-
 </ContentPage>

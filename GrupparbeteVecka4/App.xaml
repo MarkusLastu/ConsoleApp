@@ -26,7 +26,7 @@
             <Color x:Key="PrimaryButtonColor">#0F172A</Color>
             <Color x:Key="PrimaryTextColor">#FFFFFF</Color>
             <Color x:Key="HeaderTextColor">#0F172A</Color>
-            <Color x:Key="SubHeaderTextColor">#475569</Color>
+            <Color x:Key="SubHeaderTextColor">#0d0000</Color>
             <Color x:Key="PrimaryBorderColor">#000000</Color>
             
             <x:Double x:Key="PrimaryBorderWidth">2</x:Double>

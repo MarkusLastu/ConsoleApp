@@ -30,7 +30,7 @@ public class SettingsPageViewModel : INotifyPropertyChanged
             buttonColor: Color.FromArgb("#1E1E2E"),
             textColor: Colors.White,
             headerColor: Colors.White,
-            subHeaderColor: Color.FromArgb("#A6ADC8"),
+            subHeaderColor: Color.FromArgb("#0d0000"),
             borderColor: Color.FromArgb("#313244"),
             borderWidth: 1
         ));
